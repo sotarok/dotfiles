@@ -86,11 +86,14 @@ nmap N Nzz
 nnoremap <Space>w :<C-u>write<CR>
 nnoremap <Space>q :<C-u>quit<CR>
 nnoremap <Space>Q :<C-u>quit!<CR>
-nnoremap <Space>[ :<ESC>
+
 " buffer
 nnoremap <Space>h :<C-u>bp<CR>
 nnoremap <Space>j :<C-u>bn<CR>
 nnoremap <Space>d :<C-u>bd<CR>
+
+nnoremap <Space>O O^<C-D><Esc>
+nnoremap <Space>o o^<C-D><Esc>
 
 " coursor
 noremap j gj
@@ -103,6 +106,7 @@ vnoremap gc :<C-u>normal gc<Enter>
 onoremap gc :<C-u>normal gc<Enter>
 
 inoremap <C-@> <Esc>
+inoremap <Space>[ <Esc>
 
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline

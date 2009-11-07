@@ -32,9 +32,10 @@
 #
 ###install developers environmnet
 #sudo aptitude -y install build-essential
-#sudo aptitude install -y linux-headers-`uname -r`
+#sudo aptitude -y install linux-headers-`uname -r`
 #sudo aptitude -y install autoconf
 #sudo aptitude -y install gdb libgdb-dev valgrind
+#sudo aptitude -y install boost-build libboost-dev
 #
 ###install apache
 #sudo aptitude -y install apache2 apache2-dev
