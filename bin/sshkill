@@ -1,0 +1,10 @@
+#!/usr/bin/perl
+use strict;
+
+(my $tty = `echo -n \$SSH_TTY`) =~ s/\/dev\///;
+my $dead = `ps x | grep pts | grep sshd | grep -v $tty | grep -v grep`;
+foreach(split(/\n/, $dead)){
+    $_ =~ s/^\s*(\d+).+$/$1/;
+    print qq|Kill pid=$_...\n|;
+    `kill -KILL $_`;
+}

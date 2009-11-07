@@ -1,0 +1,20 @@
+autodetach on
+bell_msg "^G"
+defkanji utf-8
+defencoding utf-8
+defc1 off
+encoding utf-8 utf-8
+defscrollback 100000
+escape ^Z^z
+startup_message off
+vbell off
+#caption always "%{= wb} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wk} [%l] %{=b wb}%y/%m/%d(%d) %{=b wm}%c"
+caption always "%{= wb} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wk} [%l] %{=b wb}%y/%m/%d(%d) %{=b wm}%c"
+bind n screen
+bind h prev
+bind j next
+bind l windowlist
+bind x remove
+bind X remove
+bind s split
+bind t focus

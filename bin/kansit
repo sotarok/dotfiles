@@ -1,0 +1,149 @@
+#!/usr/bin/env ruby
+#
+# kansit
+#
+# Copyright (c) 2009 FURUHASHI Sadayuki
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
+
+def on_update(updated)
+	require 'fileutils'
+	require 'shellwords'
+
+	if File.executable?("on_update")
+		updated_cmd = updated.map {|f| Shellwords.escape(f) }.join(' ')
+		system("./on_update", *updated_cmd)
+		return
+	end
+
+	backup_dir = File.join(ENV['HOME'], ".kansit-backup")
+
+	if File.directory?(backup_dir)
+		files = $patterns.map {|g| Dir.glob(g) }.flatten.uniq
+		time  = Time.now
+		files_cmd = files.map {|f| Shellwords.escape(f) }.join(' ')
+
+		time_dir = "#{backup_dir}/#{time.strftime("%Y%m%d/%H%M%S")}"
+		FileUtils.mkdir_p time_dir
+		system("tar -c #{files_cmd} | tar -x -C #{time_dir}")
+
+		ydir  = (time - 60*60*24).strftime("%Y%m%d")
+		if File.directory?("#{backup_dir}/#{ydir}")
+			system("cd #{backup_dir} && tar -cjf #{ydir}.tar.bz2 #{ydir} && rm -rf #{ydir}")
+		end
+	end
+
+	if File.file?("Makefile")
+		system("make")
+	end
+
+	if File.directory?(".git")
+		system("git status | grep -v '^#'")
+	end
+end
+
+
+$interval  = 0.1
+$patterns  = []
+$subdir    = false
+$handler   = method(:on_update)
+$on_enter  = true
+
+require 'optparse'
+
+op = OptionParser.new
+op.on("-i", "--interval SEC[=#{$interval}]", Float, 'watch interval') {|f| $interval = f }
+op.on("-s", "--subdir",           'match sub directories') {|b| $subdir = b }
+op.on("-x", "--no-enter",         'don\'t run on enter key') {|b| $on_enter = b }
+op.on("-c", "--command  COMMAND", 'run COMMAND instead of recommended commands') do |cmd|
+	$handler = Proc.new {|updated| system(cmd) }
+end
+
+op.banner += " <glob pattern>..."
+
+op.parse!(ARGV)
+
+$patterns = ARGV
+$patterns.reject! {|g| g.nil? || g.empty? }
+if $patterns.empty?
+	puts op.to_s
+	puts %<  example: >
+	puts %<    #{File.basename($0)} "*.rb">
+	puts %<    #{File.basename($0)} -s "*.{cc,hpp}" "*.[ch]">
+	puts %<    #{File.basename($0)} -s "."  -c "rsync -a . ../copyto">
+	exit 1
+end
+
+
+if $subdir
+	$patterns.map! {|g| "**/#{g}" }
+end
+
+old_files = nil
+files = $patterns.map {|g| Dir.glob(g) }.flatten.uniq
+
+times = {}
+files.each {|f| times[f] = File.mtime(f) }
+
+while true
+	if old_files != files
+		puts "files: #{files.join(' ')}"
+		old_files = files
+	end
+
+	updated = false
+	updated_files = []
+
+	files.each do |f|
+		current = File.mtime(f)
+		before = times[f]
+		unless before && before >= current
+			updated = true
+			updated_files.push f
+		end
+		times[f] = current
+	end
+
+	begin
+		if $on_enter
+			IO.select([$stdin], [], [], $interval)
+			begin
+				x = $stdin.read_nonblock(1024)
+				updated = true unless x.empty?
+			rescue
+			end
+		else
+			sleep $interval rescue exit
+		end
+	rescue Interrupt
+		print "\e[00m" if ENV["TERM"].to_s =~ /color/
+		puts ""
+		exit
+	end
+
+	if updated
+		puts "modified: #{updated_files.join(' ')}"
+		$handler.call(updated_files)
+	end
+
+	files = $patterns.map {|g| Dir.glob(g) }.flatten.uniq
+
+	$stdin.read_nonblock(1024) rescue nil
+end

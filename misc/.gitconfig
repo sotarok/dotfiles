@@ -1,0 +1,20 @@
+[user]
+	email = sotaro.k@gmail.com
+	name = Sotaro KARASAWA
+[core]
+	editor = vim
+	excludesfile = /home/sotaro/.gitignore
+[color]
+	ui = true
+	branch = auto
+	diff = auto
+	status = auto
+	pager = true
+[github]
+	user = sotarok
+	token = 6becede51f86c24aa3377b3467470d5b
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	up = pull
