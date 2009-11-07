@@ -9,15 +9,15 @@ fi
 
 DOTFILES=$1
 
-ln -s $DOTFILES/vim/.vim $HOME
-ln -s $DOTFILES/vim/.vimrc $HOME
-ln -s $DOTFILES/vim/.gvimrc $HOME
-ln -s $DOTFILES/zsh/.zshrc $HOME
-ln -s $DOTFILES/zsh/.dircolors $HOME
-ln -s $DOTFILES/zsh/.zshrc.d $HOME
-ln -s $DOTFILES/screen/.screenrc $HOME
-ln -s $DOTFILES/misc/.my.cnf $HOME
-ln -s $DOTFILES/misc/.gitconfig $HOME
+ln -sf $DOTFILES/vim/.vim $HOME
+ln -sf $DOTFILES/vim/.vimrc $HOME
+ln -sf $DOTFILES/vim/.gvimrc $HOME
+ln -sf $DOTFILES/zsh/.zshrc $HOME
+ln -sf $DOTFILES/zsh/.dircolors $HOME
+ln -sf $DOTFILES/zsh/.zshrc.d $HOME
+ln -sf $DOTFILES/screen/.screenrc $HOME
+ln -sf $DOTFILES/misc/.my.cnf $HOME
+ln -sf $DOTFILES/misc/.gitconfig $HOME
 touch $HOME/.outputz
 
 if test ! -d $HOME/bin
@@ -25,4 +25,4 @@ then
     mkdir $HOME/bin
 fi
 
-ln -s $DOTFILES/bin/* $HOME/bin
+ln -sf $DOTFILES/bin/* $HOME/bin
