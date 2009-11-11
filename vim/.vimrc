@@ -195,6 +195,7 @@ augroup filetypedetect
     au! BufRead,BufNewFile *.ctp setfiletype php
     au! BufRead,BufNewFile *.xul setfiletype xul
     au! BufRead,BufNewFile *.jsm setfiletype javascript
+    au! BufRead,BufNewFile *.go  setfiletype go
 augroup END
 
 set helpfile=$VIMRUNTIME/doc/help.txt

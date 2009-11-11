@@ -22,6 +22,13 @@ export GTEST_COLOR=1
 # export SCREENDIR=$HOME/.screen
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
+#for Go
+export GOROOT=$HOME/go
+export GOOS=linux
+export GOARCH=386
+export GOBIN=$HOME/bin
+#export PATH=$GOBIN:$PATH
+
 # 関数
 find-grep () { find . -type f -print | xargs grep -n --binary-files=without-match $@ }
 grepv () { grep -irn --binary-files=without-match $@ * | grep -v svn }
