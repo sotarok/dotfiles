@@ -106,7 +106,7 @@ vnoremap gc :<C-u>normal gc<Enter>
 onoremap gc :<C-u>normal gc<Enter>
 
 inoremap <C-@> <Esc>
-inoremap <Space>[ <Esc>
+"inoremap <Space>[ <Esc>
 
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline

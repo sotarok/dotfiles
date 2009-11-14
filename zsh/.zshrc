@@ -103,6 +103,7 @@ alias v='vim'
 alias e='vim'   # :p
 alias sr='screen -d -R'
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
+alias pingg='ping www.google.com'
 
 # for svn
 alias st='svn st'
@@ -124,6 +125,8 @@ alias gb='git branch -a'
 # for sudo
 alias yum='sudo yum'
 alias aptitude='sudo aptitude'
+alias apts='aptitude search'
+alias apti='aptitude install'
 
 # プロンプトの設定
 autoload colors

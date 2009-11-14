@@ -1,5 +1,13 @@
 #!/bin/sh
 
+## cppref
+#sudo aptitude install libfile-slurp-perl
+#git clone git://github.com/kazuho/cppref.git
+cd cppref
+./fetchall.pl
+perl Makefile.PL && make && sudo make install
+cd ..
+
 ## google-glog
 #wget http://google-glog.googlecode.com/files/glog-0.3.0.tar.gz
 #tar zxvf glog-0.3.0.tar.gz
@@ -58,17 +66,17 @@
 #cd ..
 
 ## tokyocabinet
-#wget http://1978th.net/tokyocabinet/tokyocabinet-1.4.33.tar.gz
-#tar zxvf tokyocabinet-1.4.33.tar.gz
-#cd tokyocabinet-1.4.33
+#wget http://1978th.net/tokyocabinet/tokyocabinet-1.4.38.tar.gz
+#tar zxvf tokyocabinet-1.4.38.tar.gz
+#cd tokyocabinet-1.4.38
 #./configure
 #make && sudo make install
 #cd ..
 #
 ## tokyotyrant
-#wget http://1978th.net/tokyotyrant/tokyotyrant-1.1.35.tar.gz
-#tar zxvf tokyotyrant-1.1.35.tar.gz
-#cd tokyotyrant-1.1.35
+#wget http://1978th.net/tokyotyrant/tokyotyrant-1.1.37.tar.gz
+#tar zxvf tokyotyrant-1.1.37.tar.gz
+#cd tokyotyrant-1.1.37
 #./configure
 #make && sudo make install
 #cd ..
@@ -80,7 +88,21 @@
 #./configure
 #make && sudo make install
 #cd ..
-#
+
+#wget http://download.tangent.org/libmemcached-0.35.tar.gz
+#tar zxvf libmemcached-0.35.tar.gz
+#cd libmemcached-0.35
+#./configure
+#make && sudo make install
+#cd ..
+
+#git clone git://github.com/frsyuki/libkv.git
+#cd libkv
+#./bootstrap
+#./configure
+#make && sudo make install
+#cd ..
+
 ## coredumper
 #wget http://google-coredumper.googlecode.com/files/coredumper-1.2.1.tar.gz
 #tar zxvf coredumper-1.2.1.tar.gz
