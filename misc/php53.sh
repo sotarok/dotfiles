@@ -14,10 +14,18 @@
 ## gd       : libgd2-xpm-dev
 ## readline : libreadline5-dev
 
+if test $1
+then
+    VERSION=$1
+else
+    VERSION="5.3.1"
+fi
 
-#wget http://jp2.php.net/get/php-5.3.0.tar.gz/from/jp.php.net/mirror
-#tar zxvf php-5.3.0.tar.gz
-#cd php-5.3.0
+echo ${VERSION}
+
+#wget http://jp2.php.net/get/php-${VERSION}.tar.gz/from/jp.php.net/mirror
+#tar zxvf php-${VERSION}.tar.gz
+#cd php-${VERSION}
 #./configure \
 #  --with-config-file-path=/etc/php \
 #  --with-config-file-scan-dir=/etc/php/conf.d \
@@ -77,8 +85,8 @@
 #
 #sudo pear upgrade-all
 #sudo pear install http_request2-alpha
-sudo pear install openpear/phpman-beta
-sudo pear run-scripts openpear/phpman
+#sudo pear install openpear/phpman-beta
+#sudo pear run-scripts openpear/phpman
 
 #sudo pear install -a ethna/ethna
 #
