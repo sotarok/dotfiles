@@ -3,10 +3,10 @@
 ## cppref
 #sudo aptitude install libfile-slurp-perl
 #git clone git://github.com/kazuho/cppref.git
-cd cppref
-./fetchall.pl
-perl Makefile.PL && make && sudo make install
-cd ..
+#cd cppref
+#./fetchall.pl
+#perl Makefile.PL && make && sudo make install
+#cd ..
 
 ## google-glog
 #wget http://google-glog.googlecode.com/files/glog-0.3.0.tar.gz
