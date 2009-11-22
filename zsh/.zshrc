@@ -104,6 +104,10 @@ alias e='vim'   # :p
 alias sr='screen -d -R'
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias pingg='ping www.google.com'
+alias shr='sudo service httpd restart'
+alias shs='sudo service httpd start'
+alias sar='sudo service apache2 restart'
+alias sas='sudo service apache2 start'
 
 # for svn
 alias st='svn st | less -FSRX'
