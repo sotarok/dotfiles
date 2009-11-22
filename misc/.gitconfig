@@ -4,7 +4,7 @@
 [core]
 	editor = vim
 	excludesfile = /home/sotaro/.gitignore
-    pager = less -R
+    pager = less -FRSX
 [color]
 	ui = true
 	branch = auto
