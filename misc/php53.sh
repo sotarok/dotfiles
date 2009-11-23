@@ -23,8 +23,8 @@ fi
 
 echo ${VERSION}
 
-#wget http://jp2.php.net/get/php-${VERSION}.tar.gz/from/jp.php.net/mirror
-#tar zxvf php-${VERSION}.tar.gz
+#wget http://jp.php.net/get/php-${VERSION}.tar.bz2/from/this/mirror
+#tar jxvf php-${VERSION}.tar.bz2
 #cd php-${VERSION}
 #./configure \
 #  --with-config-file-path=/etc/php \
