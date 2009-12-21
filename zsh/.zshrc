@@ -135,6 +135,19 @@ alias apti='aptitude install'
 # プロンプトの設定
 autoload colors
 
+# git branch data
+_set_env_git_current_branch() {
+    GIT_CURRENT_BRANCH=$( git name-rev HEAD --name-only ) &> /dev/null
+}
+
+_update_rprompt () {
+    if test -z $GIT_CURRENT_BRANCH
+    then
+        RPROMPT=" %{[${PROMPT_COLOR}m%}[%~]%{[m%}"
+    else
+        RPROMPT=" %{[${PROMPT_COLOR}m%}[%~ ("$GIT_CURRENT_BRANCH")]%{[m%}"
+    fi
+}
 
 case ${UID} in
 0)
@@ -153,6 +166,8 @@ case ${UID} in
 
         [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
             PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+
+        _update_rprompt
     }
 
     #PROMPT="%{[32m%}%n%%%{[m%} "
@@ -162,20 +177,6 @@ case ${UID} in
     #    PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
 ;;
 esac
-
-# git branch data
-_set_env_git_current_branch() {
-    GIT_CURRENT_BRANCH=$( git name-rev HEAD --name-only ) &> /dev/null
-}
-
-_update_rprompt () {
-    if test -z $GIT_CURRENT_BRANCH
-    then
-        RPROMPT=" [%~]"
-    else
-        RPROMPT=" [%~ ("$GIT_CURRENT_BRANCH")]"
-    fi
-}
 
 setopt prompt_subst
 
@@ -287,7 +288,6 @@ set enable-keypad on
 if [ "$TERM" = "screen" ]; then
 chpwd () {
     _set_env_git_current_branch
-    _update_rprompt
     echo -n "_`dirs`\\"
     ls
 }
