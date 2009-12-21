@@ -135,6 +135,7 @@ alias apti='aptitude install'
 # プロンプトの設定
 autoload colors
 
+
 case ${UID} in
 0)
     PROMPT="%B%{[31m%}%n@%m#%{[m%}%b "
@@ -144,14 +145,23 @@ case ${UID} in
         #PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
 ;;
 *)
-    PROMPT="%{[32m%}%n%%%{[m%} "
-    PROMPT2="%{[32m%}%_%%%{[m%} "
+    PROMPT_COLOR=32
+    precmd() {
+        PROMPT_COLOR="$[32 + ($PROMPT_COLOR - 31) % 5]"
+        PROMPT="%{[${PROMPT_COLOR}m%}%n%%%{[m%} "
+        PROMPT2="%{[${PROMPT_COLOR}m%}%_%%%{[m%} "
+
+        [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+            PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+    }
+
+    #PROMPT="%{[32m%}%n%%%{[m%} "
+    #PROMPT2="%{[32m%}%_%%%{[m%} "
     SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+    #    PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
 ;;
 esac
-RPROMPT=" [%~]"
 
 # git branch data
 _set_env_git_current_branch() {
