@@ -91,6 +91,7 @@ nnoremap <Space>Q :<C-u>quit!<CR>
 nnoremap <Space>h :<C-u>bp<CR>
 nnoremap <Space>j :<C-u>bn<CR>
 nnoremap <Space>d :<C-u>bd<CR>
+nnoremap <Space><Space> :<C-u>buffers<CR>
 
 nnoremap <Space>O O^<C-D><Esc>
 nnoremap <Space>o o^<C-D><Esc>
