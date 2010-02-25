@@ -9,7 +9,7 @@ escape ^Z^z
 startup_message off
 vbell off
 #caption always "%{= wb} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wk} [%l] %{=b wb}%y/%m/%d(%d) %{=b wm}%c"
-caption always "%{= wb} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wk} [%l] %{=b wb}%y/%m/%d(%d) %{=b wm}%c"
+caption always "%{= wb} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wk} %{=b wb}%Y/%m/%d(%d) %{=b wm}%c %u"
 bind n screen
 bind h prev
 bind j next
@@ -18,3 +18,4 @@ bind x remove
 bind X remove
 bind s split
 bind t focus
+bind i focus
