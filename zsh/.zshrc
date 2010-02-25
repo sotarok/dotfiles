@@ -89,6 +89,7 @@ alias pera='pear'
 alias snv='svn'
 alias gti='git'
 alias gh='hg'
+alias amke='make'
 
 # for shortcut
 alias t='tar zxvf'
@@ -101,7 +102,8 @@ alias less='less -R'
 alias vi='vim'
 alias v='vim'
 alias e='vim'   # :p
-alias sr='screen -d -R'
+alias sr='screen -d -R' # screen detach & resume
+alias sx='screen -x'    # screen multiattach
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias pingg='ping www.google.com'
 alias shr='sudo service httpd restart'
