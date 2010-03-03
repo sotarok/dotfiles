@@ -83,6 +83,7 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 
 # for typo
 alias dc='cd'
+alias d='cd'
 alias sl='ls'
 alias pc='cp'
 alias pera='pear'
@@ -93,6 +94,7 @@ alias amke='make'
 
 # for shortcut
 alias t='tar zxvf'
+alias tj='tar jxvf'
 alias t-='tar xvf -'
 alias b='bzip2 -dc'
 alias ll='ls -ltr'
@@ -130,6 +132,8 @@ alias gdi='git diff'
 alias gdc='git diff --cached'
 alias gad='git add'
 alias gb='git branch -a'
+alias glg='git log --graph'
+alias glag='git log --all --graph'
 
 # for sudo
 alias yum='sudo yum'
