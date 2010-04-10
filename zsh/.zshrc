@@ -60,6 +60,11 @@ linux*)
     ;;
 esac
 
+if test -f $HOME/.zshaliases
+then
+    source $HOME/.zshaliases
+fi
+
 
 ## 補完候補の色づけ
 export ZLS_COLORS=$LS_COLORS
