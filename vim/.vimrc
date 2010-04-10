@@ -5,6 +5,22 @@
 "
 """""
 
+" 環境依存な設定を読み込む
+if has("unix")
+    " linux
+    set rtp+=$HOME/.vim/env/unix
+elseif has('mac')
+    " mac
+    set rtp+=$HOME/.vim/env/mac
+elseif has("win32")
+    " windows
+    set rtp+=$HOME/.vim/env/win32
+endif
+
+" Git コマンドがあれば Git 関連のプラグイン
+if executable('git')
+    set rtp+=$HOME/.vim/env/git
+endif
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -84,7 +100,6 @@ set shiftwidth=4
 nmap n nzz
 nmap N Nzz
 nnoremap <Space>w :<C-u>write<CR>
-nnoremap <Space>q :<C-u>quit<CR>
 nnoremap <Space>Q :<C-u>quit!<CR>
 
 " buffer
@@ -340,9 +355,6 @@ function! JISX0208SpaceHilight()
     highlight JISX0208Space term=underline ctermbg=LightCyan
 endf
 
-" outputzの設定を読み込む
-source ~/.outputz
-
 
 " if &term == "xterm-color"
 "     set t_kb=
@@ -374,4 +386,22 @@ let g:NeoComplCache_EnableQuickMatch=0
 
 
 " AutoComplPop
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>\<CR>" : "\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-p>\<CR>" : "\<CR>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
+
+" gtags
+    " 検索結果Windowを閉じる
+    nnoremap <C-q> <C-w><C-w><C-w>q
+    " Grep 準備
+    nnoremap <C-g> :Gtags -r
+    " このファイルの関数一覧
+    nnoremap <C-l> :Gtags -f %<CR>
+    " カーソル以下の定義元を探す
+    nnoremap <C-j> :Gtags <C-r><C-w><CR>
+    " カーソル以下の使用箇所を探す
+    nnoremap <C-k> :Gtags -r <C-r><C-w><CR>
+    " 次の検索結果
+    nnoremap <C-n> :cn<CR>
+    " 前の検索結果
+    nnoremap <C-p> :cp<CR>
+
