@@ -1,0 +1,16 @@
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+*.o
+*.lo
+*.la
+#*#
+.*.rej
+*.rej
+.*~
+*~
+.#*
+.DS_Store
+*.sw[po]
+tags
