@@ -391,7 +391,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
 
 " gtags
     " 検索結果Windowを閉じる
-    nnoremap <C-q> <C-w><C-w><C-w>q
+    nnoremap <Space>q <C-w><C-w><C-w>q
     " Grep 準備
     nnoremap <C-g> :Gtags -r
     " このファイルの関数一覧
