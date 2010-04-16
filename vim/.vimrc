@@ -339,7 +339,9 @@ if has("syntax")
         augroup invisible
         autocmd! invisible
         autocmd BufNew,BufRead * call SOLSpaceHilight()
-        autocmd BufNew,BufRead * call JISX0208SpaceHilight()
+        "autocmd BufNew,BufRead * call JISX0208SpaceHilight()
+        highlight IdeographicSpace term=underline ctermbg=LightCyan guibg=LightCyan
+        autocmd VimEnter,WinEnter * match IdeographicSpace /　/
     augroup END
 endif
 
@@ -350,11 +352,10 @@ set listchars=tab:^_,trail:-,nbsp:%,extends:>,precedes:<
 highlight SpecialKey term=underline ctermfg=darkcyan guifg=darkcyan
 
 "全角スペースをハイライトさせる。
-function! JISX0208SpaceHilight()
-    syntax match JISX0208Space "　" display containedin=ALL
-    highlight JISX0208Space term=underline ctermbg=LightCyan
-endf
-
+"function! JISX0208SpaceHilight()
+"    syntax match JISX0208Space "　" display containedin=ALL
+"    highlight JISX0208Space term=underline ctermbg=LightCyan
+"endf
 
 " if &term == "xterm-color"
 "     set t_kb=
