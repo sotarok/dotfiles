@@ -15,3 +15,5 @@ set nobackup
 set list
 set listchars=tab:^_,trail:-,nbsp:%,extends:>,precedes:<
 highlight SpecialKey term=underline ctermfg=darkcyan guifg=darkcyan
+highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+autocmd VimEnter,WinEnter * match IdeographicSpace /　/
