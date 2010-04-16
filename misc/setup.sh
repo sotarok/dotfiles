@@ -19,6 +19,7 @@ ln -sf $DOTFILES/screen/.screenrc $HOME
 ln -sf $DOTFILES/misc/.my.cnf $HOME
 ln -sf $DOTFILES/misc/.gitconfig $HOME
 ln -sf $DOTFILES/misc/.gitignore $HOME
+ln -sf $DOTFILES/misc/.globalrc $HOME
 touch $HOME/.outputz
 
 if test ! -d $HOME/bin
