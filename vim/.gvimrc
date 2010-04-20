@@ -11,9 +11,11 @@ map <silent> gw :macaction selectNextWindow:
 map <silent> gW :macaction selectPreviousWindow:
 
 set nobackup
+set noswapfile
 
 set list
 set listchars=tab:^_,trail:-,nbsp:%,extends:>,precedes:<
 highlight SpecialKey term=underline ctermfg=darkcyan guifg=darkcyan
-highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
+"highlight IdeographicSpace term=underline ctermbg=lightcyan guibg=lightcyan
+highlight IdeographicSpace ctermbg=lightcyan guibg=lightcyan
 autocmd VimEnter,WinEnter * match IdeographicSpace /　/
