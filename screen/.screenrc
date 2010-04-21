@@ -19,3 +19,5 @@ bind X remove
 bind s split
 bind t focus
 bind i focus
+bind ; colon 'resize +'
+bind - colon 'resize -'
