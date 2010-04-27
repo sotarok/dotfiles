@@ -85,8 +85,6 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "norm
 """""
 " View window Settings
 """""
-set list
-set listchars=tab:\ \ 
 set number
 set showmatch
 set hlsearch
@@ -348,7 +346,7 @@ endif
 "特殊文字(SpecialKey)の見える化。listcharsはlcsでも設定可能。
 "trailは行末スペース。
 set list
-set listchars=tab:^_,trail:-,nbsp:%,extends:>,precedes:<
+set listchars=tab:>.,trail:-,nbsp:%,extends:>,precedes:<
 highlight SpecialKey term=underline ctermfg=darkcyan guifg=darkcyan
 
 "全角スペースをハイライトさせる。
