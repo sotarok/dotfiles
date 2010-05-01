@@ -403,4 +403,3 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
     nnoremap <C-n> :cn<CR>
     " 前の検索結果
     nnoremap <C-p> :cp<CR>
-
