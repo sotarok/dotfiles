@@ -12,9 +12,9 @@ set noswapfile
 
 if has('win32')
   "set guifont=Osaka－等幅:h9:cSHIFTJIS
-  "set guifont=:h10
+  set guifont=MS_Gothic:h10:cSHIFTJIS
   "set guifont=Consolas:h9:cSHIFTJIS
-  set guifont=courier_new:h12:w5:cSHIFTJIS
+  "set guifont=courier_new:h12:w5:cSHIFTJIS
   colorscheme zellner
 elseif has('mac')
   colorscheme twilight2Rev2
