@@ -34,7 +34,7 @@ default:\
 # See gtags(1).
 #---------------------------------------------------------------------
 common:\
-	:skip=GPATH,GTAGS,GRTAGS,GSYMS,HTML/,HTML.pub/,html/,tags,TAGS,ID,y.tab.c,y.tab.h,.notfunction,cscope.out,cscope.po.out,cscope.in.out,.gdbinit,SCCS/,RCS/,CVS/,CVSROOT/,{arch}/,.svn/,.git/,.cvsrc,.cvsignore,.gitignore,.cvspass,.cvswrappers,.deps/,autom4te.cache/,.snprj/,img/,htdocs/img/,htdocs_mobile/img,htdocs/album/,share/images/,share/downloads/,share/games/,share/garden/,share/sitemapxml/,share/life/,tmp/,templates*c/:\
+	:skip=GPATH,GTAGS,GRTAGS,GSYMS,HTML/,HTML.pub/,html/,tags,TAGS,ID,y.tab.c,y.tab.h,.notfunction,cscope.out,cscope.po.out,cscope.in.out,.gdbinit,SCCS/,RCS/,CVS/,CVSROOT/,{arch}/,.svn/,.git/,.cvsrc,.cvsignore,.gitignore,.cvspass,.cvswrappers,.deps/,autom4te.cache/,.snprj/,img/,htdocs/img/,htdocs_mobile/img,htdocs/album/,share/images/,share/downloads/,share/games/,share/garden/,share/sitemapxml/,share/life/,tmp/,templates*c/,smarty/,.DAV/,.ssh/:\
 	:langmap=c\:.c.h,yacc\:.y,asm\:.s.S,java\:.java,cpp\:.c++.cc.cpp.cxx.hxx.hpp.C.H,php\:.php.php3.phtml.php5.inc:
 #
 # [gtags-parser]
