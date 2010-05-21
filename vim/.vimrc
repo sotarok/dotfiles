@@ -392,7 +392,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
     " 検索結果Windowを閉じる
     nnoremap <Space>q <C-w><C-w><C-w>q
     " Grep 準備
-    nnoremap <C-g> :Gtags -r
+    nnoremap <C-g> :Gtags -g
     " このファイルの関数一覧
     nnoremap <C-l> :Gtags -f %<CR>
     " カーソル以下の定義元を探す
