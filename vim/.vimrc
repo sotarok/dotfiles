@@ -106,8 +106,8 @@ nnoremap <Space>j :<C-u>bn<CR>
 nnoremap <Space>d :<C-u>bd<CR>
 nnoremap <Space><Space> :<C-u>buffers<CR>
 
-nnoremap <Space>O O^<C-D><Esc>
-nnoremap <Space>o o^<C-D><Esc>
+nnoremap <Space>O O^<C-D><Esc>j
+nnoremap <Space>o o^<C-D><Esc>k
 
 " coursor
 noremap j gj

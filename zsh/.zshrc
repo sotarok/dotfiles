@@ -106,6 +106,7 @@ alias ll='ls -ltr'
 alias la='ls -la'
 alias dh='df -h'
 alias less='less -R'
+alias grep='grep --color'
 alias vi='vim'
 alias v='vim'
 alias e='vim'   # :p
