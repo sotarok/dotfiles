@@ -355,10 +355,10 @@ highlight SpecialKey term=underline ctermfg=darkcyan guifg=darkcyan
 "    highlight JISX0208Space term=underline ctermbg=LightCyan
 "endf
 
-" if &term == "xterm-color"
-"     set t_kb=
-"     fixdel
-" endif
+if &term == "xterm-color"
+    set t_kb=
+    fixdel
+endif
 
 """
 " NeoComplCache
@@ -385,8 +385,9 @@ let g:NeoComplCache_EnableQuickMatch=0
 
 
 " AutoComplPop
-inoremap <expr> <CR> pumvisible() ? "\<C-p>\<CR>" : "\<CR>"
-inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
+"inoremap <expr> <CR> pumvisible() ? "\<C-p>\<CR>" : "\<CR>"
+"inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
+"inoremap <expr> <C-n> pumvisible() ? "\<C-Y>" : "\<C-n>"
 
 " gtags
     " 検索結果Windowを閉じる
