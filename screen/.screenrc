@@ -43,7 +43,7 @@ termcapinfo xterm* be
 
 # 256 colors
 defbce "on"
-term xterm-256color
+term xterm-color
 
 ################
 #
