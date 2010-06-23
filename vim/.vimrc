@@ -119,6 +119,14 @@ nnoremap gc `[v`]
 vnoremap gc :<C-u>normal gc<Enter>
 onoremap gc :<C-u>normal gc<Enter>
 
+" resize
+"noremap + <C-W>+
+noremap + <C-W>>
+"noremap - <C-W>-
+noremap - <C-W><
+noremap = <C-W>=
+
+" for IME
 inoremap <C-@> <Esc>
 "inoremap <Space>[ <Esc>
 
@@ -197,6 +205,8 @@ endif
 syntax on
 hi Comment ctermfg=Red
 hi Function ctermfg=cyan
+hi IncSearch ctermfg=Red
+hi Search ctermfg=Red
 
 
 """""
