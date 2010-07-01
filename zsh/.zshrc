@@ -300,7 +300,7 @@ set enable-keypad on
 # screen のステータスバーに現在実行中のコマンドを表示
 # cd をしたときにlsを実行する
 # ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
-if [ "$TERM" = "screen" ]; then
+#if [ "$TERM" = "screen" ]; then
 chpwd () {
     _set_env_git_current_branch
     echo -n "_`dirs`\\"
@@ -340,4 +340,4 @@ preexec() {
                 echo -n "k$cmd[1]:t\\") 2>/dev/null
 }
 chpwd
-fi
+#fi
