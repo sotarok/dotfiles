@@ -66,35 +66,36 @@
 #cd ..
 
 ## tokyocabinet
-#wget http://1978th.net/tokyocabinet/tokyocabinet-1.4.38.tar.gz
-#tar zxvf tokyocabinet-1.4.38.tar.gz
-#cd tokyocabinet-1.4.38
-#./configure
-#make && sudo make install
-#cd ..
-#
-## tokyotyrant
-#wget http://1978th.net/tokyotyrant/tokyotyrant-1.1.37.tar.gz
-#tar zxvf tokyotyrant-1.1.37.tar.gz
-#cd tokyotyrant-1.1.37
-#./configure
-#make && sudo make install
-#cd ..
-#
-## tokyodystopia
-#wget http://1978th.net/tokyodystopia/tokyodystopia-0.9.13.tar.gz
-#tar zxvf tokyodystopia-0.9.13.tar.gz
-#cd tokyodystopia-0.9.13
-#./configure
-#make && sudo make install
-#cd ..
+TCVERSION='1.4.45'
+wget http://1978th.net/tokyocabinet/tokyocabinet-${TCVERSION}.tar.gz
+tar zxvf tokyocabinet-${TCVERSION}.tar.gz
+cd tokyocabinet-${TCVERSION}
+./configure && make && sudo make install
+cd ..
 
-#wget http://download.tangent.org/libmemcached-0.35.tar.gz
-#tar zxvf libmemcached-0.35.tar.gz
-#cd libmemcached-0.35
-#./configure
-#make && sudo make install
-#cd ..
+## tokyotyrant
+TTVERSION='1.1.40'
+wget http://1978th.net/tokyotyrant/tokyotyrant-${TTVERSION}.tar.gz
+tar zxvf tokyotyrant-${TTVERSION}.tar.gz
+cd tokyotyrant-${TTVERSION}
+./configure && make && sudo make install
+cd ..
+
+## tokyodystopia
+TDVERSION='0.9.14'
+wget http://1978th.net/tokyodystopia/tokyodystopia-${TDVERSION}.tar.gz
+tar zxvf tokyodystopia-${TDVERSION}.tar.gz
+cd tokyodystopia-${TDVERSION}
+./configure && make && sudo make install
+cd ..
+
+## libmemcached
+LIBMEMVERSION='0.40'
+wget http://launchpad.net/libmemcached/1.0/${LIBMEMVERSION}/+download/libmemcached-${LIBMEMVERSION}.tar.gz
+tar zxvf libmemcached-${LIBMEMVERSION}.tar.gz
+cd libmemcached-${LIBMEMVERSION}
+./configure && make && sudo make install
+cd ..
 
 #git clone git://github.com/frsyuki/libkv.git
 #cd libkv

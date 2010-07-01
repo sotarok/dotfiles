@@ -1,4 +1,3 @@
-
 setlocal tabstop=4
 setlocal shiftwidth=4
 setlocal softtabstop=4
@@ -10,9 +9,12 @@ setlocal dictionary+=~/.vim/dict/php.dict
 setlocal makeprg=php\ -l\ %\ 
 setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 setlocal shellpipe=2>&1\ >
-nmap <up>   <esc>:w<cr>:!/usr/bin/env php %<Enter>
-nmap <down> <esc>:w<cr>:make<cr><cr>
-nmap ,l     <esc>:w<cr>:make<cr><cr>
+"nmap <up>   <esc>:w<cr>:!/usr/bin/env php %<cr>
+nnoremap <up>   :echo "hoge"
+nnoremap [A   <esc>:w<cr>:!/usr/bin/env php %<cr>
+nnoremap <down> <esc>:w<cr>:make<cr><cr>
+nnoremap [B   <esc>:w<cr>:make<cr><cr>
+nnoremap ,l     <esc>:w<cr>:make<cr><cr>
 let errormarker_errortext = "->"
 
 
