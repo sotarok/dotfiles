@@ -10,7 +10,7 @@ setlocal makeprg=php\ -l\ %\
 setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 setlocal shellpipe=2>&1\ >
 "nmap <up>   <esc>:w<cr>:!/usr/bin/env php %<cr>
-nnoremap <up>   :echo "hoge"
+nnoremap <up>   <esc>:w<cr>:!/usr/bin/env php %<cr>
 nnoremap [A   <esc>:w<cr>:!/usr/bin/env php %<cr>
 nnoremap <down> <esc>:w<cr>:make<cr><cr>
 nnoremap [B   <esc>:w<cr>:make<cr><cr>
