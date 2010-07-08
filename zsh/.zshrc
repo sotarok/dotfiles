@@ -299,6 +299,7 @@ set enable-keypad on
 
 # screen のステータスバーに現在実行中のコマンドを表示
 # cd をしたときにlsを実行する
+# git の branch を表示する
 # ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
 #if [ "$TERM" = "screen" ]; then
 chpwd () {
