@@ -51,19 +51,17 @@ darwin*)
     alias ls='ls -G'
     ;;
 solaris*)
-    eval `dircolors -b ~/.dircolors`
+    test -f ~/.dircolors && eval `dircolors -b ~/.dircolors`
     alias ls='ls --color=auto'
     ;;
 linux*)
-    eval `dircolors -b ~/.dircolors`
+    test -f ~/.dircolors && eval `dircolors -b ~/.dircolors`
     alias ls='ls --color=auto'
     ;;
 esac
 
-if test -f $HOME/.zshaliases
-then
-    source $HOME/.zshaliases
-fi
+# ファイルがあれば読み込み
+test -f $HOME/.zshaliases && source $HOME/.zshaliases
 
 
 ## 補完候補の色づけ
@@ -265,7 +263,7 @@ setopt print_eight_bit
 setopt share_history
 
 # Ctrl+wで､直前の/までを削除する｡
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+WORDCHARS='|*?_-.[]~=&;!#$%^(){}<>'
 
 # ディレクトリを水色にする｡
 #export LS_COLORS='di=01;36'
