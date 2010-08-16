@@ -119,6 +119,11 @@ alias shr='sudo service httpd restart'
 alias shs='sudo service httpd start'
 alias sar='sudo service apache2 restart'
 alias sas='sudo service apache2 start'
+alias sl2='svn log --limit 2 --verbose | less'
+alias sl3='svn log --limit 3 --verbose | less'
+alias sl4='svn log --limit 4 --verbose | less'
+alias sl5='svn log --limit 5 --verbose | less'
+alias sl6='svn log --limit 6 --verbose | less'
 
 # for svn
 alias st='svn st | less -FSRX'

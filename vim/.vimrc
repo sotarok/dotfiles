@@ -106,6 +106,9 @@ nnoremap <Space>j :<C-u>bn<CR>
 nnoremap <Space>d :<C-u>bd<CR>
 nnoremap <Space><Space> :<C-u>buffers<CR>
 
+" insert date
+nnoremap <C-d> :r! date +'\%Y-\%m-\%d \%H:\%M:\%S'<CR>
+
 nnoremap <Space>O O^<C-D><Esc>j
 nnoremap <Space>o o^<C-D><Esc>k
 
