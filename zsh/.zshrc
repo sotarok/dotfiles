@@ -143,6 +143,8 @@ alias gad='git add'
 alias gb='git branch -a'
 alias glg='git log --graph'
 alias glag='git log --all --graph'
+alias gsup='git stash; git svn rebase ; git stash pop'
+alias gsci='git stash; git svn dcommit ; git stash pop'
 
 # for sudo
 alias yum='sudo yum'
