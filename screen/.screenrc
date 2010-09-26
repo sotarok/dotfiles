@@ -78,6 +78,7 @@ bind ^\
 bind \\
 bind ^h
 bind h
+bind ^x
 
 # for japanese
 defkanji utf-8
