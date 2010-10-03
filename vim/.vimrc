@@ -17,10 +17,11 @@ elseif has("win32")
     set rtp+=$HOME/.vim/env/win32
 endif
 
-" Git コマンドがあれば Git 関連のプラグイン
-if executable('git')
-    set rtp+=$HOME/.vim/env/git
-endif
+"" Git コマンドがあれば Git 関連のプラグイン
+" この rtp うまくいかないお
+"if executable('git')
+"    set rtp+=$HOME/.vim/env/git
+"endif
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
