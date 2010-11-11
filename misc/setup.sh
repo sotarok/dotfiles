@@ -27,4 +27,8 @@ then
     mkdir $HOME/bin
 fi
 
+cat $DOTFILES/ssh/authorized_keys | sort | uniq > $HOME/authorized_keys_merged
+if test -f $HOME/.ssh/authorized_keys && mv $HOME/.ssh/authorized_keys $HOME/.ssh/authorized_keys.orig
+mv $HOME/authorized_keys_merged $HOME/.ssh/authorized_keys
+
 ln -sf $DOTFILES/bin/* $HOME/bin
