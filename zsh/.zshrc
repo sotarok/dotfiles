@@ -88,6 +88,7 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 alias dc='cd'
 alias d='cd'
 alias sl='ls'
+alias ks='ls'
 alias pc='cp'
 alias pera='pear'
 alias snv='svn'
