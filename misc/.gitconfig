@@ -19,3 +19,4 @@
 	ci = commit
 	st = status
 	up = pull
+	llog = log --date=local
