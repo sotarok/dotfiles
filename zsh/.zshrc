@@ -151,6 +151,7 @@ alias yum='sudo yum'
 alias aptitude='sudo aptitude'
 alias apts='aptitude search'
 alias apti='aptitude install'
+alias aptu='aptitude update'
 
 # プロンプトの設定
 autoload colors
