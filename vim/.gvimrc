@@ -1,10 +1,13 @@
-colorscheme twilight2Rev2
+"colorscheme twilight2Rev2
+colorscheme slate
+
+let maplocalleader=","
 
 scriptencoding utf-8
 
-set showtabline=2  // タブを常に表示
-set imdisable      // IMを無効化
-set transparency=5 // 透明度を指定
+set showtabline=2   "タブを常に表示
+set imdisable       "IMを無効化
+set transparency=5  "透明度を指定
 set lines=45
 set columns=120
 map <silent> gw :macaction selectNextWindow:

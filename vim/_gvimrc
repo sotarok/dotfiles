@@ -17,8 +17,7 @@ if has('win32')
   "set guifont=courier_new:h12:w5:cSHIFTJIS
   colorscheme zellner
 elseif has('mac')
-  colorscheme twilight2Rev2
-  set imdisable      " IMを無効化
+  "set imdisable      " IMを無効化
 endif
 
 set list
@@ -27,4 +26,3 @@ highlight SpecialKey term=underline ctermfg=darkcyan guifg=darkcyan
 "highlight IdeographicSpace term=underline ctermbg=lightcyan guibg=lightcyan
 highlight IdeographicSpace ctermbg=lightcyan guibg=lightcyan
 autocmd VimEnter,WinEnter * match IdeographicSpace /　/
-
