@@ -20,3 +20,4 @@
 	st = status
 	up = pull
 	llog = log --date=local
+	logp = log --pretty=oneline
