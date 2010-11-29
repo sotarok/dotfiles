@@ -21,3 +21,4 @@
 	up = pull
 	llog = log --date=local
 	logp = log --pretty=oneline
+	logps = log --pretty=oneline --stat
