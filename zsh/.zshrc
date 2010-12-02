@@ -86,7 +86,6 @@ zstyle ':completion:*:default' menu select=1
 # sudo でも補完の対象
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 
-
 # for typo
 alias dc='cd'
 alias d='cd'
@@ -112,22 +111,12 @@ alias grep='grep --color'
 alias vi='vim'
 alias v='vim'
 alias e='vim'   # :p
-alias sr='screen -d -R' # screen detach & resume
-alias sR='screen -R' # screen detach & resume
-alias sx='screen -x'    # screen multiattach
-alias scl='screen -list' # screen list
-alias scr='screen -r'    # screen r
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias pingg='ping www.google.com'
 alias shr='sudo service httpd restart'
 alias shs='sudo service httpd start'
 alias sar='sudo service apache2 restart'
 alias sas='sudo service apache2 start'
-alias sl2='svn log --limit 2 --verbose | less'
-alias sl3='svn log --limit 3 --verbose | less'
-alias sl4='svn log --limit 4 --verbose | less'
-alias sl5='svn log --limit 5 --verbose | less'
-alias sl6='svn log --limit 6 --verbose | less'
 
 # for svn
 alias st='svn st | less -FSRX'
@@ -137,6 +126,18 @@ alias sdi='svn diff | colordiff | less -FSRX'
 alias sad='svn add'
 alias sup='svn up'
 alias sci='svn ci'
+alias sl2='svn log --limit 2 --verbose | less'
+alias sl3='svn log --limit 3 --verbose | less'
+alias sl4='svn log --limit 4 --verbose | less'
+alias sl5='svn log --limit 5 --verbose | less'
+alias sl6='svn log --limit 6 --verbose | less'
+
+# for screen
+alias sr='screen -d -R' # screen detach & resume
+alias sR='screen -R' # screen detach & resume
+alias sx='screen -x'    # screen multiattach
+alias scl='screen -list' # screen list
+alias scr='screen -r'    # screen r
 
 # for git
 alias gst='git status'
