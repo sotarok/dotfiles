@@ -29,6 +29,7 @@ export GOARCH=386
 export GOBIN=$HOME/bin
 #export PATH=$GOBIN:$PATH
 
+#GIT PATH
 GITBIN=$(which git)
 
 # 関数
@@ -144,6 +145,9 @@ alias gdi='git diff'
 alias gdc='git diff --cached'
 alias gad='git add'
 alias gb='git branch -a'
+alias gco='git checkout'
+alias gm='git merge'
+alias gr='git rebase'
 alias glg='git log --graph'
 alias glag='git log --all --graph'
 alias gsup='git stash; git svn rebase ; git stash pop'
