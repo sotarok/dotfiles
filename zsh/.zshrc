@@ -29,6 +29,8 @@ export GOARCH=386
 export GOBIN=$HOME/bin
 #export PATH=$GOBIN:$PATH
 
+GITBIN=$(which git)
+
 # 関数
 find-grep () { find . -type f -print | xargs grep -n --binary-files=without-match $@ }
 grepv () { grep -irn --binary-files=without-match $@ * | grep -v svn }
@@ -159,7 +161,7 @@ autoload colors
 
 # git branch data
 _set_env_git_current_branch() {
-    GIT_CURRENT_BRANCH=$( git name-rev HEAD --name-only ) &> /dev/null
+    GIT_CURRENT_BRANCH=$($GITBIN name-rev HEAD --name-only ) &> /dev/null
 }
 
 _update_rprompt () {
@@ -309,6 +311,10 @@ set enable-keypad on
 # git の branch を表示する
 # ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
 #if [ "$TERM" = "screen" ]; then
+git () {
+    $GITBIN $@
+    _set_env_git_current_branch
+}
 chpwd () {
     _set_env_git_current_branch
     echo -n "_`dirs`\\"

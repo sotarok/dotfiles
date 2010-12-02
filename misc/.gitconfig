@@ -4,7 +4,7 @@
 [core]
 	editor = vim
 	excludesfile = /home/sotarok/.gitignore
-    pager = less -FRSX
+	pager = less -FRSX
 [color]
 	ui = true
 	branch = auto
@@ -22,3 +22,4 @@
 	llog = log --date=local
 	logp = log --pretty=oneline
 	logps = log --pretty=oneline --stat
+	graph = log --graph --pretty=format:%s
