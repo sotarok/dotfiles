@@ -139,7 +139,9 @@ while true
 	end
 
 	if updated
+		puts "\x1b[30;42m\x1b[2K"
 		puts "modified: #{updated_files.join(' ')}"
+		puts "\x1b[0m\x1b[2K"
 		$handler.call(updated_files)
 	end
 
