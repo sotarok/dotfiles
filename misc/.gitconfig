@@ -19,6 +19,7 @@
 	ci = commit
 	st = status
 	up = pull
+	pull = pull --rebase
 	llog = log --date=local
 	logp = log --pretty=oneline
 	logps = log --pretty=oneline --stat
