@@ -9,6 +9,9 @@ fi
 
 DOTFILES=$1
 
+echo $HOME
+echo $DOTFILES
+
 ln -sf $DOTFILES/vim/.vim $HOME
 ln -sf $DOTFILES/vim/.vimrc $HOME
 ln -sf $DOTFILES/vim/.gvimrc $HOME
