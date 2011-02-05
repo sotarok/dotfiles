@@ -27,6 +27,8 @@ export GOROOT=$HOME/go
 export GOOS=linux
 export GOARCH=386
 export GOBIN=$HOME/bin
+
+export SCREEN_USING=1
 #export PATH=$GOBIN:$PATH
 
 #GIT PATH
@@ -34,7 +36,7 @@ GITBIN=$(which git)
 
 # 関数
 find-grep () { find . -type f -print | xargs grep -n --binary-files=without-match $@ }
-grepv () { grep -irn --binary-files=without-match $@ * | grep -v svn }
+grepv () { grep -irn --binary-files=without-match $@ * | grep -v svn | grep -v .git }
 touchtodaytxt () {
     TODAY=`date +%Y-%m-%d`
     if [ $1 ]; then
@@ -60,6 +62,10 @@ solaris*)
 linux*)
     test -f ~/.dircolors && eval `dircolors -b ~/.dircolors`
     alias ls='ls --color=auto'
+
+    # mac の zsh だと関数が最初にパースれちゃう？
+    # (which git の時点で関数/aliasが適用されてしまうのでlinuxのみ
+    alias git='git-wrap'
     ;;
 esac
 
@@ -160,6 +166,7 @@ alias aptitude='sudo aptitude'
 alias apts='aptitude search'
 alias apti='aptitude install'
 alias aptu='aptitude update'
+alias aptug='aptitude upgrade'
 
 # プロンプトの設定
 autoload colors
@@ -316,7 +323,9 @@ set enable-keypad on
 # git の branch を表示する
 # ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
 #if [ "$TERM" = "screen" ]; then
-git () {
+git-wrap () {
+    echo $GITBIN
+    if test -z $GITBIN ; then echo "command not found: git" ; exit(255) ; fi
     $GITBIN $@
     _set_env_git_current_branch
 }
@@ -354,9 +363,12 @@ preexec() {
 
         local -A jt; jt=(${(kv)jobtexts})
 
+        if test $SCREEN_USING -eq 1
+        then
         $cmd >>(read num rest
                 cmd=(${(z)${(e):-\$jt$num}})
                 echo -n "k$cmd[1]:t\\") 2>/dev/null
+        fi
 }
 chpwd
 #fi
