@@ -373,6 +373,27 @@ preexec() {
 chpwd
 #fi
 
+# gree cd
+g () {
+    p="/home/gree/"
+    if [[ $# -gt 0 ]]
+    then
+        add="" 
+        case $1 in
+            ("f") add="frontend/"  ;;
+            ("c") add="src/class/Gree/"  ;;
+            ("m") add="src/mobile/"  ;;
+            ("s") add="service/"  ;;
+        esac
+        p="${p}$add"
+        if [[ $# -gt 1 ]]
+        then
+            p="${p}$2"
+        fi
+    fi
+    cd "$p"
+}
+
 # git-flow
 
 # 
