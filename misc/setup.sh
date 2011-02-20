@@ -32,6 +32,7 @@ fi
 
 cat $DOTFILES/ssh/authorized_keys | sort | uniq > $HOME/authorized_keys_merged
 test ! -d $HOME/.ssh && mkdir $HOME/.ssh && chmod 700 $HOME/.ssh
+test -f $HOME/.ssh/authorized_keys && cat $HOME/.ssh/authorized_keys >> $HOME/.ssh/authorized_keys_merged
 test -f $HOME/.ssh/authorized_keys && mv $HOME/.ssh/authorized_keys $HOME/.ssh/authorized_keys.orig
 mv $HOME/authorized_keys_merged $HOME/.ssh/authorized_keys && chmod 600 $HOME/.ssh/authorized_keys
 
