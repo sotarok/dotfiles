@@ -311,6 +311,9 @@ stty stop undef
 # Emasc 風キーバインド
 bindkey -e
 
+#bindkey '^R' history-incremental-pattern-search-backward
+#bindkey '^S' history-incremental-pattern-search-forward
+
 set kanji-code utf-8
 set convert-meta off    #必須
 set meta-flag on        #必須
