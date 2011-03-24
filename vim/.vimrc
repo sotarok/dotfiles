@@ -94,6 +94,7 @@ set visualbell
 set expandtab
 set ts=4
 set shiftwidth=4
+set foldmethod=marker
 
 " key mapping
 nmap n nzz
@@ -109,6 +110,7 @@ nnoremap <Space><Space> :<C-u>buffers<CR>
 
 " insert date
 nnoremap <C-d> :r! date +'\%Y-\%m-\%d \%H:\%M:\%S'<CR>
+nnoremap <C-@> :r! echo 'Sotaro Karasawa <sotaro.k@gmail.com>'<CR>
 
 nnoremap <Space>O O^<C-D><Esc>j
 nnoremap <Space>o o^<C-D><Esc>k
