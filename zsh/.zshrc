@@ -327,8 +327,7 @@ set enable-keypad on
 # ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
 #if [ "$TERM" = "screen" ]; then
 git-wrap () {
-    echo $GITBIN
-    if test -z $GITBIN ; then echo "command not found: git" ; exit(255) ; fi
+    if test -z "$GITBIN" ; then echo "command not found: git" ; exit(255) ; fi
     $GITBIN $@
     _set_env_git_current_branch
 }
