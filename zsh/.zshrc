@@ -174,6 +174,10 @@ autoload colors
 # git branch data
 _set_env_git_current_branch() {
     GIT_CURRENT_BRANCH=$($GITBIN name-rev HEAD --name-only ) &> /dev/null
+    if test -n "$($GITBIN log ${GIT_CURRENT_BRANCH}..origin/${GIT_CURRENT_BRANCH})"
+    then
+        GIT_CURRENT_BRANCH+=" *"
+    fi
 }
 
 _update_rprompt () {
