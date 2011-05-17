@@ -2,6 +2,7 @@
 autodetach on
 defscrollback 10000
 startup_message off
+bufferfile $HOME/screen_buffer
 
 ################
 #
