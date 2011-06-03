@@ -11,6 +11,12 @@ export LANG=ja_JP.UTF-8
 PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:/usr/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
+for ruby_path in `find /var/lib/gems/ -maxdepth 2 -type d -name bin`
+do
+    echo $ruby_path
+    PATH=$PATH:$ruby_path
+done
+
 LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH
 
