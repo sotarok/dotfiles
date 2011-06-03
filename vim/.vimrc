@@ -110,7 +110,7 @@ nnoremap <Space><Space> :<C-u>buffers<CR>
 
 " insert date
 nnoremap <C-d> :r! date +'\%Y-\%m-\%d \%H:\%M:\%S'<CR>
-nnoremap <C-@> :r! echo 'Sotaro Karasawa <sotaro.k@gmail.com>'<CR>
+nnoremap <C-@> :r! echo -n "$(git config --global user.name) " ; echo -n "<$(git config --global user.email)>"<CR>
 
 nnoremap <Space>O O^<C-D><Esc>j
 nnoremap <Space>o o^<C-D><Esc>k
