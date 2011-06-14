@@ -45,9 +45,11 @@ if [[ -s "$HOME/.rvm/scripts/rvm" ]]
 then
     source "$HOME/.rvm/scripts/rvm"
     alias ruby='rvm ruby'
-    alias gem='rvm gem'
-    alias rake='rvm rake'
+    alias gem='rvm exec gem'
+    alias rake='rvm exec rake'
     alias irb='rvm exec irb'
+
+    PATH=$GEM_HOME/bin:$PATH
 fi
 
 # 関数
