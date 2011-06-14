@@ -40,6 +40,17 @@ export SCREEN_USING=1
 #GIT PATH
 GITBIN=$(which git)
 
+#ruby
+if [[ -s "$HOME/.rvm/scripts/rvm" ]]
+then
+    echo 1
+    source "$HOME/.rvm/scripts/rvm"
+    alias ruby='rvm ruby'
+    alias gem='rvm gem'
+    alias rake='rvm rake'
+    alias irb='rvm exec irb'
+fi
+
 # 関数
 find-grep () { find . -type f -print | xargs grep -n --binary-files=without-match $@ }
 grepv () { grep -irn --binary-files=without-match $@ * | grep -v svn | grep -v .git }
@@ -54,6 +65,7 @@ touchtodaytxt () {
 }
 
 fpath=(~/.zshrc.d/completion $fpath)
+# source ~/.zshrc.d/plugin/*
 
 # エイリアスの設定
 # (dircolorの読み込み)
@@ -111,6 +123,7 @@ alias gh='hg'
 alias amke='make'
 
 # for shortcut
+alias grepl='grep --line-buffered'
 alias t='tar zxvf'
 alias tj='tar jxvf'
 alias t-='tar xvf -'
