@@ -43,7 +43,6 @@ GITBIN=$(which git)
 #ruby
 if [[ -s "$HOME/.rvm/scripts/rvm" ]]
 then
-    echo 1
     source "$HOME/.rvm/scripts/rvm"
     alias ruby='rvm ruby'
     alias gem='rvm gem'
