@@ -1,0 +1,18 @@
+# Rakefile
+#
+#
+# @version  $Id$
+# @author   Sotaro KARASAWA <sotarok@crocos.co.jp>
+
+load "rake/php"
+
+# rvm
+desc "install rvm"
+task "rvm" do
+    if !File.directory?(ENV['HOME'] + '/.rvm') then
+        sh 'bash -c "$(curl -fsSL https://rvm.beginrescueend.com/releases/rvm-install-head)"'
+    else
+        puts "rvm is already setted up"
+    end
+end
+

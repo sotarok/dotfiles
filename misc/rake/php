@@ -1,0 +1,24 @@
+# vim: ft=ruby
+# hoge
+
+namespace :php do
+    # fpm
+    desc "install php-fpm"
+    task "php-fpm" do
+        if File.exist?('/etc/debian_version') then
+            sh 'sudo aptitude install php5-fpm'
+            puts 1
+        elsif File.exist?('/etc/redhat-release') then
+            puts 2
+        end
+        sh "echo 100"
+    end
+
+
+    # install php dependency
+    desc "install php-deps"
+    task "deps" do
+        puts "hoge"
+    end
+end
+

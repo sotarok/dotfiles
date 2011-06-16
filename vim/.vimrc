@@ -366,27 +366,54 @@ endif
 " NeoComplCache
 """
 "let g:NeoComplCache_EnableAtStartup=1
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+
 " 辞書ファイルリスト
-let g:NeoComplCache_DictionaryFileTypeLists = {
-    \ 'default' : '',
-    \ 'php' : $HOME . '/.vim/dict/php.dict'
-\ }
-" 入力文字がこれ以上だと補完しない
-let g:NeoComplCache_MaxTryKeywordLength=100
-" 大文字小文字無視
-let g:NeoComplCache_IgnoreCase=1
-" 大文字を最初に入力したら補完しない
-let g:NeoComplCache_MaxList=1000
-let g:NeoComplCache_SmartCase=1
-let g:NeoComplCache_EnableUnderbarCompletion=1
-let g:NeoComplCache_PartialMatch=0
-let g:NeoComplCache_AlphabeticalOrder=1
-let g:NeoComplCache_CacheLineCount=1000
-let g:NeoComplCache_MinKeywordLength=4
-let g:NeoComplCache_EnableQuickMatch=0
+"let g:NeoComplCache_DictionaryFileTypeLists = {
+"    \ 'default' : '',
+"    \ 'php' : $HOME . '/.vim/dict/php.dict'
+"\ }
+"" 入力文字がこれ以上だと補完しない
+"let g:NeoComplCache_MaxTryKeywordLength=100
+"" 大文字小文字無視
+"let g:NeoComplCache_IgnoreCase=1
+"" 大文字を最初に入力したら補完しない
+"let g:NeoComplCache_MaxList=1000
+"let g:NeoComplCache_SmartCase=1
+"let g:NeoComplCache_EnableUnderbarCompletion=1
+"let g:NeoComplCache_PartialMatch=0
+"let g:NeoComplCache_AlphabeticalOrder=1
+"let g:NeoComplCache_CacheLineCount=1000
+"let g:NeoComplCache_MinKeywordLength=4
+"let g:NeoComplCache_EnableQuickMatch=0
 
 
 " AutoComplPop
+let g:acp_enableAtStartup = 0
 "inoremap <expr> <CR> pumvisible() ? "\<C-p>\<CR>" : "\<CR>"
 "inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
 "inoremap <expr> <C-n> pumvisible() ? "\<C-Y>" : "\<C-n>"
