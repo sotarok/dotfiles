@@ -2,7 +2,7 @@
 	email = sotarok@crocos.co.jp
 	name = Sotaro KARASAWA
 [core]
-	editor = vim
+	editor = /usr/bin/vim
 	excludesfile = /home/sotarok/.gitignore
 	pager = less -FRSX
 [push]
