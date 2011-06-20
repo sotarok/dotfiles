@@ -13,7 +13,6 @@ export MANPATH=/usr/local/man:/usr/share/man
 
 for ruby_path in `find /var/lib/gems/ -maxdepth 2 -type d -name bin`
 do
-    echo $ruby_path
     PATH=$PATH:$ruby_path
 done
 
