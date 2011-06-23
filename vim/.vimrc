@@ -127,10 +127,10 @@ onoremap gc :<C-u>normal gc<Enter>
 
 " resize
 "noremap + <C-W>+
-noremap + <C-W>>
+"noremap + <C-W>>
 "noremap - <C-W>-
-noremap - <C-W><
-noremap = <C-W>=
+"noremap - <C-W><
+"noremap = <C-W>=
 
 " for IME
 inoremap <C-@> <Esc>
@@ -253,20 +253,12 @@ if has("autocmd")
 
     " バッファの。。。なんかよくわからんけど追加。あとで。
     autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-    autocmd Filetype *
-                \   if &omnifunc == "" |
-                \           setlocal omnifunc=syntaxcomplete#Complete |
-                \   endif
+    "autocmd Filetype *
+    "            \   if &omnifunc == "" |
+    "            \           setlocal omnifunc=syntaxcomplete#Complete |
+    "            \   endif
 
 endif
-
-" yankringの割り当て変更
-if has("viminfo")
-    " yankrignによるviminfoの編集の問題らしい。こうしておかないと、yankringにおこられる。
-    set vi^=!
-endif
-nmap ,y :YRShow<CR>
-
 
 """""
 " 上下キーで実行 or Lint
@@ -284,17 +276,6 @@ autocmd FileType python :nmap <up>  <esc>:w<cr>:!/usr/bin/env python %<cr>
 
 
 let nohl_xul_atts = 1
-
-"""""
-" mini buffer explorer プラグイン用設定
-"""""
-"let g:miniBufExplMapWindowNavVim=1 "hjklで移動
-"let g:miniBufExplSplitBelow=0  " Put new window above
-"let g:miniBufExplMapWindowNavArrows=1
-"let g:miniBufExplMapCTabSwitchBufs=1
-"let g:miniBufExplModSelTarget=1 
-"let g:miniBufExplSplitToEdge=1
-
 
 """""
 " Add Functions
@@ -416,9 +397,6 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " AutoComplPop
 let g:acp_enableAtStartup = 0
-"inoremap <expr> <CR> pumvisible() ? "\<C-p>\<CR>" : "\<CR>"
-"inoremap <expr> <Tab> pumvisible() ? "\<C-Y>" : "\<Tab>"
-"inoremap <expr> <C-n> pumvisible() ? "\<C-Y>" : "\<C-n>"
 
 " gtags
     " 検索結果Windowを閉じる
