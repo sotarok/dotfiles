@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/sotarok/working/crocos-marketing/src/Crocos/Marketing/IframeBundle/Resources/config/doctrine/iframe'
-let g:netrw_dirhist_2='/home/sotarok/working/crocos-marketing/src/Crocos/Marketing/PresentBundle/Resources/config/doctrine/present'
-let g:netrw_dirhist_3='/home/sotarok/working/crocos-marketing/src/Crocos/Marketing/AdminBundle/Controller/Present'
-let g:netrw_dirhist_4='/usr/local/var/www/crocos-campaign/src/Crocos/CampaignBundle/Controller'
-let g:netrw_dirhist_5='/home/sotarok/working/git-daily/bin'
-let g:netrw_dirhist_6='/home/sotarok/working/git-daily'
-let g:netrw_dirhist_7='/home/sotarok/working/git-daily/bin'
-let g:netrw_dirhist_8='/home/sotarok/working/git-daily'
-let g:netrw_dirhist_9='/home/sotarok/working/git-daily/bin'
+let g:netrw_dirhist_cnt =0

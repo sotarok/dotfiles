@@ -222,10 +222,11 @@ hi Search ctermfg=Red
 
 " 拡張子によってファイル判定
 augroup filetypedetect
-    au! BufRead,BufNewFile *.ctp setfiletype php
-    au! BufRead,BufNewFile *.xul setfiletype xul
-    au! BufRead,BufNewFile *.jsm setfiletype javascript
-    au! BufRead,BufNewFile *.go  setfiletype go
+    au! BufRead,BufNewFile *.ctp  setfiletype php
+    au! BufRead,BufNewFile *.xul  setfiletype xul
+    au! BufRead,BufNewFile *.jsm  setfiletype javascript
+    au! BufRead,BufNewFile *.go   setfiletype go
+    au! BufRead,BufNewFile *.twig setfiletype jinja
 augroup END
 
 set helpfile=$VIMRUNTIME/doc/help.txt
