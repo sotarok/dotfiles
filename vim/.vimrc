@@ -226,7 +226,7 @@ augroup filetypedetect
     au! BufRead,BufNewFile *.xul  setfiletype xul
     au! BufRead,BufNewFile *.jsm  setfiletype javascript
     au! BufRead,BufNewFile *.go   setfiletype go
-    au! BufRead,BufNewFile *.twig setfiletype jinja
+    au! BufRead,BufNewFile *.twig setfiletype htmldjango
 augroup END
 
 set helpfile=$VIMRUNTIME/doc/help.txt
