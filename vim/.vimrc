@@ -41,7 +41,7 @@ set nocompatible
 set history=999
 set encoding=utf-8
 
-colorscheme molokai
+colorscheme solarized
 
 " Edit .vimrc
 nnoremap <Space>.  :<C-u>edit $MYVIMRC<Enter>
