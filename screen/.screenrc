@@ -43,8 +43,8 @@ bufferfile $HOME/screen_buffer
 #termcapinfo xterm* be
 #
 ## 256 colors
-#defbce "on"
-#term xterm-color
+defbce "on"
+term xterm-256color
 
 ################
 #
