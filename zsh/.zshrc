@@ -11,9 +11,10 @@ export LANG=ja_JP.UTF-8
 PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:/usr/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
-if test -d "/var/lib/gems/"
+GEM_DIR="/var/lib/gems/"
+if test -d "$GEM_DIR"
 then
-    for ruby_path in `find /var/lib/gems/ -maxdepth 2 -type d -name bin`
+    for ruby_path in `find $GEM_DIR -maxdepth 2 -type d -name bin`
     do
         PATH=$PATH:$ruby_path
     done
@@ -33,7 +34,7 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 #for Go
 export GOROOT=$HOME/go
 export GOOS=linux
-export GOARCH=386
+export GOARCH=$(arch)
 export GOBIN=$HOME/bin
 
 export SCREEN_USING=1
@@ -321,8 +322,8 @@ stty stop undef
 bindkey -e
 
 # command history search by glob
-bindkey '^R' history-incremental-pattern-search-backward
-bindkey '^S' history-incremental-pattern-search-forward
+#bindkey '^R' history-incremental-pattern-search-backward
+#bindkey '^S' history-incremental-pattern-search-forward
 
 set kanji-code utf-8
 set convert-meta off    #必須
