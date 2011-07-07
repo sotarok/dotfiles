@@ -36,6 +36,9 @@ export GOBIN=$HOME/bin
 export SCREEN_USING=1
 #export PATH=$GOBIN:$PATH
 
+# プロンプトの設定
+autoload -U colors; colors
+
 #GIT PATH
 GITBIN=$(which git)
 
@@ -84,7 +87,7 @@ linux*)
 
     # mac の zsh だと関数が最初にパースれちゃう？
     # (which git の時点で関数/aliasが適用されてしまうのでlinuxのみ
-    alias git='git-wrap'
+    #alias git='git-wrap'
     ;;
 esac
 
@@ -110,6 +113,39 @@ zstyle ':completion:*:default' menu select=1
 
 # sudo でも補完の対象
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' actionformats '%F{3}@%F{4}%b%F{3} !!%F{1}%a%f'
+zstyle ':vcs_info:*' formats       '%F{3}@%F{4}%b%f'
+#zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+#RPROMPT='%F{5}[%F{2}%n%F{5}] %F{3}%3~ ${vcs_info_msg_0_}%f%# '
+RPROMPT="%F{5}[%F{2}%3~ \${vcs_info_msg_0_}%F{5}]%f"
+
+case ${UID} in
+0)
+    PROMPT="%B%{[31m%}%n@%m#%{[m%}%b "
+    PROMPT2="%B%{[31m%}%_#%{[m%}%b "
+    SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%[m%}%b "
+    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+        #PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+;;
+*)
+    PROMPT_COLOR=32
+    precmd() {
+        vcs_info
+        PROMPT_COLOR="$[32 + ($PROMPT_COLOR - 31) % 5]"
+        PROMPT="%F{${PROMPT_COLOR}}%n%%%f "
+
+        [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+            PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+    }
+
+    SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
+    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+    #    PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+;;
+esac
 
 # for typo
 alias dc='cd'
@@ -188,56 +224,6 @@ alias apti='aptitude install'
 alias aptu='aptitude update'
 alias aptug='aptitude upgrade'
 
-# プロンプトの設定
-autoload colors
-
-# git branch data
-_set_env_git_current_branch() {
-    GIT_CURRENT_BRANCH=$($GITBIN name-rev HEAD --name-only ) &> /dev/null
-}
-
-_update_rprompt () {
-    if test -z $GIT_CURRENT_BRANCH
-    then
-        RPROMPT=" %{[${PROMPT_COLOR}m%}[%~]%{[m%}"
-    else
-        if test -n "$($GITBIN log ${GIT_CURRENT_BRANCH}..origin/${GIT_CURRENT_BRANCH} 2>/dev/null || echo "")"
-        then
-            GIT_CURRENT_BRANCH+=" *"
-        fi
-        RPROMPT=" %{[${PROMPT_COLOR}m%}[%~ ("$GIT_CURRENT_BRANCH")]%{[m%}"
-    fi
-}
-
-case ${UID} in
-0)
-    PROMPT="%B%{[31m%}%n@%m#%{[m%}%b "
-    PROMPT2="%B%{[31m%}%_#%{[m%}%b "
-    SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%[m%}%b "
-    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        #PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-;;
-*)
-    PROMPT_COLOR=32
-    precmd() {
-        PROMPT_COLOR="$[32 + ($PROMPT_COLOR - 31) % 5]"
-        PROMPT="%{[${PROMPT_COLOR}m%}%n%%%{[m%} "
-        PROMPT2="%{[${PROMPT_COLOR}m%}%_%%%{[m%} "
-
-        [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-            PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-
-        _update_rprompt
-    }
-
-    #PROMPT="%{[32m%}%n%%%{[m%} "
-    #PROMPT2="%{[32m%}%_%%%{[m%} "
-    SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
-    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-    #    PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-;;
-esac
-
 setopt prompt_subst
 
 ## ビープを鳴らさない
@@ -312,10 +298,6 @@ setopt share_history
 # Ctrl+wで､直前の/までを削除する｡
 WORDCHARS='|*?_-.[]~=&;!#$%^(){}<>'
 
-# ディレクトリを水色にする｡
-#export LS_COLORS='di=01;36'
-
-
 # ディレクトリ名だけで､ディレクトリの移動をする｡
 setopt auto_cd
 
@@ -352,21 +334,15 @@ set enable-keypad on
 # ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
 #if [ "$TERM" = "screen" ]; then
 
-case "$TERM" in
-    xterm-color|screen|xterm-256color)
-        1="$1 " # deprecated.
-        echo -ne "\ek${${(s: :)1}[0]}\e\\"
-        ;;
-esac
+#case "$TERM" in
+#    xterm-color|screen|xterm-256color)
+#        1="$1 " # deprecated.
+#        echo -ne "\ek${${(s: :)1}[0]}\e\\"
+#        ;;
+#esac
 
-
-git-wrap () {
-    if test -z "$GITBIN" ; then echo "command not found: git" ; exit(255) ; fi
-    $GITBIN $@
-    _set_env_git_current_branch
-}
 chpwd () {
-    _set_env_git_current_branch
+    #_set_env_git_current_branch
     echo -n "_`dirs`\\"
     ls
 }
@@ -408,27 +384,6 @@ preexec() {
 }
 chpwd
 #fi
-
-# gree cd
-g () {
-    p="/home/gree/"
-    if [[ $# -gt 0 ]]
-    then
-        add="" 
-        case $1 in
-            ("f") add="frontend/"  ;;
-            ("c") add="src/class/Gree/"  ;;
-            ("m") add="src/mobile/"  ;;
-            ("s") add="service/"  ;;
-        esac
-        p="${p}$add"
-        if [[ $# -gt 1 ]]
-        then
-            p="${p}$2"
-        fi
-    fi
-    cd "$p"
-}
 
 # git-flow
 
