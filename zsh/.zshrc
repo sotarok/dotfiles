@@ -79,6 +79,7 @@ solaris*)
     ;;
 linux*)
     test -f ~/.dircolors && eval `dircolors -b ~/.dircolors`
+    test -f ~/.dotfiles/zsh/dircolors-solarized/dircolors.ansi-universal && eval `dircolors -b ~/.dotfiles/zsh/dircolors-solarized/dircolors.ansi-universal`
     alias ls='ls --color=auto'
 
     # mac の zsh だと関数が最初にパースれちゃう？
@@ -350,6 +351,15 @@ set enable-keypad on
 # git の branch を表示する
 # ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
 #if [ "$TERM" = "screen" ]; then
+
+case "$TERM" in
+    xterm-color|screen|xterm-256color)
+        1="$1 " # deprecated.
+        echo -ne "\ek${${(s: :)1}[0]}\e\\"
+        ;;
+esac
+
+
 git-wrap () {
     if test -z "$GITBIN" ; then echo "command not found: git" ; exit(255) ; fi
     $GITBIN $@
