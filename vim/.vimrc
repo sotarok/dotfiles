@@ -41,6 +41,7 @@ set nocompatible
 set history=999
 set encoding=utf-8
 
+set background=dark
 colorscheme solarized
 
 " Edit .vimrc

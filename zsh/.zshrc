@@ -120,11 +120,11 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' actionformats '%F{3}@%F{4}%b%F{3} !!%F{1}%a%f'
-zstyle ':vcs_info:*' formats       '%F{3}@%F{4}%b%f'
+zstyle ':vcs_info:*' actionformats ' %F{3}@%F{4}%b%F{3} !!%F{1}%a%f'
+zstyle ':vcs_info:*' formats       ' %F{3}@%F{4}%b%f'
 #zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 #RPROMPT='%F{5}[%F{2}%n%F{5}] %F{3}%3~ ${vcs_info_msg_0_}%f%# '
-RPROMPT="%F{5}[%F{2}%3~ \${vcs_info_msg_0_}%F{5}]%f"
+RPROMPT="%F{5}[%F{2}%3~\${vcs_info_msg_0_}%F{5}]%f"
 
 case ${UID} in
 0)
