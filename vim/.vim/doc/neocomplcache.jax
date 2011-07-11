@@ -263,8 +263,7 @@ g:neocomplcache_enable_cursor_hold_i			*g:neocomplcache_enable_cursor_hold_i*
 		候補の計算を|CursorHoldI|イベント時に行うかどうかを制御する。
 		このオプションが設定されなかった場合、|CursorMovedI|イベン
 		トを使用する。このオプションでは無理矢理タイマーイベントを模
-		倣するので、不具合が生じるかもしれない。加えて、補完時にもた
-		つくことがある。
+		倣するので、Vimの仕様により候補が出てこないことがある。
 		
 		副作用があるので、初期値は0である。
 
@@ -290,16 +289,17 @@ g:neocomplcache_cursor_hold_i_time			*g:neocomplcache_cursor_hold_i_time*
 
 g:neocomplcache_enable_camel_case_completion		*g:neocomplcache_enable_camel_case_completion*
 		大文字を入力したときに、それを単語の区切りとしてあいまい検索
-		を行うかどうか制御する。 例えば AE と入力したとき、
-		ArgumentsException とマッチするようになる。 1ならば有効にな
+		を行うかどうか制御する。 例えば "AE" と入力したとき、
+		"ArgumentsException" とマッチするようになる。 1ならば有効にな
 		る。
 		
 		副作用があるので、初期値は0となっている。
 
 g:neocomplcache_enable_underbar_completion		*g:neocomplcache_enable_underbar_completion*
-		_を入力したときに、それを単語の区切りとしてあいまい検索を行
-		うかどうか制御する。 例えば p_h と入力したとき、 public_html
-		とマッチするようになる。 1ならば有効になる。
+		_を入力したときに、それを単語の区切りとしてあいまい検索を行うか
+		どうか制御する。 例えば "p_h" と入力したとき、"p*_h"と解釈され
+		"public_html"とマッチするようになる。 1ならば有効になる。さらに、
+		"g:neo_cp"は"g:neo*_c*p"と解釈される。
 		
 		副作用があるので、初期値は0となっている。
 
@@ -560,6 +560,23 @@ g:neocomplcache_plugin_rank				*g:neocomplcache_plugin_rank*
 		プラグインの優先度を指定するディクショナリ。
 		
 		初期値はそれぞれのプラグインによってセットされる。
+
+g:neocomplcache_force_overwrite_completefunc		*g:neocomplcache_force_overwrite_completefunc*
+		neocomplcacheが強制的に'completefunc'を上書きするかどうかを
+		設定する。プラグインがcompletefuncを使用していて、
+		neocomplcacheが無効になってしまう場合にセットするとよい。た
+		だし、プラグインの'completefunc'は使用できなくなる。
+		
+		副作用があるので、初期値は0である。
+
+g:neocomplcache_snippets_complete_disable_runtime_snippets
+							*g:neocomplcache_snippets_complete_disable_runtime_snippets*
+		この変数を真にすると、neocomplcache runtimeのスニペットは読
+		み込まれない。用意されているスニペットとの干渉を避けるために
+		用いる。neocomplcacheが初期化される前にセットしないと意味は
+		ない。
+
+		初期値は0である。
 
 ------------------------------------------------------------------------------
 KEY MAPPINGS 						*neocomplcache-key-mappings*

@@ -297,6 +297,8 @@ g:neocomplcache_enable_underbar_completion		*g:neocomplcache_enable_underbar_com
 		neocomplcache takes an ambiguous searching as an end of the
 		words in it.  For example, neocomplcache come to match it
 		with 'public_html' when you input it with 'p_h'.
+		And, match 'g:neocomplcache_enable_underbar_completion' with
+		when you input with 'g:neo_euc'.
 		
 		Default value is 0.
 
@@ -591,6 +593,21 @@ g:neocomplcache_plugin_rank				*g:neocomplcache_plugin_rank*
 		priority.
 		
 		Default value is set by each plugins.
+
+g:neocomplcache_force_overwrite_completefunc		*g:neocomplcache_force_overwrite_completefunc*
+		If this variable is 1, neocomplcache force overwrite
+		'completefunc' option. This variable is useful for other
+		plugin overwrite 'completefunc'.  But other plugin's
+		'completefunc' is disabled.
+		
+		Default value is 0.
+
+g:neocomplcache_snippets_complete_disable_runtime_snippets
+							*g:neocomplcache_snippets_complete_disable_runtime_snippets*
+		If this variable is 1, runtime snippets isn't loaded.
+		This variable is useful to avoid conflicting snippets.
+
+		Default value is 0.
 
 ------------------------------------------------------------------------------
 KEY MAPPINGS 						*neocomplcache-key-mappings*
@@ -992,6 +1009,53 @@ ability of neocomplcache will spread by creating plugin by yourself.
 
 ==============================================================================
 CHANGELOG						*neocomplcache-changelog*
+
+2011-07-10
+- Fixed doc.
+- Enabled auto-preview.
+- Added g:neocomplcache_snippets_complete_disable_runtime_snippets option.
+
+2011-07-09
+- Supported vcs.vim.
+- Added g:neocomplcache_force_overwrite_completefunc option.
+- Fixed unite source error.
+
+2011-07-07
+- Improved underbar completion.
+- Fixed neocomplcache#check_match_filter() behavior.
+
+2011-07-05
+- Improved underbar completion.
+
+2011-06-30
+- Improved execute completion.
+- Improved autocmd completion.
+- Improved mapping completion.
+- Fixed vim_complete.
+- Improved help include filetype.
+
+2011-06-28
+- Changed g:neocomplcache_enable_cursor_hold_i behavior.
+- Deleted obsolute variable.
+
+2011-06-25
+- Improved variable analyze.
+
+2011-06-23
+- Set tabstop in ftplugin/snippet.vim.
+
+2011-06-22
+- Fixed dictionary_complete.
+
+2011-06-21
+- Fixed is_text_mode.
+
+2011-06-20
+- Fixed dictionary_complete behavior.
+- Improved neocomplcache#get_source_filetypes().
+
+2011-06-16
+- Supported earthquake.
 
 2011-06-15
 - Changed caching timing.
