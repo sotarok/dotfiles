@@ -40,6 +40,9 @@ export GOBIN=$HOME/bin
 export SCREEN_USING=1
 #export PATH=$GOBIN:$PATH
 
+export DEBEMAIL="sotarok@crocos.co.jp"
+export DEBFULLNAME="Sotaro Karasawa"
+
 # プロンプトの設定
 autoload -U colors; colors
 
