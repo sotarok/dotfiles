@@ -167,6 +167,7 @@ alias gh='hg'
 alias amke='make'
 
 # for shortcut
+alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 alias grepl='grep --line-buffered'
 alias t='tar zxvf'
 alias tj='tar jxvf'

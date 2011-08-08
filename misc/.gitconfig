@@ -49,3 +49,5 @@
 	# grep関連
 	gr = grep
 	gn = grep -n
+[redmine]
+	apiKey = 06853c1c8bf87df64785a8b831837dacc67d79a3

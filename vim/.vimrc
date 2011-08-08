@@ -345,7 +345,7 @@ set listchars=tab:>.,trail:-,nbsp:%,extends:>,precedes:<
 highlight SpecialKey term=underline ctermfg=darkcyan guifg=darkcyan
 
 if &term == "xterm-color"
-    set t_kb=
+    "set t_kb=
     fixdel
 endif
 
