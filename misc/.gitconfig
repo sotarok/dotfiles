@@ -5,6 +5,7 @@
 	editor = /usr/bin/vim
 	excludesfile = /home/sotarok/.gitignore
 	pager = less -FRSX
+	sharedRepository=group
 [push]
 	default = tracking
 [color]
