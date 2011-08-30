@@ -20,6 +20,8 @@ then
     done
 fi
 
+test -f /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/.bootstrap
+
 LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH
 
@@ -167,6 +169,7 @@ alias gh='hg'
 alias amke='make'
 
 # for shortcut
+alias sudo='sudo -E '
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 alias grepl='grep --line-buffered'
 alias t='tar zxvf'
