@@ -189,6 +189,7 @@ g:neocomplcache_enable_underbar_completion	neocomplcache.txt	/*g:neocomplcache_e
 g:neocomplcache_enable_wildcard	neocomplcache.txt	/*g:neocomplcache_enable_wildcard*
 g:neocomplcache_filetype_include_lists	neocomplcache.txt	/*g:neocomplcache_filetype_include_lists*
 g:neocomplcache_force_caching_buffer_name_pattern	neocomplcache.txt	/*g:neocomplcache_force_caching_buffer_name_pattern*
+g:neocomplcache_force_overwrite_completefunc	neocomplcache.txt	/*g:neocomplcache_force_overwrite_completefunc*
 g:neocomplcache_include_exprs	neocomplcache.txt	/*g:neocomplcache_include_exprs*
 g:neocomplcache_include_paths	neocomplcache.txt	/*g:neocomplcache_include_paths*
 g:neocomplcache_include_patterns	neocomplcache.txt	/*g:neocomplcache_include_patterns*
@@ -210,6 +211,7 @@ g:neocomplcache_plugin_rank	neocomplcache.txt	/*g:neocomplcache_plugin_rank*
 g:neocomplcache_quick_match_patterns	neocomplcache.txt	/*g:neocomplcache_quick_match_patterns*
 g:neocomplcache_quick_match_table	neocomplcache.txt	/*g:neocomplcache_quick_match_table*
 g:neocomplcache_same_filetype_lists	neocomplcache.txt	/*g:neocomplcache_same_filetype_lists*
+g:neocomplcache_snippets_complete_disable_runtime_snippets	neocomplcache.txt	/*g:neocomplcache_snippets_complete_disable_runtime_snippets*
 g:neocomplcache_snippets_dir	neocomplcache.txt	/*g:neocomplcache_snippets_dir*
 g:neocomplcache_tags_filter_patterns	neocomplcache.txt	/*g:neocomplcache_tags_filter_patterns*
 g:neocomplcache_temporary_dir	neocomplcache.txt	/*g:neocomplcache_temporary_dir*
