@@ -17,11 +17,11 @@ elseif has("win32")
     set rtp+=$HOME/.vim/env/win32
 endif
 
-"" Git コマンドがあれば Git 関連のプラグイン
+" Git コマンドがあれば Git 関連のプラグイン
 " この rtp うまくいかないお
-"if executable('git')
-"    set rtp+=$HOME/.vim/env/git
-"endif
+if executable('git')
+    set rtp+=$HOME/.vim/env/git
+endif
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -47,9 +47,6 @@ colorscheme solarized
 " Edit .vimrc
 nnoremap <Space>.  :<C-u>edit $MYVIMRC<Enter>
 nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
-" view Help
-"nnoremap <C-h>       :<C-u>help<Space>
-"nnoremap <C-h><C-h>  :<C-u>help<Space><C-r><C-w><Enter>
 
 """""
 " Status line Settings
@@ -129,11 +126,11 @@ vnoremap gc :<C-u>normal gc<Enter>
 onoremap gc :<C-u>normal gc<Enter>
 
 " resize
-"noremap + <C-W>+
-"noremap + <C-W>>
-"noremap - <C-W>-
-"noremap - <C-W><
-"noremap = <C-W>=
+noremap + <C-W>+
+noremap + <C-W>>
+noremap - <C-W>-
+noremap - <C-W><
+noremap = <C-W>=
 
 " for IME
 inoremap <C-@> <Esc>
@@ -208,10 +205,9 @@ if exists('&ambiwidth')
   set ambiwidth=double
 endif
 
-"""""
-" Highlight Settings
-"""""
-syntax on
+""""""
+"" Highlight Settings
+""""""
 hi Comment ctermfg=Red
 hi Function ctermfg=cyan
 hi IncSearch ctermfg=Red
@@ -220,7 +216,6 @@ hi Search ctermfg=Red
 
 """""
 " 編集時用設定 
-
 """""
 
 " 拡張子によってファイル判定
@@ -232,7 +227,7 @@ augroup filetypedetect
     au! BufRead,BufNewFile *.twig setfiletype htmldjango
 augroup END
 
-set helpfile=$VIMRUNTIME/doc/help.txt
+"set helpfile=$VIMRUNTIME/doc/help.txt
 
 if has("autocmd")
     autocmd FileType rb :setlocal dictionary+=~/.vim/dict/ruby.dict
@@ -246,6 +241,8 @@ if has("autocmd")
     autocmd FileType make setlocal nomodeline noexpandtab
     autocmd FileType yaml setlocal ts=2 sw=2
     autocmd FileType javascript setlocal ts=2 sw=2
+    autocmd FileType html setlocal ts=2 sw=2
+    autocmd FileType htmldjango setlocal ts=2 sw=2
 
     autocmd BufNewFile *.php 0r ~/.vim/skeleton/php.skel
     autocmd BufNewFile *.py 0r ~/.vim/skeleton/python.skel
@@ -329,7 +326,7 @@ let g:buftabs_in_statusline=1
 "syntaxの有無をチェックし、新規バッファと新規読み込み時にハイライトさせる
 if has("syntax")
     syntax on
-        augroup invisible
+    augroup invisible
         autocmd! invisible
         "autocmd BufNew,BufRead * call JISX0208SpaceHilight()
         highlight IdeographicSpace term=underline ctermbg=LightCyan guibg=LightCyan
@@ -352,7 +349,6 @@ endif
 """
 " NeoComplCache
 """
-"let g:NeoComplCache_EnableAtStartup=1
 let g:neocomplcache_enable_at_startup = 1
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
@@ -364,8 +360,8 @@ let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"" <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
@@ -384,23 +380,6 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "    \ 'default' : '',
 "    \ 'php' : $HOME . '/.vim/dict/php.dict'
 "\ }
-"" 入力文字がこれ以上だと補完しない
-"let g:NeoComplCache_MaxTryKeywordLength=100
-"" 大文字小文字無視
-"let g:NeoComplCache_IgnoreCase=1
-"" 大文字を最初に入力したら補完しない
-"let g:NeoComplCache_MaxList=1000
-"let g:NeoComplCache_SmartCase=1
-"let g:NeoComplCache_EnableUnderbarCompletion=1
-"let g:NeoComplCache_PartialMatch=0
-"let g:NeoComplCache_AlphabeticalOrder=1
-"let g:NeoComplCache_CacheLineCount=1000
-"let g:NeoComplCache_MinKeywordLength=4
-"let g:NeoComplCache_EnableQuickMatch=0
-
-
-" AutoComplPop
-let g:acp_enableAtStartup = 0
 
 " gtags
     " 検索結果Windowを閉じる
