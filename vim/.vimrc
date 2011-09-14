@@ -141,6 +141,9 @@ autocmd WinLeave * setlocal nocursorline
 autocmd BufEnter * setlocal cursorline
 autocmd BufLeave * setlocal nocursorline
 
+" auto remove spaces of the end of line
+autocmd BufWritePre * :%s/\s\+$//ge
+
 " when split vertical then Vexplore
 nnoremap <C-w><C-v> :<C-u>Vexplore<Enter>
 
@@ -215,7 +218,7 @@ hi Search ctermfg=Red
 
 
 """""
-" 編集時用設定 
+" 編集時用設定
 """""
 
 " 拡張子によってファイル判定
