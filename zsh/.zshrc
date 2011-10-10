@@ -136,7 +136,7 @@ case ${UID} in
     PROMPT="%B%{[31m%}%n@%m#%{[m%}%b "
     PROMPT2="%B%{[31m%}%_#%{[m%}%b "
     SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%[m%}%b "
-    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
         #PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
 ;;
 *)
@@ -216,6 +216,7 @@ alias scr='screen -r'    # screen r
 alias gst='git status'
 alias gci='git commit'
 alias gdi='git diff'
+alias gdir='GIT_PAGER="less -r -I" git diff'
 alias gdc='git diff --cached'
 alias gad='git add'
 alias gb='git branch -a'
@@ -370,7 +371,7 @@ preexec() {
             cmd=(builtin jobs -l $cmd[2])
                 fi
                 ;;
-    %*) 
+    %*)
         cmd=(builtin jobs -l $cmd[1])
         ;;
     cd)
@@ -398,22 +399,22 @@ chpwd
 
 # git-flow
 
-# 
+#
 # Installation
 # ------------
-# 
+#
 # To achieve git-flow completion nirvana:
-# 
+#
 #  0. Update your zsh's git-completion module to the newest verion.
 #		From here. http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD
-# 
+#
 #  1. Install this file. Either:
-# 
+#
 #     a. Place it in your .zshrc:
-# 
+#
 #     b. Or, copy it somewhere (e.g. ~/.git-flow-completion.zsh) and put the following line in
 #        your .zshrc:
-# 
+#
 #            source ~/.git-flow-completion.zsh
 #
 #	  c. Or, use this file as a oh-my-zsh plugin.
@@ -430,7 +431,7 @@ _git-flow ()
 
 	case $state in
 		(command)
-		
+
 			local -a subcommands
 			subcommands=(
 				'init:Initialize a new git repo with support for the branching model.'
@@ -442,26 +443,26 @@ _git-flow ()
 			)
 			_describe -t commands 'git flow' subcommands
 		;;
-		
+
 		(options)
 			case $line[1] in
-			
+
 				(init)
 					_arguments \
             			-f'[Force setting of gitflow branches, even if already configured]'
 					;;
-			
+
 					(version)
 					;;
-			
+
 					(hotfix)
 						__git-flow-hotfix
 					;;
-			
+
 					(release)
 						__git-flow-release
 					;;
-			
+
 					(feature)
 						__git-flow-feature
 					;;
@@ -481,7 +482,7 @@ __git-flow-release ()
 
 	case $state in
 		(command)
-		
+
 			local -a subcommands
 			subcommands=(
 				'start:Start a new release branch'
@@ -492,16 +493,16 @@ __git-flow-release ()
 			_arguments \
     			-v'[Verbose (more) output]'
 		;;
-		
+
 		(options)
 			case $line[1] in
-			
+
 				(start)
 					_arguments \
             			-F'[Fetch from origin before performing finish]'\
-						':version:__git_flow_version_list' 
+						':version:__git_flow_version_list'
 					;;
-			
+
 				(finish)
 					_arguments \
         				-F'[Fetch from origin before performing finish]' \
@@ -509,9 +510,9 @@ __git-flow-release ()
     					-u'[Use the given GPG-key for the digital signature (implies -s)]'\
     					-m'[Use the given tag message]'\
     					-p'[Push to $ORIGIN after performing finish]'\
-						':version:__git_flow_version_list' 
+						':version:__git_flow_version_list'
 				;;
-				
+
 				*)
 					_arguments \
             			-v'[Verbose (more) output]'
@@ -532,7 +533,7 @@ __git-flow-hotfix ()
 
 	case $state in
 		(command)
-		
+
 			local -a subcommands
 			subcommands=(
 				'start:Start a new hotfix branch'
@@ -543,17 +544,17 @@ __git-flow-hotfix ()
 			_arguments \
     			-v'[Verbose (more) output]'
 		;;
-		
+
 		(options)
 			case $line[1] in
-			
+
 				(start)
 					_arguments \
             			-F'[Fetch from origin before performing finish]'\
 						':hotfix:__git_flow_version_list'\
 						':branch-name:__git_branch_names'
 					;;
-			
+
 				(finish)
 					_arguments \
         				-F'[Fetch from origin before performing finish]' \
@@ -561,9 +562,9 @@ __git-flow-hotfix ()
     					-u'[Use the given GPG-key for the digital signature (implies -s)]'\
     					-m'[Use the given tag message]'\
     					-p'[Push to $ORIGIN after performing finish]'\
-						':hotfix:__git_flow_hotfix_list' 
+						':hotfix:__git_flow_hotfix_list'
 				;;
-				
+
 				*)
 					_arguments \
             			-v'[Verbose (more) output]'
@@ -584,7 +585,7 @@ __git-flow-feature ()
 
 	case $state in
 		(command)
-		
+
 			local -a subcommands
 			subcommands=(
 				'start:Start a new hotfix branch'
@@ -601,43 +602,43 @@ __git-flow-feature ()
 			_arguments \
     			-v'[Verbose (more) output]'
 		;;
-		
+
 		(options)
 			case $line[1] in
-			
+
 				(start)
 					_arguments \
             			-F'[Fetch from origin before performing finish]'\
 						':feature:__git_flow_feature_list'\
 						':branch-name:__git_branch_names'
 					;;
-			
+
 				(finish)
 					_arguments \
         				-F'[Fetch from origin before performing finish]' \
     					-r'[Rebase instead of merge]'\
-						':feature:__git_flow_feature_list' 
+						':feature:__git_flow_feature_list'
 				;;
-				
+
 				(publish)
 					_arguments \
 						':feature:__git_flow_feature_list'\
 					;;
-					
+
 				(track)
 					_arguments \
 						':feature:__git_flow_feature_list'\
-					;;	
-						
+					;;
+
 				(diff)
 					_arguments \
 						':branch:__git_branch_names'\
-					;;	
+					;;
 
 				(rebase)
 					_arguments \
         				-i'[Do an interactive rebase]' \
-						':branch:__git_branch_names' 
+						':branch:__git_branch_names'
 				;;
 
 				(checkout)
@@ -650,7 +651,7 @@ __git-flow-feature ()
 						':remote:__git_remotes'\
 						':branch:__git_branch_names'
 					;;
-																										
+
 				*)
 					_arguments \
             			-v'[Verbose (more) output]'
