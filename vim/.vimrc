@@ -246,6 +246,7 @@ if has("autocmd")
     autocmd FileType javascript setlocal ts=2 sw=2
     autocmd FileType html setlocal ts=2 sw=2
     autocmd FileType htmldjango setlocal ts=2 sw=2
+    autocmd FileType rst setlocal ts=2 sw=2
 
     autocmd BufNewFile *.php 0r ~/.vim/skeleton/php.skel
     autocmd BufNewFile *.py 0r ~/.vim/skeleton/python.skel
