@@ -39,6 +39,15 @@ export GOOS=linux
 export GOARCH=$(arch)
 export GOBIN=$HOME/bin
 
+#for aws
+export JAVA_HOME=/usr
+export AWS_RDS_HOME=$HOME/aws/RDSCli-1.4.006
+export PATH=$AWS_RDS_HOME/bin:$PATH
+export EC2_CERT=$HOME/aws/cert-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
+export EC2_PRIVATE_KEY=$HOME/aws/pk-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
+export EC2_URL=https://ec2.ap-northeast-1.amazonaws.com
+export EC2_REGION=ap-northeast-1
+
 export SCREEN_USING=1
 #export PATH=$GOBIN:$PATH
 
@@ -144,6 +153,7 @@ case ${UID} in
     precmd() {
         vcs_info
         PROMPT_COLOR="$[32 + ($PROMPT_COLOR - 31) % 5]"
+        PROMPT="%% "
         PROMPT="%F{${PROMPT_COLOR}}%n%%%f "
 
         [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&

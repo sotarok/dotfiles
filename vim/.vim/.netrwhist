@@ -1,6 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/sotarok/working/github/git-daily'
-let g:netrw_dirhist_2='/home/sotarok/share'
-let g:netrw_dirhist_3='/home/sotarok'
-let g:netrw_dirhist_4='/home/sotarok/tmp/hoge'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/sotarok/working/crocos/want/vendor/Ethna/class/Plugin'
+let g:netrw_dirhist_2='/home/sotarok/working/crocos/want/vendor/Ethna/class/Plugin/Cachemanager'
+let g:netrw_dirhist_3='/home/sotarok/working/crocos/want/vendor/Ethna/class/Plugin'
