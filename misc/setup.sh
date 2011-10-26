@@ -36,4 +36,7 @@ test -f $HOME/.ssh/authorized_keys && cat $HOME/.ssh/authorized_keys >> $HOME/.s
 test -f $HOME/.ssh/authorized_keys && mv $HOME/.ssh/authorized_keys $HOME/.ssh/authorized_keys.orig
 mv $HOME/authorized_keys_merged $HOME/.ssh/authorized_keys && chmod 600 $HOME/.ssh/authorized_keys
 
+test -f $HOME/.ssh/id_rsa.pub && mv $HOME/.ssh/id_rsa.pub $HOME/.ssh/id_rsa.pub.orig
+cp $DOTFILES/ssh/id_rsa.pub $HOME/.ssh/id_rsa.pub && chmod 600 $HOME/.ssh/id_rsa.pub
+
 ln -sf $DOTFILES/bin/* $HOME/bin
