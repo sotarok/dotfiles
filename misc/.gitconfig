@@ -6,6 +6,7 @@
 	excludesfile = /home/sotarok/.gitignore
 	pager = less -FRSX
 	sharedRepository=group
+	quotepath = false
 [push]
 	default = tracking
 [color]
@@ -47,6 +48,8 @@
 	edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
 	# mergeの際にconflictが起きたファイルをadd
 	add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+	# 削除済みのやつを削除
+	rm-deleted = "!f() { git status -s | grep '^ D' | cut -d' ' -f3 ; }; git rm --cached `f`"
 	# grep関連
 	gr = grep
 	gn = grep -n
