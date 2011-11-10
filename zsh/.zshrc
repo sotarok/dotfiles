@@ -33,6 +33,9 @@ export GTEST_COLOR=1
 # export SCREENDIR=$HOME/.screen
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
+export NVM_DIR=$HOME/.nvm
+test -f $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
+
 #for Go
 export GOROOT=$HOME/go
 export GOOS=linux
@@ -193,13 +196,14 @@ alias less='less -R'
 alias grep='grep --color'
 alias vi='vim'
 alias v='vim'
+alias V='| vim -R -'
 alias e='vim'   # :p
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias pingg='ping www.google.com'
-alias shr='sudo service httpd restart'
-alias shs='sudo service httpd start'
-alias sar='sudo service apache2 restart'
-alias sas='sudo service apache2 start'
+alias suhr='sudo service httpd restart'
+alias suhs='sudo service httpd start'
+alias suar='sudo service apache2 restart'
+alias suas='sudo service apache2 start'
 
 # for svn
 alias st='svn st | less -FSRX'
@@ -268,6 +272,7 @@ setopt extended_history
 # 補完するかの質問は画面を超える時にのみに行う｡
 LISTMAX=0
 
+setopt globsubst
 
 # cdのタイミングで自動的にpushd
 setopt auto_pushd
