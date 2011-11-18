@@ -135,11 +135,17 @@ zstyle ':completion:*:default' menu select=1
 # sudo でも補完の対象
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:*' actionformats ' %F{3}@%F{4}%b%F{3} !!%F{1}%a%f'
-zstyle ':vcs_info:*' formats       ' %F{3}@%F{4}%b%f'
-#zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+
+autoload -Uz is-at-least
+if is-at-least 4.3.10; then
+  autoload -Uz vcs_info
+  zstyle ':vcs_info:*' enable git
+  zstyle ':vcs_info:git:*' check-for-changes true
+  zstyle ':vcs_info:git:*' stagedstr "+"    # 適当な文字列に変更する
+  zstyle ':vcs_info:git:*' unstagedstr "*"  # 適当の文字列に変更する
+  zstyle ':vcs_info:*' actionformats ' %F{1}%c%u%f%F{3}@%F{4}%b%F{3} !!%F{1}%a%f'
+  zstyle ':vcs_info:*' formats       ' %F{1}%c%u%f%F{3}@%F{4}%b%f'
+fi
 #RPROMPT='%F{5}[%F{2}%n%F{5}] %F{3}%3~ ${vcs_info_msg_0_}%f%# '
 RPROMPT="%F{5}[%F{2}%~\${vcs_info_msg_0_}%F{5}]%f"
 
