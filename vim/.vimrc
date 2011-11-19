@@ -38,6 +38,7 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'mattn/gist-vim'
 Bundle 'motemen/git-vim'
 " vim-script Plugins
+Bundle 'sudo.vim'
 Bundle 'buftabs'
 Bundle 'Align'
 " colorscheme
@@ -66,7 +67,7 @@ set history=999
 set encoding=utf-8
 
 set background=dark
-colorscheme solarized
+colorscheme molokai
 
 " Edit .vimrc
 nnoremap <Space>.  :<C-u>edit $MYVIMRC<Enter>
