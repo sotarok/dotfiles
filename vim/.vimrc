@@ -1,27 +1,51 @@
 " .vimrc file
 "
 " Maintainer:   Sotaro KARASAWA <sotaro.k@gmail.com>
-" Version:      $Id$
 "
 """""
 
 " 環境依存な設定を読み込む
-if has("unix")
-    " linux
-    set rtp+=$HOME/.vim/env/unix
-elseif has('mac')
-    " mac
-    set rtp+=$HOME/.vim/env/mac
-elseif has("win32")
-    " windows
-    set rtp+=$HOME/.vim/env/win32
-endif
+"if has("unix")
+"    " linux
+"    set rtp+=$HOME/.vim/env/unix
+"elseif has('mac')
+"    " mac
+"    set rtp+=$HOME/.vim/env/mac
+"elseif has("win32")
+"    " windows
+"    set rtp+=$HOME/.vim/env/win32
+"endif
+"
+"" Git コマンドがあれば Git 関連のプラグイン
+"" この rtp うまくいかないお
+"if executable('git')
+"    set rtp+=$HOME/.vim/env/git
+"endif
 
-" Git コマンドがあれば Git 関連のプラグイン
-" この rtp うまくいかないお
-if executable('git')
-    set rtp+=$HOME/.vim/env/git
-endif
+" {{{ Vundle Setting
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/vundle.git/
+call vundle#rc()
+
+"Bundle 'tpope/vim-fugitive'                  " original repos on github
+"Bundle 'rails.vim'                           " vim-scripts repos
+"Bundle 'git://git.wincent.com/command-t.git' " non github repos
+Bundle 'tpope/vim-surround'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/neocomplcache'
+Bundle 'mattn/gist-vim'
+Bundle 'motemen/git-vim'
+" vim-script Plugins
+Bundle 'buftabs'
+Bundle 'Align'
+" colorscheme
+Bundle 'molokai'
+Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
+
+filetype plugin indent on
+" }}}
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
