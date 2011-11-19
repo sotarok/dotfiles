@@ -11,6 +11,10 @@ export LANG=ja_JP.UTF-8
 PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:/usr/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
+# php-env
+PATH=$PATH:$HOME/.php-build/bin:$HOME/.phpenv/bin
+test -d $HOME/.phpenv/bin && eval $(phpenv init -)
+
 GEM_DIR="/var/lib/gems/"
 if test -d "$GEM_DIR"
 then
@@ -251,10 +255,11 @@ alias gsci='git stash; git svn dcommit ; git stash pop'
 # for sudo
 alias yum='sudo yum'
 alias aptitude='sudo aptitude'
-alias apts='aptitude search'
-alias apti='aptitude install'
-alias aptu='aptitude update'
-alias aptug='aptitude upgrade'
+alias apt-get='sudo apt-get'
+alias apts='apt-cache search'
+alias apti='apt-get install'
+alias aptu='apt-get update'
+alias aptug='apt-get upgrade'
 
 setopt prompt_subst
 
