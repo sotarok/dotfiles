@@ -13,7 +13,7 @@ export MANPATH=/usr/local/man:/usr/share/man
 
 # php-env
 PATH=$PATH:$HOME/.php-build/bin:$HOME/.phpenv/bin
-test -d $HOME/.phpenv/bin && eval $(phpenv init -)
+#test -d $HOME/.phpenv/bin && eval $(phpenv init -)
 
 GEM_DIR="/var/lib/gems/"
 if test -d "$GEM_DIR"
@@ -380,9 +380,13 @@ set enable-keypad on
 #esac
 
 chpwd () {
-    #_set_env_git_current_branch
-    echo -n "_`dirs`\\"
-    ls
+    case "${OSTYPE}" in
+    darwin*) ;;
+    *)
+        echo -n "_`dirs`\\"
+        ls
+        ;;
+    esac
 }
 preexec() {
 # see [zsh-workers:13180]
@@ -423,6 +427,13 @@ preexec() {
 chpwd
 #fi
 
+
+_git-daily ()
+{
+    # TODO
+}
+
+# {{{ git-flow completion
 # git-flow
 
 #
@@ -756,4 +767,5 @@ __git_command_successful () {
 }
 
 zstyle ':completion:*:*:git:*' user-commands flow:'description for foo'
+# }}}
 
