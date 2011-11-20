@@ -23,6 +23,7 @@
 "endif
 
 " {{{ Vundle Setting
+" """"""""""""""""""""""
 set nocompatible
 filetype off
 
@@ -54,12 +55,6 @@ if v:progname =~? "evim"
 endif
 
 """""
-" ftplugin
-"""""
-autocmd!
-filetype plugin indent on
-
-"""""
 " Initialize Settings
 """""
 set nocompatible
@@ -70,7 +65,7 @@ set background=dark
 colorscheme molokai
 
 " Edit .vimrc
-nnoremap <Space>.  :<C-u>edit $MYVIMRC<Enter>
+"nnoremap <Space>.  :<C-u>edit $MYVIMRC<Enter>
 nnoremap <Space>s. :<C-u>source $MYVIMRC<Enter>
 
 """""
@@ -155,7 +150,6 @@ noremap + <C-W>+
 noremap + <C-W>>
 noremap - <C-W>-
 noremap - <C-W><
-noremap = <C-W>=
 
 " for IME
 inoremap <C-@> <Esc>
