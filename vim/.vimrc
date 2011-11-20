@@ -34,8 +34,10 @@ call vundle#rc()
 "Bundle 'rails.vim'                           " vim-scripts repos
 "Bundle 'git://git.wincent.com/command-t.git' " non github repos
 Bundle 'tpope/vim-surround'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/neocomplcache'
+if $SUDO_USER == ''
+  Bundle 'Shougo/unite.vim'
+  Bundle 'Shougo/neocomplcache'
+endif
 Bundle 'mattn/gist-vim'
 Bundle 'motemen/git-vim'
 " vim-script Plugins
@@ -130,6 +132,7 @@ nnoremap <Space><Space> :<C-u>buffers<CR>
 
 " insert date
 nnoremap <C-d> :r! date +'\%Y-\%m-\%d \%H:\%M:\%S'<CR>
+" insert email sign
 nnoremap <C-@> :r! echo -n "$(git config --global user.name) " ; echo -n "<$(git config --global user.email)>"<CR>
 
 nnoremap <Space>O O^<C-D><Esc>j
@@ -262,10 +265,11 @@ if has("autocmd")
     autocmd FileType smarty setlocal ts=2 sw=2
     autocmd FileType make setlocal nomodeline noexpandtab
     autocmd FileType yaml setlocal ts=2 sw=2
-    autocmd FileType javascript setlocal ts=2 sw=2
-    autocmd FileType html setlocal ts=2 sw=2
-    autocmd FileType htmldjango setlocal ts=2 sw=2
-    autocmd FileType rst setlocal ts=2 sw=2
+    autocmd FileType javascript setlocal ts=2 sw=2 sts=2
+    autocmd FileType html setlocal ts=2 sw=2 sts=2
+    autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2
+    autocmd FileType rst setlocal ts=2 sw=2 sts=2
+    autocmd FileType css setlocal ts=2 sw=2 sts=2
 
     autocmd BufNewFile *.php 0r ~/.vim/skeleton/php.skel
     autocmd BufNewFile *.py 0r ~/.vim/skeleton/python.skel
@@ -297,7 +301,6 @@ autocmd FileType ruby  :nmap <up>   <esc>:w<cr>:!/usr/bin/env ruby %<cr>
 autocmd FileType ruby  :nmap <down> <esc>:w<cr>:!/usr/bin/env ruby -c %<cr>
 
 autocmd FileType python :nmap <up>  <esc>:w<cr>:!/usr/bin/env python %<cr>
-
 
 let nohl_xul_atts = 1
 
@@ -372,30 +375,32 @@ endif
 """
 " NeoComplCache
 """
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+if $SUDO_USER == ''
+    let g:neocomplcache_enable_at_startup = 1
+    " Use smartcase.
+    let g:neocomplcache_enable_smart_case = 1
+    " Use camel case completion.
+    let g:neocomplcache_enable_camel_case_completion = 1
+    " Use underbar completion.
+    let g:neocomplcache_enable_underbar_completion = 1
+    " Set minimum syntax keyword length.
+    let g:neocomplcache_min_syntax_length = 3
+    let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+    "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    "" <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+    inoremap <expr><C-y>  neocomplcache#close_popup()
+    inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
+endif
 "let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 
 " 辞書ファイルリスト
@@ -405,17 +410,17 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "\ }
 
 " gtags
-    " 検索結果Windowを閉じる
-    nnoremap <Space>q <C-w><C-w><C-w>q
-    " Grep 準備
-    nnoremap <C-g> :Gtags -g
-    " このファイルの関数一覧
-    nnoremap <C-l> :Gtags -f %<CR>
-    " カーソル以下の定義元を探す
-    nnoremap <C-j> :Gtags <C-r><C-w><CR>
-    " カーソル以下の使用箇所を探す
-    nnoremap <C-k> :Gtags -r <C-r><C-w><CR>
-    " 次の検索結果
-    nnoremap <C-n> :cn<CR>
-    " 前の検索結果
-    nnoremap <C-p> :cp<CR>
+" 検索結果Windowを閉じる
+nnoremap <Space>q <C-w><C-w><C-w>q
+" Grep 準備
+nnoremap <C-g> :Gtags -g
+" このファイルの関数一覧
+nnoremap <C-l> :Gtags -f %<CR>
+" カーソル以下の定義元を探す
+nnoremap <C-j> :Gtags <C-r><C-w><CR>
+" カーソル以下の使用箇所を探す
+nnoremap <C-k> :Gtags -r <C-r><C-w><CR>
+" 次の検索結果
+nnoremap <C-n> :cn<CR>
+" 前の検索結果
+nnoremap <C-p> :cp<CR>
