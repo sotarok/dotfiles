@@ -40,3 +40,6 @@ test -f $HOME/.ssh/id_rsa.pub && mv $HOME/.ssh/id_rsa.pub $HOME/.ssh/id_rsa.pub.
 cp $DOTFILES/ssh/id_rsa.pub $HOME/.ssh/id_rsa.pub && chmod 600 $HOME/.ssh/id_rsa.pub
 
 ln -sf $DOTFILES/bin/* $HOME/bin
+
+cd $DOTFILES
+git submodule update --init
