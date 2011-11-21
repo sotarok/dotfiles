@@ -12,23 +12,20 @@ DOTFILES=$1
 echo $HOME
 echo $DOTFILES
 
-ln -sf $DOTFILES/vim/.vim $HOME
+ln -snf $DOTFILES/vim/.vim $HOME
 ln -sf $DOTFILES/vim/.vimrc $HOME
 ln -sf $DOTFILES/vim/.gvimrc $HOME
 ln -sf $DOTFILES/zsh/.zshrc $HOME
 ln -sf $DOTFILES/zsh/.dircolors $HOME
-ln -sf $DOTFILES/zsh/.zshrc.d $HOME
+ln -snf $DOTFILES/zsh/.zshrc.d $HOME
 ln -sf $DOTFILES/screen/.screenrc $HOME
 ln -sf $DOTFILES/misc/.my.cnf $HOME
 ln -sf $DOTFILES/misc/.gitconfig $HOME
 ln -sf $DOTFILES/misc/.gitignore $HOME
 ln -sf $DOTFILES/misc/.globalrc $HOME
-touch $HOME/.outputz
+ln -snf $DOTFILES/mocksmtpd/ $HOME/.mocksmtpd
 
-if test ! -d $HOME/bin
-then
-    mkdir $HOME/bin
-fi
+test ! -d $HOME/bin && mkdir $HOME/bin
 
 cat $DOTFILES/ssh/authorized_keys | sort | uniq > $HOME/authorized_keys_merged
 test ! -d $HOME/.ssh && mkdir $HOME/.ssh && chmod 700 $HOME/.ssh
