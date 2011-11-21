@@ -8,11 +8,11 @@
 export LANG=ja_JP.UTF-8
 
 # パスの設定
-PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:/usr/local/bin:$PATH:/sbin:/usr/sbin
+PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
 # php-env
-PATH=$PATH:$HOME/.php-build/bin:$HOME/.phpenv/bin
+PATH=$HOME/.php-build/bin:$HOME/.phpenv/bin:$PATH
 #test -d $HOME/.phpenv/bin && eval $(phpenv init -)
 
 GEM_DIR="/var/lib/gems/"
