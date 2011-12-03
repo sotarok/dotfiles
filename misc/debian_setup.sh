@@ -26,7 +26,7 @@ sudo apt-get -y upgrade
 
 ###install git
 sudo apt-get -y install git git-svn git-doc screen curl zsh
-sudo apt-get -y install strace gdb libgdb-dev valgrind
+sudo apt-get -y install strace gdb libgdb-dev valgrind dh-make devscripts
 
 ###install developers environmnet
 sudo apt-get -y install build-essential linux-headers-`uname -r` autoconf
