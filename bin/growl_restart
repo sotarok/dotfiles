@@ -5,5 +5,6 @@ if test $CPU_USAGE -gt 80
 then
     killall Growl
     open -j -a Growl
+    echo "Growl restarted on $(date)" >> /tmp/growl_restart.log
 fi
 
