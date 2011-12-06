@@ -10,7 +10,6 @@
 #  - check source.list
 #
 # @author   sotarok
-# @version  $Id
 ##
 
 # add dotdeb sources to aptitude, and upgrade all
@@ -22,20 +21,17 @@
 #sudo cp /etc/apt/sources.list /etc/apt/sources.list.old
 #sudo cp ~/sources.list.tmp /etc/apt/sources.list
 ##
-#sudo aptitude -y update
-#sudo aptitude -y upgrade
-#
+sudo apt-get -y update
+sudo apt-get -y upgrade
+
 ###install git
-#sudo aptitude -y install git git-core git-svn git-doc
-#sudo aptitude -y install screen
-#sudo aptitude -y install curl chkconfig
-#
+sudo apt-get -y install git git-svn git-doc screen curl zsh
+sudo apt-get -y install strace gdb libgdb-dev valgrind
+
 ###install developers environmnet
-#sudo aptitude -y install build-essential
-#sudo aptitude -y install linux-headers-`uname -r`
-#sudo aptitude -y install autoconf
-#sudo aptitude -y install gdb libgdb-dev valgrind
-#sudo aptitude -y install boost-build libboost-dev
+sudo apt-get -y install build-essential linux-headers-`uname -r` autoconf
+# debug tools
+#sudo apt-get -y install boost-build libboost-dev
 #
 ###install apache
 #sudo aptitude -y install apache2 apache2-dev
@@ -44,7 +40,6 @@
 ##sudo aptitude -y install php5 php5-cli php5-common php5-curl php5-gd php5-json php5-mcrypt php5-mysql php5-pgsql php5-sqlite
 ##sudo aptitude -y install php5-dev
 ##sudo aptitude install php-pear
-
 
 ###
 ##configure apache
