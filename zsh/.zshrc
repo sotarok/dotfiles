@@ -206,6 +206,7 @@ alias less='less -R'
 alias grep='grep --color'
 alias vi='vim'
 alias v='vim'
+alias :e='vim'
 alias V='| vim -R -'
 alias e='vim'   # :p
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
