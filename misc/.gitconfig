@@ -28,7 +28,7 @@
 	llog = log --date=local
 	logp = log --pretty=oneline
 	logps = log --pretty=oneline --stat
-	graph = log --graph --pretty='format:%h %Cgreen%an%Creset | %s %Cred%d%Creset'
+    graph = log --graph --pretty='format:%h %Cblue%ai%Creset %Cgreen%an%Creset | %s %Cred%d%Creset'
 	ls = log --stat          # logに変更されたファイルも一緒に出す
 	lp = log -p              # diffも一緒に出す
 	la = log --pretty=\"format:%ad %h (%an): %s\" --date=short  # ざっくりログ出す
