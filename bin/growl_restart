@@ -1,10 +1,13 @@
 #!/bin/bash
 
-CPU_USAGE=$(top -pid $(ps ax | grep Growl.app | grep -v grep | cut -d" " -f1) -l 2 -s 5 -stats cpu | tail -n1 | cut -d"." -f1)
+PID=$(ps ax | grep Growl.app | grep -v grep | awk '{print $1};')
+test -z "$PID" && open -j -a Growl && echo "Growl restarted on $(date) :: pid not found ($PID)" >> /tmp/growl_restart.log && exit
+
+CPU_USAGE=$(top -pid $PID -l 2 -s 5 -stats cpu | tail -n1 | cut -d"." -f1)
 if test $CPU_USAGE -gt 80
 then
     killall Growl
     open -j -a Growl
-    echo "Growl restarted on $(date)" >> /tmp/growl_restart.log
+    echo "Growl restarted on $(date) :: pid=$PID" >> /tmp/growl_restart.log
 fi
 
