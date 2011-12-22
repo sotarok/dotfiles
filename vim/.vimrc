@@ -37,6 +37,7 @@ Bundle 'tpope/vim-surround'
 if $SUDO_USER == ''
   Bundle 'Shougo/unite.vim'
   Bundle 'Shougo/neocomplcache'
+  Bundle 'h1mesuke/unite-outline'
 endif
 Bundle 'mattn/gist-vim'
 Bundle 'motemen/git-vim'
@@ -158,6 +159,9 @@ noremap - <C-W><
 inoremap <C-@> <Esc>
 "inoremap <Space>[ <Esc>
 
+" unite
+nnoremap <C-u> :Unite outline<Enter>
+
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
 autocmd BufEnter * setlocal cursorline
@@ -265,6 +269,7 @@ if has("autocmd")
     autocmd FileType yaml setlocal ts=2 sw=2
     autocmd FileType javascript setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType html setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
+    autocmd FileType xml setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType rst setlocal ts=2 sw=2 sts=2
     autocmd FileType css setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
