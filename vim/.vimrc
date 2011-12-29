@@ -79,7 +79,7 @@ set title
 set showcmd
 set showmode
 " statuslineの表示設定。GetB()呼び出しも実行
-set statusline=%<[%n]%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}\ [%{GetB()}]%=%l,%c%V%8P
+set statusline=%f%=%y%r%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}\ [%{GetB()}]%=%l,%c%V%6P
 " コマンドの補完をシェルっぽく
 set wildmode=list:longest
 
@@ -252,8 +252,6 @@ augroup filetypedetect
     au! BufRead,BufNewFile *.twig setfiletype htmldjango
 augroup END
 
-"set helpfile=$VIMRUNTIME/doc/help.txt
-
 if has("autocmd")
     autocmd FileType rb :setlocal dictionary+=~/.vim/dict/ruby.dict
     autocmd FileType pl :setlocal dictionary+=~/.vim/dict/perl.dict
@@ -265,11 +263,11 @@ if has("autocmd")
     autocmd FileType smarty setlocal ts=2 sw=2
     autocmd FileType make setlocal nomodeline noexpandtab
     autocmd FileType yaml setlocal ts=2 sw=2
-    autocmd FileType javascript setlocal ts=2 sw=2 sts=2
-    autocmd FileType html setlocal ts=2 sw=2 sts=2
-    autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2
+    autocmd FileType javascript setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
+    autocmd FileType html setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
+    autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType rst setlocal ts=2 sw=2 sts=2
-    autocmd FileType css setlocal ts=2 sw=2 sts=2
+    autocmd FileType css setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
 
     autocmd BufNewFile *.php 0r ~/.vim/skeleton/php.skel
     autocmd BufNewFile *.py 0r ~/.vim/skeleton/python.skel
@@ -348,6 +346,9 @@ endfunc
 let g:buftabs_only_basename=1
 "バッファタブをステータスライン内に表示する
 let g:buftabs_in_statusline=1
+if exists("w:buftabs_enabled")
+    set statusline=%{buftabs#statusline()}%=%y%r%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}\ [%{GetB()}]%=%l,%c%V%6P
+endif
 
 "syntaxの有無をチェックし、新規バッファと新規読み込み時にハイライトさせる
 if has("syntax")

@@ -26,6 +26,7 @@ fi
 
 test -f /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/.bootstrap
 
+
 LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH
 
@@ -60,6 +61,9 @@ export SCREEN_USING=1
 
 export DEBEMAIL="sotarok@crocos.co.jp"
 export DEBFULLNAME="Sotaro Karasawa"
+
+export LESS=' -R'
+test -f /usr/share/source-highlight/src-hilite-lesspipe.sh && export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 
 # プロンプトの設定
 autoload -U colors; colors
@@ -202,10 +206,11 @@ alias b='bzip2 -dc'
 alias ll='ls -ltr'
 alias la='ls -la'
 alias dh='df -h'
-alias less='less -R'
+#alias less='less -R'
 alias grep='grep --color'
 alias vi='vim'
 alias v='vim'
+alias :e='vim'
 alias V='| vim -R -'
 alias e='vim'   # :p
 alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
