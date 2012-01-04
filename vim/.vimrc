@@ -43,6 +43,7 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'motemen/git-vim'
 Bundle 'groenewege/vim-less'
+Bundle 'pangloss/vim-javascript'
 " vim-script Plugins
 Bundle 'sudo.vim'
 Bundle 'buftabs'
