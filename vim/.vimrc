@@ -43,6 +43,7 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'motemen/git-vim'
 Bundle 'groenewege/vim-less'
+Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'pangloss/vim-javascript'
 " vim-script Plugins
 Bundle 'sudo.vim'
@@ -257,6 +258,7 @@ augroup filetypedetect
     au! BufRead,BufNewFile *.jsm  setfiletype javascript
     au! BufRead,BufNewFile *.go   setfiletype go
     au! BufRead,BufNewFile *.twig setfiletype htmldjango
+    au! BufRead,BufNewFile *.scss setfiletype scss
 augroup END
 
 if has("autocmd")
@@ -276,6 +278,9 @@ if has("autocmd")
     autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType rst setlocal ts=2 sw=2 sts=2
     autocmd FileType css setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
+    autocmd FileType scss setlocal ts=2 sw=2 sts=2
+    autocmd FileType less setlocal ts=2 sw=2 sts=2
+
 
     autocmd BufNewFile *.php 0r ~/.vim/skeleton/php.skel
     autocmd BufNewFile *.py 0r ~/.vim/skeleton/python.skel
