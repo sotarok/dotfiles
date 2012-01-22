@@ -1,7 +1,6 @@
 " .vimrc file
 "
 " Maintainer:   Sotaro KARASAWA <sotaro.k@gmail.com>
-"
 """""
 
 " 環境依存な設定を読み込む
@@ -42,6 +41,9 @@ endif
 Bundle 'mattn/zencoding-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'motemen/git-vim'
+Bundle 'groenewege/vim-less'
+Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'pangloss/vim-javascript'
 " vim-script Plugins
 Bundle 'sudo.vim'
 Bundle 'buftabs'
@@ -49,6 +51,9 @@ Bundle 'Align'
 " colorscheme
 Bundle 'molokai'
 Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
+" trying
+Bundle 'kien/ctrlp.vim'
+"Bundle 'Lokaltog/vim-powerline'
 
 filetype plugin indent on
 " }}}
@@ -82,8 +87,13 @@ set showcmd
 set showmode
 " statuslineの表示設定。GetB()呼び出しも実行
 set statusline=%f%=%y%r%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}\ [%{GetB()}]%=%l,%c%V%6P
-" コマンドの補完をシェルっぽく
-set wildmode=list:longest
+
+"set wildmode=list:longest
+set wildmode=list,full
+let g:netrw_liststyle=3
+if v:version > 703
+  set wildignorecase
+endif
 
 """""
 " Behavior Settings
@@ -91,9 +101,8 @@ set wildmode=list:longest
 set backspace=indent,eol,start
 set autoindent smartindent
 set incsearch
-" 検索文字列が小文字のときはCaseを無視。大文字が混在している場合は区別する。
-set ignorecase
 set smartcase
+set ignorecase
 set wrapscan
 " バッファが編集中でもファイルを開けるようにする
 set hidden
@@ -256,6 +265,8 @@ augroup filetypedetect
     au! BufRead,BufNewFile *.jsm  setfiletype javascript
     au! BufRead,BufNewFile *.go   setfiletype go
     au! BufRead,BufNewFile *.twig setfiletype htmldjango
+    au! BufRead,BufNewFile *.scss setfiletype scss
+    au! BufRead,BufNewFile *.json setfiletype javascript
 augroup END
 
 if has("autocmd")
@@ -263,9 +274,10 @@ if has("autocmd")
     autocmd FileType pl :setlocal dictionary+=~/.vim/dict/perl.dict
     autocmd FileType pm :setlocal dictionary+=~/.vim/dict/perl.dict
 
-    autocmd FileType * :setlocal dictionary+=~/.vim/dict/facebook_permissions.dict
+    autocmd FileType * setlocal dictionary+=~/.vim/dict/facebook_permissions.dict textwidth=0
 
     autocmd FileType c setlocal ts=2 sw=2
+    autocmd FileType text setlocal ts=2 sw=2
     autocmd FileType smarty setlocal ts=2 sw=2
     autocmd FileType make setlocal nomodeline noexpandtab
     autocmd FileType yaml setlocal ts=2 sw=2
@@ -275,6 +287,10 @@ if has("autocmd")
     autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType rst setlocal ts=2 sw=2 sts=2
     autocmd FileType css setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
+    autocmd FileType scss setlocal ts=2 sw=2 sts=2
+    autocmd FileType less setlocal ts=2 sw=2 sts=2
+    autocmd FileType php setlocal commentstring=\ //\ %s
+
 
     autocmd BufNewFile *.php 0r ~/.vim/skeleton/php.skel
     autocmd BufNewFile *.py 0r ~/.vim/skeleton/python.skel
