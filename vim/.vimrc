@@ -121,6 +121,7 @@ set shiftwidth=4
 set foldmethod=marker
 
 " key mapping
+nmap * *N
 nmap n nzz
 nmap N Nzz
 nnoremap <Space>w :<C-u>write<CR>
