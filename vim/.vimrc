@@ -35,7 +35,7 @@ call vundle#rc()
 Bundle 'tpope/vim-surround'
 if $SUDO_USER == ''
   Bundle 'Shougo/unite.vim'
-  Bundle 'Shougo/neocomplcache'
+  "Bundle 'Shougo/neocomplcache'
   Bundle 'h1mesuke/unite-outline'
 endif
 Bundle 'mattn/zencoding-vim'
@@ -88,10 +88,10 @@ set showmode
 " statuslineの表示設定。GetB()呼び出しも実行
 set statusline=%f%=%y%r%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}\ [%{GetB()}]%=%l,%c%V%6P
 
-"set wildmode=list:longest
-set wildmode=list,full
+set wildmode=list:longest
+"set wildmode=list,full
 let g:netrw_liststyle=3
-if v:version > 703
+if v:version >= 703
   set wildignorecase
 endif
 
@@ -413,10 +413,10 @@ if $SUDO_USER == ''
 
     "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
     "" <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-    inoremap <expr><C-y>  neocomplcache#close_popup()
-    inoremap <expr><C-e>  neocomplcache#cancel_popup()
+    "inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+    "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+    "inoremap <expr><C-y>  neocomplcache#close_popup()
+    "inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
     autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
