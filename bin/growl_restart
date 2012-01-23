@@ -1,13 +1,32 @@
 #!/bin/bash
 
-PID=$(ps ax | grep Growl.app | grep -v grep | awk '{print $1};')
-test -z "$PID" && open -j -a Growl && echo "Growl restarted on $(date) :: pid not found ($PID)" >> /tmp/growl_restart.log && exit
+PID=$(ps ax | grep Growl.app 2>&1 | grep -v grep 2>&1 | awk '{print $1};' 2>&1)
+#test -z "$PID" && open -j -a Growl && echo "Growl restarted on $(date) :: pid not found ($PID)" >> /tmp/growl_restart.log && exit
+if test -z "$PID"
+then
+    echo "Growl PID not found $(date)" >> /tmp/growl_restart.log
+    #ps ax | grep Growl.app 2>&1  >> /tmp/growl_restart.log
+    #echo "" >> /tmp/growl_restart.log
+    #ps ax | grep Growl.app 2>&1 | grep -v grep 2>&1  >> /tmp/growl_restart.log
+    #echo "" >> /tmp/growl_restart.log
+    #ps ax | grep Growl.app 2>&1 | grep -v grep 2>&1  >> /tmp/growl_restart.log
+    #echo "" >> /tmp/growl_restart.log
+    #ps ax | grep Growl.app 2>&1 | grep -v grep 2>&1 | awk '{print $1};' 2>&1 >> /tmp/growl_restart.log
+
+    open -j -a Growl >> /tmp/growl_restart.log 2>&1 \
+        && echo "Growl restarted on $(date) :: pid not found" >> /tmp/growl_restart.log \
+        && exit
+    exit
+fi
 
 CPU_USAGE=$(top -pid $PID -l 2 -s 5 -stats cpu | tail -n1 | cut -d"." -f1)
+echo "$(date) CPU Usage (pid=$PID): $CPU_USAGE" >> /tmp/debug_growl_restart.log
+
 if test $CPU_USAGE -gt 80
 then
     killall Growl
     open -j -a Growl
     echo "Growl restarted on $(date) :: pid=$PID" >> /tmp/growl_restart.log
+    echo "New process $(ps ax | grep Growl.app 2>&1 | grep -v grep 2>&1)" >> /tmp/growl_restart.log
 fi
 
