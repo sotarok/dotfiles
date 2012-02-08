@@ -38,5 +38,15 @@ cp $DOTFILES/ssh/id_rsa.pub $HOME/.ssh/id_rsa.pub && chmod 600 $HOME/.ssh/id_rsa
 
 ln -sf $DOTFILES/bin/* $HOME/bin
 
+test ! -x $HOME/bin/tig \
+    && cd $HOME \
+    && git clone git://github.com/jonas/tig.git ./__tig \
+    && cd __tig \
+    && make install \
+    && cd .. \
+    && rm -rf __tig
+
+
 cd $DOTFILES
 git submodule update --init
+
