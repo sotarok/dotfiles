@@ -1,0 +1,30 @@
+#!/usr/bin/php
+<?php
+/**
+ * Usage:
+ *
+ *  $ php t.php 1324393200
+ *      => 2011-12-20 15:00:00
+ *  $ php t.php 1324393200 'Asia/Tokyo'
+ *      => 2011-12-21 00:00:00
+ *  $ php t.php '2011-12-21 00:00:00'
+ *      => 1324393200
+ *  $ php t.php '2011-12-21 00:00:00' 'UTC'
+ *      => 1324425600
+ */
+if ($argc < 1) {
+    exit(255);
+}
+
+if (preg_match('/^\d+$/', $argv[1])) {
+    $dt = new \DateTime('@' . $argv[1]);
+    if (isset($argv[2])) {
+        $dt->setTimeZone(new \DateTimeZone($argv[2]));
+    }
+
+    echo $dt->format('Y-m-d H:i:s'), PHP_EOL;
+} else {
+    $dt = new \DateTime($argv[1], new \DateTimeZone(isset($argv[2]) ? $argv[2] : 'Asia/Tokyo'));
+    $dt->setTimeZone(new \DateTimeZone('GMT'));
+    echo $dt->format('U'), PHP_EOL;
+}
