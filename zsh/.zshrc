@@ -71,17 +71,9 @@ autoload -U colors; colors
 #GIT PATH
 GITBIN=$(which git)
 
-#ruby
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]
-then
-    source "$HOME/.rvm/scripts/rvm"
-    alias ruby='rvm ruby'
-    alias gem='rvm exec gem'
-    alias rake='rvm exec rake'
-    alias irb='rvm exec irb'
-
-    PATH=$GEM_HOME/bin:$PATH
-fi
+test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
+    && rvm default \
+    && PATH="$HOME/.rvm/scripts/rvm/gems/$(rvm current)/bin":$PATH
 
 # 関数
 find-grep () { find . -type f -print | xargs grep -n --binary-files=without-match $@ }
