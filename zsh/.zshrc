@@ -12,8 +12,15 @@ PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
 # php-env
-PATH=$HOME/.php-build/bin:$HOME/.phpenv/bin:$PATH
+PATH=$HOME/.php-build/bin:$HOME/.phpenv/bin:$HOME/.php/bin:$PATH
 #test -d $HOME/.phpenv/bin && eval $(phpenv init -)
+# pyrus
+PHP_DIR=$HOME/.php
+if test -n "$(which php)"
+then
+    alias php='php -dinclude_path=.:'$PHP_DIR/php':'$(php -i | grep include_path | cut -d" " -f3 | cut -d':' -f2-)
+fi
+test -f $PHP_DIR/pyrus.phar && alias pyrus="php $PHP_DIR/pyrus.phar $PHP_DIR"
 
 GEM_DIR="/var/lib/gems/"
 if test -d "$GEM_DIR"
@@ -89,7 +96,7 @@ touchtodaytxt () {
 }
 
 fpath=(~/.zshrc.d/completion $fpath)
-source ~/.dotfiles/zsh/autojump.zsh
+set -f ~/.dotfiles/zsh/autojump.zsh && source ~/.dotfiles/zsh/autojump.zsh
 
 # source ~/.zshrc.d/plugin/*
 
