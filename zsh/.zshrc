@@ -89,6 +89,8 @@ touchtodaytxt () {
 }
 
 fpath=(~/.zshrc.d/completion $fpath)
+source ~/.dotfiles/zsh/autojump.zsh
+
 # source ~/.zshrc.d/plugin/*
 
 # エイリアスの設定
@@ -242,6 +244,7 @@ alias gdc='git diff --cached'
 alias gdw='GIT_PAGER="less -rSX" gdi --word-diff'
 alias gad='git add'
 alias gb='git branch -a'
+alias gg='git graph'
 alias gco='git checkout'
 alias gm='git merge'
 alias gr='git rebase'
