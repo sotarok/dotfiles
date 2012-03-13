@@ -51,9 +51,9 @@ Bundle 'buftabs'
 Bundle 'Align'
 " colorscheme
 Bundle 'molokai'
-Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
+Bundle 'chriskempson/Vim-Tomorrow-Theme'
 " trying
-Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
 "Bundle 'Lokaltog/vim-powerline'
 
 filetype plugin indent on
@@ -72,7 +72,8 @@ set history=999
 set encoding=utf-8
 
 set background=dark
-colorscheme molokai
+"colorscheme molokai
+colorscheme Tomorrow-Night
 
 " Edit .vimrc
 "nnoremap <Space>.  :<C-u>edit $MYVIMRC<Enter>
