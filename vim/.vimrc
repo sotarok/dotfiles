@@ -52,7 +52,7 @@ Bundle 'buftabs'
 Bundle 'Align'
 " colorscheme
 Bundle 'molokai'
-Bundle 'chriskempson/Vim-Tomorrow-Theme'
+Bundle 'chriskempson/vim-tomorrow-theme'
 " trying
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'Lokaltog/vim-powerline'
