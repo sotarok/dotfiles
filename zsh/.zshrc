@@ -12,8 +12,15 @@ PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
 # php-env
-PATH=$HOME/.php-build/bin:$HOME/.phpenv/bin:$PATH
+PATH=$HOME/.php-build/bin:$HOME/.phpenv/bin:$HOME/.php/bin:$PATH
 #test -d $HOME/.phpenv/bin && eval $(phpenv init -)
+# pyrus
+PHP_DIR=$HOME/.php
+if test -n "$(which php)"
+then
+    alias php='php -dinclude_path=.:'$PHP_DIR/php':'$(php -i | grep include_path | cut -d" " -f3 | cut -d':' -f2-)
+fi
+test -f $PHP_DIR/pyrus.phar && alias pyrus="php $PHP_DIR/pyrus.phar $PHP_DIR"
 
 GEM_DIR="/var/lib/gems/"
 if test -d "$GEM_DIR"
@@ -71,17 +78,9 @@ autoload -U colors; colors
 #GIT PATH
 GITBIN=$(which git)
 
-#ruby
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]
-then
-    source "$HOME/.rvm/scripts/rvm"
-    alias ruby='rvm ruby'
-    alias gem='rvm exec gem'
-    alias rake='rvm exec rake'
-    alias irb='rvm exec irb'
-
-    PATH=$GEM_HOME/bin:$PATH
-fi
+test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
+    && rvm default \
+    && PATH="$HOME/.rvm/scripts/rvm/gems/$(rvm current)/bin":$PATH
 
 # 関数
 find-grep () { find . -type f -print | xargs grep -n --binary-files=without-match $@ }
@@ -97,6 +96,8 @@ touchtodaytxt () {
 }
 
 fpath=(~/.zshrc.d/completion $fpath)
+set -f ~/.dotfiles/zsh/autojump.zsh && source ~/.dotfiles/zsh/autojump.zsh
+
 # source ~/.zshrc.d/plugin/*
 
 # エイリアスの設定
@@ -250,6 +251,7 @@ alias gdc='git diff --cached'
 alias gdw='GIT_PAGER="less -rSX" gdi --word-diff'
 alias gad='git add'
 alias gb='git branch -a'
+alias gg='git graph'
 alias gco='git checkout'
 alias gm='git merge'
 alias gr='git rebase'

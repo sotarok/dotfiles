@@ -40,7 +40,8 @@ if $SUDO_USER == ''
 endif
 Bundle 'mattn/zencoding-vim'
 Bundle 'mattn/gist-vim'
-Bundle 'motemen/git-vim'
+"Bundle 'motemen/git-vim'
+Bundle 'tpope/vim-fugitive'
 Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'pangloss/vim-javascript'
@@ -51,9 +52,9 @@ Bundle 'buftabs'
 Bundle 'Align'
 " colorscheme
 Bundle 'molokai'
-Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
+Bundle 'chriskempson/vim-tomorrow-theme'
 " trying
-Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
 "Bundle 'Lokaltog/vim-powerline'
 
 filetype plugin indent on
@@ -72,7 +73,8 @@ set history=999
 set encoding=utf-8
 
 set background=dark
-colorscheme molokai
+"colorscheme molokai
+colorscheme Tomorrow-Night
 
 " Edit .vimrc
 "nnoremap <Space>.  :<C-u>edit $MYVIMRC<Enter>
