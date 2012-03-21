@@ -1,0 +1,18 @@
+#!/usr/bin/php
+<?php
+/**
+ *
+ */
+
+while($line = fgets(STDIN)) {
+    // now: 1326356996
+    // 6年前~14年後くらいまで大丈夫
+    $newline = preg_replace('/ (1[2-7]\d{8}) /e', '" " . timestampToDateTime(\'$1\') . " "', $line);
+    echo $newline;
+}
+
+function timestampToDateTime($ts) {
+    $dt = new \DateTime('@' . $ts);
+    $dt->setTimeZone(new \DateTimeZone('Asia/Tokyo'));
+    return $dt->format('Y-m-d H:i:s');
+}
