@@ -16,7 +16,7 @@ PATH=$HOME/.php-build/bin:$HOME/.phpenv/bin:$HOME/.php/bin:$PATH
 #test -d $HOME/.phpenv/bin && eval $(phpenv init -)
 # pyrus
 PHP_DIR=$HOME/.php
-if test -n "$(which php)"
+if test -n "$(which php)" -a -d $PHP_DIR
 then
     alias php='php -dinclude_path=.:'$PHP_DIR/php':'$(php -i | grep include_path | cut -d" " -f3 | cut -d':' -f2-)
 fi
