@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
+<!-- <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# crocos-hima: http://ogp.me/ns/fb/crocos-hima#"> -->
   <meta charset="utf-8" />
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -10,43 +10,103 @@
 
   <meta name="keywords" content="" />
   <meta name="description" content="" />
+  <meta name="author" content="">
+  <!--
+  <link rel="shortcut icon" href="favicon.ico" />
+
+  <meta property="fb:app_id"      content="" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="" />
+  <meta property="og:title"       content="" />
+  <meta property="og:description" content="" />
+  <meta property="og:image"       content="" />
+
+  <meta name="format-detection" content="telephone=on">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/icons/ios_icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="/icons/android_icon.png" />
+  -->
 
   <!-- additinal header
   <script type="text/javascript" src="http://www.google.com/jsapi"></script>
   <script type="text/javascript">
-      google.load("jquery", "1.5");
+      google.load("jquery", "1.7");
   </script>
 
   <script type="text/javascript" src="/js/script.js"></script>
 
   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="/rss" />
 
-  <link rel="stylesheet" href="/css/style.css" type="text/css" media="all" />
-  <link rel="stylesheet" href="/css/print.css" type="text/css" media="print" />
+  <link href="/css/style.css"       rel="stylesheet" type="text/css" media="all" />
+  <link href="/css/standard.css"    rel="stylesheet" type="text/css" media="only screen and (max-width: 959px)">
+  <link href="/css/tablet.css"      rel="stylesheet" type="text/css" media="only screen and (min-width: 768px) and (max-width: 959px">
+  <link href="/css/mobile.css"      rel="stylesheet" type="text/css" media="only screen and (max-width: 767px)">
+  <link href="/css/iphone-land.css" rel="stylesheet" type="text/css" media="only screen and (min-width: 480px) and (max-width: 767px)">
+  <link href="/css/iphone-port.css" rel="stylesheet" type="text/css" media="only screen and (max-width: 479px)">
+  <link href="/css/print.css"       rel="stylesheet" type="text/css" media="print" />
+
   <style type="text/css">
+  /* Smaller than standard 960 (devices and browsers) */
+  @media only screen and (max-width: 959px) {}
+
+  /* Tablet Portrait size to standard 960 (devices and browsers) */
+  @media only screen and (min-width: 768px) and (max-width: 959px) {}
+
+  /* All Mobile Sizes (devices and browser) */
+  @media only screen and (max-width: 767px) {}
+
+  /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+  @media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+  /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+  @media only screen and (max-width: 479px) {}
   </style>
   -->
   <title>title</title>
 </head>
 <body>
-<div id="frame">
+<!--
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : 'YOUR_APP_ID', // App ID
+      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    // Additional initialization code here
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+</script>
+-->
 <div id="container">
 
-<div id="header">
+<div class="header" id="header">
  <h1><a href=""></a></h1>
 </div>
 
-<div id="main">
+<div id="main" class="main">
 
 
 </div>
 
-<div id="footer">
- <p>Copyright &copy; 2011 sotarok with <a href="http://nequal.jp/">nequal</a>, All Rights Reserved.</p>
+<div id="footer" class="footer">
+ <p>&copy; 2011 sotarok.</p>
 </div>
 
 </div>
-</div>
-
 </body>
 </html>
