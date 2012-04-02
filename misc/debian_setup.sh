@@ -30,6 +30,17 @@ sudo apt-get -y install strace gdb libgdb-dev valgrind dh-make devscripts
 
 ###install developers environmnet
 sudo apt-get -y install build-essential linux-headers-`uname -r` autoconf
+
+# dotdeb
+cat <<E > /tmp/dotdeb.list
+deb http://packages.dotdeb.org squeeze all
+deb-src http://packages.dotdeb.org squeeze all
+E
+sudo /tmp/dotdeb.list /etc/apt/sources.list.d
+wget http://www.dotdeb.org/dotdeb.gpg
+cat dotdeb.gpg | sudo apt-key add -
+sudo apt-get update
+
 # debug tools
 #sudo apt-get -y install boost-build libboost-dev
 #
