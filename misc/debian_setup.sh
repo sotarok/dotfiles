@@ -12,34 +12,24 @@
 # @author   sotarok
 ##
 
-# add dotdeb sources to aptitude, and upgrade all
-#cp /etc/apt/sources.list ~/sources.list.tmp
-#echo "deb http://packages.dotdeb.org stable all
-#deb-src http://packages.dotdeb.org stable all" >> ~/sources.list.tmp
-#echo "deb http://php53.dotdeb.org stable all
-#deb-src http://php53.dotdeb.org stable all" >> ~/sources.list.tmp
-#sudo cp /etc/apt/sources.list /etc/apt/sources.list.old
-#sudo cp ~/sources.list.tmp /etc/apt/sources.list
-##
+sudo apt-get -y install curl
+
+if test ! -f /etc/apt/sources.list.d/dotdeb.list
+then
+    # dotdeb
+    cat <<E > /tmp/dotdeb.list
+deb http://packages.dotdeb.org squeeze all
+deb-src http://packages.dotdeb.org squeeze all
+E
+    sudo /tmp/dotdeb.list /etc/apt/sources.list.d
+    curl http://www.dotdeb.org/dotdeb.gpg | sudo apt-key add -
+fi
+
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
 ###install git
-sudo apt-get -y install git git-svn git-doc screen curl zsh
-sudo apt-get -y install strace gdb libgdb-dev valgrind dh-make devscripts
-
-###install developers environmnet
-sudo apt-get -y install build-essential linux-headers-`uname -r` autoconf
-
-# dotdeb
-cat <<E > /tmp/dotdeb.list
-deb http://packages.dotdeb.org squeeze all
-deb-src http://packages.dotdeb.org squeeze all
-E
-sudo /tmp/dotdeb.list /etc/apt/sources.list.d
-wget http://www.dotdeb.org/dotdeb.gpg
-cat dotdeb.gpg | sudo apt-key add -
-sudo apt-get update
+sudo apt-get -y install git git-svn git-doc screen zsh strace gdb libgdb-dev valgrind dh-make devscripts bzip2 build-essential linux-headers-`uname -r` autoconf
 
 # debug tools
 #sudo apt-get -y install boost-build libboost-dev
