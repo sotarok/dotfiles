@@ -29,7 +29,9 @@ sudo apt-get -y update
 sudo apt-get -y upgrade
 
 ###install git
-sudo apt-get -y install git git-svn git-doc screen zsh strace gdb libgdb-dev valgrind dh-make devscripts bzip2 build-essential linux-headers-`uname -r` autoconf
+sudo apt-get -y install git git-svn git-doc screen zsh strace gdb libgdb-dev valgrind \
+    dh-make devscripts bzip2 build-essential linux-headers-`uname -r` autoconf \
+    libonig2 shtool libqdbm14 libxpm4 libtidy-0.99-0 libicu44 libt1-5
 
 # debug tools
 #sudo apt-get -y install boost-build libboost-dev
