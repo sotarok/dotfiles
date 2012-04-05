@@ -21,7 +21,7 @@ then
 deb http://packages.dotdeb.org squeeze all
 deb-src http://packages.dotdeb.org squeeze all
 E
-    sudo /tmp/dotdeb.list /etc/apt/sources.list.d
+    sudo mv /tmp/dotdeb.list /etc/apt/sources.list.d/dotdeb.list
     curl http://www.dotdeb.org/dotdeb.gpg | sudo apt-key add -
 fi
 
