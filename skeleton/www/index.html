@@ -65,7 +65,44 @@
   @media only screen and (max-width: 479px) {}
   </style>
   -->
-  <title>title</title>
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+      google.load("jquery", "1.7");
+  </script>
+  <link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
+  <style type="text/css">
+  body {
+    margin: 0;
+    padding:0;
+    font-family: 'Berkshire Swash', cursive;
+  }
+  h1 {
+    text-align: center;
+  }
+  h1 a {
+    text-decoration: none;
+    font-size: 100px;
+    color: #c70067;
+  }
+  .footer {
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background: #000;
+    color: #fff;
+    opacity: 0.8;
+  }
+  </style>
+  <script type="text/javascript">
+    $(function() {
+      $('#main').height('100%');
+      $('#main')
+        .css('margin-top',  $(window).height()/2 - $('#main h1').height()/2 + 'px')
+        ;
+    });
+  </script>
+  <title>merlot.strk.jp</title>
 </head>
 <body>
 <!--
@@ -95,19 +132,17 @@
 -->
 <div id="container">
 
-<div class="header" id="header">
- <h1><a href=""></a></h1>
-</div>
-
 <div id="main" class="main">
-
-
+  <h1><a href="">
+    merlot.strk.jp
+  </a></h1>
 </div>
 
 <div id="footer" class="footer">
- <p>&copy; 2011 sotarok.</p>
+ <p>&copy; 2012 sotarok.</p>
 </div>
 
 </div>
 </body>
 </html>
+
