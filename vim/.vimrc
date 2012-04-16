@@ -35,10 +35,11 @@ call vundle#rc()
 Bundle 'tpope/vim-surround'
 if $SUDO_USER == ''
   Bundle 'Shougo/unite.vim'
-  "Bundle 'Shougo/neocomplcache'
+  Bundle 'Shougo/neocomplcache'
   Bundle 'h1mesuke/unite-outline'
 endif
 Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 "Bundle 'motemen/git-vim'
 Bundle 'tpope/vim-fugitive'
