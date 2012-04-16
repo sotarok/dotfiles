@@ -12,15 +12,18 @@ PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
 # php-env
-PATH=$HOME/.php-build/bin:$HOME/.phpenv/bin:$HOME/.php/bin:$PATH
-#test -d $HOME/.phpenv/bin && eval $(phpenv init -)
+#PATH=$HOME/.php-build/bin:$HOME/.phpenv/bin:$HOME/.php/bin:$PATH
+test -d $HOME/.phpenv \
+    && PATH="$HOME/.phpenv/bin:$PATH" \
+    && eval "$(phpenv init -)"
+#test -d $HOME/.phpenv && eval $(phpenv init -)
 # pyrus
-PHP_DIR=$HOME/.php
-if test -n "$(which php)" -a -d $PHP_DIR
-then
-    alias php='php -dinclude_path=.:'$PHP_DIR/php':'$(php -i | grep include_path | cut -d" " -f3 | cut -d':' -f2-)
-fi
-test -f $PHP_DIR/pyrus.phar && alias pyrus="php $PHP_DIR/pyrus.phar $PHP_DIR"
+#PHP_DIR=$HOME/.php
+#if test -n "$(which php)" -a -d $PHP_DIR
+#then
+#    alias php='php -dinclude_path=.:'$PHP_DIR/php':'$(php -i | grep include_path | cut -d" " -f3 | cut -d':' -f2-)
+#fi
+#test -f $PHP_DIR/pyrus.phar && alias pyrus="php $PHP_DIR/pyrus.phar $PHP_DIR"
 
 GEM_DIR="/var/lib/gems/"
 if test -d "$GEM_DIR"
