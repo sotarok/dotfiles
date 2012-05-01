@@ -217,7 +217,6 @@ alias v='vim'
 alias :e='vim'
 alias V='vim -R -'
 alias e='vim'   # :p
-alias gd='dirs -v; echo -n "select number: "; read newdir; cd +"$newdir"'
 alias pingg='ping www.google.com'
 alias suhr='sudo service httpd restart'
 alias suhs='sudo service httpd start'
