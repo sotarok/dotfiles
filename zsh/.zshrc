@@ -88,6 +88,7 @@ test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
 # 関数
 find-grep () { find . -type f -print | xargs grep -n --binary-files=without-match $@ }
 grepv () { grep -irn --binary-files=without-match $@ * | grep -v svn | grep -v .git }
+grep-edit () { vim $(grep $@ | cut -d: -f1  | sort | uniq) }
 touchtodaytxt () {
     TODAY=`date +%Y-%m-%d`
     if [ $1 ]; then
