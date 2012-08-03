@@ -11,11 +11,13 @@ export LANG=ja_JP.UTF-8
 PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
+export ETHNA_HOME=$HOME/working/ethna/work
 # php-env
 #PATH=$HOME/.php-build/bin:$HOME/.phpenv/bin:$HOME/.php/bin:$PATH
 test -d $HOME/.phpenv \
     && PATH="$HOME/.phpenv/bin:$PATH" \
     && eval "$(phpenv init -)"
+
 #test -d $HOME/.phpenv && eval $(phpenv init -)
 # pyrus
 #PHP_DIR=$HOME/.php
@@ -254,14 +256,12 @@ alias gdc='git diff --cached'
 alias gdw='GIT_PAGER="less -rSX" gdi --word-diff'
 alias gad='git add'
 alias gb='git branch -a'
+alias gbm='git branch --merged'
 alias gg='git graph'
+alias gga='git graph --all'
 alias gco='git checkout'
 alias gm='git merge'
 alias gr='git rebase'
-alias glg='git log --graph'
-alias glag='git log --all --graph'
-alias gsup='git stash; git svn rebase ; git stash pop'
-alias gsci='git stash; git svn dcommit ; git stash pop'
 
 # for sudo
 alias yum='sudo yum'
@@ -389,6 +389,12 @@ set enable-keypad on
 #        echo -ne "\ek${${(s: :)1}[0]}\e\\"
 #        ;;
 #esac
+r() {
+  local f
+  f=(~/.zshrc.d/completion/*(.))
+  unfunction $f:t 2> /dev/null
+  autoload -U $f:t
+}
 
 chpwd () {
     case "${OSTYPE}" in
