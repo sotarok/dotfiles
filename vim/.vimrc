@@ -265,6 +265,7 @@ hi Search ctermfg=Red
 " 拡張子によってファイル判定
 augroup filetypedetect
     au! BufRead,BufNewFile *.ctp  setfiletype php
+    au! BufRead,BufNewFile *.md   setfiletype markdown
     au! BufRead,BufNewFile *.xul  setfiletype xul
     au! BufRead,BufNewFile *.jsm  setfiletype javascript
     au! BufRead,BufNewFile *.go   setfiletype go
