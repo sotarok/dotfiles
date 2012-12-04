@@ -140,6 +140,10 @@ nmap N Nzz
 nnoremap <Space>w :<C-u>write<CR>
 nnoremap <Space>Q :<C-u>quit!<CR>
 
+" paste / nopaste
+nnoremap <Space>p  :set paste<CR>
+nnoremap <Space>np :set nopaste<CR>
+
 " buffer
 nnoremap <Space>h :<C-u>bp<CR>
 nnoremap <Space>j :<C-u>bn<CR>
@@ -328,6 +332,10 @@ autocmd FileType ruby  :nmap <down> <esc>:w<cr>:!/usr/bin/env ruby -c %<cr>
 autocmd FileType python :nmap <up>  <esc>:w<cr>:!/usr/bin/env python %<cr>
 
 let nohl_xul_atts = 1
+
+" zen-coding.vim
+let g:user_zen_settings = {'indentation':'  '}
+
 
 """""
 " Add Functions
