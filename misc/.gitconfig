@@ -3,7 +3,7 @@
 	name = Sotaro KARASAWA
 [core]
 	editor = /usr/bin/vim
-	excludesfile = /home/sotarok/.gitignore
+	excludesfile = ~/.gitignore
 	pager = less -FRSX
 	sharedRepository=group
 	quotepath = false
