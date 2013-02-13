@@ -42,6 +42,8 @@ test -f /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-too
 LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH
 
+REPORTTIME=5
+
 # エディタを vim に設定
 export SVN_EDITOR="vim"
 export EDITOR="vim"
@@ -144,6 +146,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 #zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
+# 今いるディレクトリは補完候補に出さない
+zstyle ':completion:*' ignore-parents parent pwd
+
 ## 補完候補のカーソル選択を有効に
 zstyle ':completion:*:default' menu select=1
 
@@ -156,13 +161,14 @@ if is-at-least 4.3.10; then
   autoload -Uz vcs_info
   zstyle ':vcs_info:*' enable git
   zstyle ':vcs_info:git:*' check-for-changes true
-  zstyle ':vcs_info:git:*' stagedstr "+"    # 適当な文字列に変更する
-  zstyle ':vcs_info:git:*' unstagedstr "*"  # 適当の文字列に変更する
-  zstyle ':vcs_info:*' actionformats ' %F{1}%c%u%f%F{3}@%F{4}%b%F{3} !!%F{1}%a%f'
-  zstyle ':vcs_info:*' formats       ' %F{1}%c%u%f%F{3}@%F{4}%b%f'
+  zstyle ':vcs_info:git:*' stagedstr "(+'~') "
+  zstyle ':vcs_info:git:*' unstagedstr "(*'-') "
+  zstyle ':vcs_info:*' actionformats " %F{1}%c%u%f%F{3}@%F{4}%b%F{3} !!%F{1}%a ( > <)%f"
+  zstyle ':vcs_info:*' formats       " %F{1}%c%u%f%F{3}@%F{4}%b%f"
 fi
-#RPROMPT='%F{5}[%F{2}%n%F{5}] %F{3}%3~ ${vcs_info_msg_0_}%f%# '
-RPROMPT="%F{5}[%F{2}%~\${vcs_info_msg_0_}%F{5}]%f"
+
+#RPROMPT="%F{5}[%F{2}%~\${vcs_info_msg_0_}%F{5}]%f"
+PROMPT_HEADER="%F{5} %F{2}%~\${vcs_info_msg_0_}%F{5}%f"
 
 case ${UID} in
 0)
@@ -177,14 +183,16 @@ case ${UID} in
     precmd() {
         vcs_info
         PROMPT_COLOR="$[32 + ($PROMPT_COLOR - 31) % 5]"
-        PROMPT="%% "
-        PROMPT="%F{${PROMPT_COLOR}}%n%%%f "
 
         [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-            PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+            PROMPT="%{[37m%}${HOST%%.*} "
+
+        PROMPT="${PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
+(｡･υ･) < "
     }
 
-    SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
+    #SPROMPT="%{[31m%} () %r ? [n,y,a,e]:%{[m%}"
+    SPROMPT="%{$fg[red]%}%{$suggest%}(*･υ･%)? < %B%r%b %{$fg[red]%}? [y,n,a,e]:${reset_color} "
     #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
     #    PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
 ;;
