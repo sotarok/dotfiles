@@ -307,6 +307,9 @@ if has("autocmd")
     autocmd BufNewFile *.html 0r ~/.vim/skeleton/html.skel
     autocmd BufNewFile *.tpl 0r ~/.vim/skeleton/html.skel
     autocmd BufNewFile *.cpp 0r ~/.vim/skeleton/cpp.skel
+    autocmd BufNewFile *.sh 0r ~/.vim/skeleton/shell.skel
+    autocmd BufNewFile *.zsh 0r ~/.vim/skeleton/shell.skel
+    autocmd BufNewFile *.bash 0r ~/.vim/skeleton/shell.skel
 
     " バッファの。。。なんかよくわからんけど追加。あとで。
     autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
