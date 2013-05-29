@@ -14,4 +14,5 @@ then
         && nvm alias default $INSTALL_N_VERSION
 fi
 
-test ! -z "$(which node)" && curl http://npmjs.org/install.sh | sh
+source $HOME/.nvm/nvm.sh
+test ! -z "$(which node)" && curl https://npmjs.org/install.sh | sh
