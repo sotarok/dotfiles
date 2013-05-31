@@ -99,6 +99,11 @@ if v:version >= 703
   set wildignorecase
 endif
 
+" {{{ powerline
+"let g:Powerline_mode_n = 'NORMAL'
+" }}}
+
+
 """""
 " Behavior Settings
 """""
@@ -149,6 +154,10 @@ nnoremap <Space>h :<C-u>bp<CR>
 nnoremap <Space>j :<C-u>bn<CR>
 nnoremap <Space>d :<C-u>bd<CR>
 nnoremap <Space><Space> :<C-u>buffers<CR>
+
+" C-p で連続貼り付け
+nnoremap <silent> <C-p> "0p<CR>
+vnoremap <silent> <C-p> "0p<CR>
 
 " insert date
 nnoremap <C-d> :r! date +'\%Y-\%m-\%d \%H:\%M:\%S'<CR>
@@ -407,43 +416,6 @@ if &term == "xterm-color"
     "set t_kb=
     fixdel
 endif
-
-"""
-" NeoComplCache
-"""
-"if $SUDO_USER == ''
-"    let g:neocomplcache_enable_at_startup = 1
-"    " Use smartcase.
-"    let g:neocomplcache_enable_smart_case = 1
-"    " Use camel case completion.
-"    let g:neocomplcache_enable_camel_case_completion = 1
-"    " Use underbar completion.
-"    let g:neocomplcache_enable_underbar_completion = 1
-"    " Set minimum syntax keyword length.
-"    let g:neocomplcache_min_syntax_length = 3
-"    let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-"
-"    "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"    "" <C-h>, <BS>: close popup and delete backword char.
-"    "inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-"    "inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-"    "inoremap <expr><C-y>  neocomplcache#close_popup()
-"    "inoremap <expr><C-e>  neocomplcache#cancel_popup()
-"
-"    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"
-"endif
-"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-
-" 辞書ファイルリスト
-"let g:NeoComplCache_DictionaryFileTypeLists = {
-"    \ 'default' : '',
-"    \ 'php' : $HOME . '/.vim/dict/php.dict'
-"\ }
 
 " gtags
 " 検索結果Windowを閉じる
