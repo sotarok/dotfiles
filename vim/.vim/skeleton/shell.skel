@@ -45,7 +45,7 @@ run() {
         if [ $is_verbose ];then
             echo "[run] $@"
         fi
-        eval $@
+        eval "$@"
     fi
 }
 
