@@ -186,10 +186,10 @@ case ${UID} in
         PROMPT_COLOR="$[32 + ($PROMPT_COLOR - 31) % 5]"
 
         [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-            PROMPT="%{[37m%}${HOST%%.*} "
+            PROMPT="%{[37m%}${HOST} "
 
         PROMPT="${PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
-(｡･υ･) < "
+$ "
     }
 
     #SPROMPT="%{[31m%} () %r ? [n,y,a,e]:%{[m%}"
