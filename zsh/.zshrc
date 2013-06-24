@@ -5,7 +5,8 @@
 # Version     : $Id
 ####
 
-export LANG=ja_JP.UTF-8
+#export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
 
 # パスの設定
 PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
