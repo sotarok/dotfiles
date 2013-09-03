@@ -188,7 +188,8 @@ case ${UID} in
             PROMPT="%{[37m%}${HOST%%.*} "
 
         PROMPT="${PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
-(｡･υ･) < "
+%% "
+#(｡･υ･) < "
     }
 
     #SPROMPT="%{[31m%} () %r ? [n,y,a,e]:%{[m%}"
@@ -199,6 +200,7 @@ case ${UID} in
 esac
 
 # for typo
+alias ....='cd ../../'
 alias dc='cd'
 alias d='cd'
 alias sl='ls'
@@ -213,6 +215,7 @@ alias amke='make'
 # for shortcut
 alias sudo='sudo -E '
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+alias grep='grep --color'
 alias grepl='grep --line-buffered'
 alias t='tar zxvf'
 alias tj='tar jxvf'
@@ -222,7 +225,6 @@ alias ll='ls -ltr'
 alias la='ls -la'
 alias dh='df -h'
 #alias less='less -R'
-alias grep='grep --color'
 alias vi='vim'
 alias v='vim'
 alias :e='vim'
@@ -256,20 +258,22 @@ alias scl='screen -list' # screen list
 alias scr='screen -r'    # screen r
 
 # for git
-alias gst='git status'
+alias gst='git status -sb'
 alias gci='git commit'
 alias gdi='git diff'
 alias gdir='GIT_PAGER="less -r -I" git diff'
 alias gdc='git diff --cached'
 alias gdw='GIT_PAGER="less -rSX" gdi --word-diff'
 alias gad='git add'
-alias gb='git branch -a'
+alias gb='git branch'
+alias gba='git branch -a'
 alias gbm='git branch --merged'
 alias gg='git graph'
 alias gga='git graph --all'
 alias gco='git checkout'
 alias gm='git merge'
 alias gr='git rebase'
+alias gbc='git name-rev --name-only HEAD > /tmp/git-current-branch-sotarok;screen -X readbuf /tmp/git-current-branch-sotarok;rm /tmp/git-current-branch-sotarok'
 
 # for sudo
 alias yum='sudo yum'
