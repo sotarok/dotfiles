@@ -168,7 +168,7 @@ if is-at-least 4.3.10; then
 fi
 
 #RPROMPT="%F{5}[%F{2}%~\${vcs_info_msg_0_}%F{5}]%f"
-PROMPT_HEADER="%F{5} %F{2}%~\${vcs_info_msg_0_}%F{5}%f"
+PROMPT_HEADER="%F{5}%F{2}%~\${vcs_info_msg_0_}%F{5}%f"
 
 case ${UID} in
 0)
@@ -189,7 +189,6 @@ case ${UID} in
 
         PROMPT="${PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
 %% "
-#(｡･υ･) < "
     }
 
     #SPROMPT="%{[31m%} () %r ? [n,y,a,e]:%{[m%}"
