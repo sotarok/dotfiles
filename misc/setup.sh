@@ -19,6 +19,7 @@ ln -sf $DOTFILES/zsh/.zshrc $HOME
 ln -sf $DOTFILES/zsh/.dircolors $HOME
 ln -snf $DOTFILES/zsh/.zshrc.d $HOME
 ln -sf $DOTFILES/screen/.screenrc $HOME
+ln -sf $DOTFILES/tmux/.tmux.conf $HOME
 ln -sf $DOTFILES/misc/.my.cnf $HOME
 ln -sf $DOTFILES/misc/.gitconfig $HOME
 ln -sf $DOTFILES/misc/.gitignore $HOME
