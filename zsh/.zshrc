@@ -273,6 +273,9 @@ alias gco='git checkout'
 alias gm='git merge'
 alias gr='git rebase'
 alias gbc='git name-rev --name-only HEAD > /tmp/git-current-branch-sotarok;screen -X readbuf /tmp/git-current-branch-sotarok;rm /tmp/git-current-branch-sotarok'
+alias gpsom='git push origin master'
+alias gpsod='git push origin develop'
+alias gplrod='git pull --rebase origin develop'
 
 # for sudo
 alias yum='sudo yum'
