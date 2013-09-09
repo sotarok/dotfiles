@@ -8,7 +8,7 @@
 export LANG=ja_JP.UTF-8
 
 # パスの設定
-PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
+PATH=$HOME/bin:/usr/gnu/bin:/usr/local/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
 export ETHNA_HOME=$HOME/working/ethna/work
@@ -35,8 +35,6 @@ then
         PATH=$PATH:$ruby_path
     done
 fi
-
-test -f /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/.bootstrap
 
 
 LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
@@ -69,6 +67,9 @@ export EC2_CERT=$HOME/aws/cert-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
 export EC2_PRIVATE_KEY=$HOME/aws/pk-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
 export EC2_URL=https://ec2.ap-northeast-1.amazonaws.com
 export EC2_REGION=ap-northeast-1
+
+#for aws (crocos)
+test -f /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/crocos
 
 export SCREEN_USING=1
 #export PATH=$GOBIN:$PATH
@@ -185,16 +186,13 @@ case ${UID} in
         PROMPT_COLOR="$[32 + ($PROMPT_COLOR - 31) % 5]"
 
         [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-            PROMPT="%{[37m%}${HOST%%.*} "
+            PRE_PROMPT="%{[37m%}${HOST%%.*} "
 
-        PROMPT="${PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
+        PROMPT="${PRE_PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
 %% "
     }
 
-    #SPROMPT="%{[31m%} () %r ? [n,y,a,e]:%{[m%}"
-    SPROMPT="%{$fg[red]%}%{$suggest%}(*･υ･%)? < %B%r%b %{$fg[red]%}? [y,n,a,e]:${reset_color} "
-    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-    #    PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+    SPROMPT="%{$fg[red]%}%{$suggest%}(*･･%)? < %B%r%b %{$fg[red]%}? [y,n,a,e]:${reset_color} "
 ;;
 esac
 
