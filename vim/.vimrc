@@ -46,6 +46,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script.git'
+Bundle 'plasticboy/vim-markdown'
 " vim-script Plugins
 Bundle 'sudo.vim'
 Bundle 'buftabs'
@@ -276,14 +277,13 @@ hi Search ctermfg=Red
 
 " 拡張子によってファイル判定
 augroup filetypedetect
-    au! BufRead,BufNewFile *.ctp  setfiletype php
-    au! BufRead,BufNewFile *.md   setfiletype markdown
-    au! BufRead,BufNewFile *.xul  setfiletype xul
-    au! BufRead,BufNewFile *.jsm  setfiletype javascript
-    au! BufRead,BufNewFile *.go   setfiletype go
-    au! BufRead,BufNewFile *.twig setfiletype htmldjango
-    au! BufRead,BufNewFile *.scss setfiletype scss
-    au! BufRead,BufNewFile *.json setfiletype javascript
+    autocmd BufRead,BufNewFile *.ctp  setfiletype php
+    autocmd BufRead,BufNewFile *.xul  setfiletype xul
+    autocmd BufRead,BufNewFile *.jsm  setfiletype javascript
+    autocmd BufRead,BufNewFile *.go   setfiletype go
+    autocmd BufRead,BufNewFile *.twig setfiletype htmldjango
+    autocmd BufRead,BufNewFile *.scss setfiletype scss
+    autocmd BufRead,BufNewFile *.json setfiletype javascript
 augroup END
 
 if has("autocmd")
@@ -295,7 +295,7 @@ if has("autocmd")
 
     autocmd FileType c setlocal ts=2 sw=2
     autocmd FileType text setlocal ts=4 sw=4
-    autocmd FileType markdown setlocal ts=4 sw=4
+    autocmd FileType mkd setlocal ts=4 sw=4 sts=4
     autocmd FileType smarty setlocal ts=2 sw=2
     autocmd FileType make setlocal nomodeline noexpandtab
     autocmd FileType yaml setlocal ts=2 sw=2
