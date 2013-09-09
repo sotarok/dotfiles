@@ -296,6 +296,7 @@ if has("autocmd")
 
     autocmd FileType c setlocal ts=2 sw=2
     autocmd FileType text setlocal ts=4 sw=4
+    autocmd FileType markdown setlocal ts=4 sw=4
     autocmd FileType smarty setlocal ts=2 sw=2
     autocmd FileType make setlocal nomodeline noexpandtab
     autocmd FileType yaml setlocal ts=2 sw=2
