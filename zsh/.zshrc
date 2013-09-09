@@ -8,7 +8,7 @@
 export LANG=ja_JP.UTF-8
 
 # パスの設定
-PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
+PATH=$HOME/bin:/usr/gnu/bin:/usr/local/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
 export ETHNA_HOME=$HOME/working/ethna/work
@@ -186,16 +186,13 @@ case ${UID} in
         PROMPT_COLOR="$[32 + ($PROMPT_COLOR - 31) % 5]"
 
         [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-            PROMPT="%{[37m%}${HOST%%.*} "
+            PRE_PROMPT="%{[37m%}${HOST%%.*} "
 
-        PROMPT="${PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
+        PROMPT="${PRE_PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
 %% "
     }
 
-    #SPROMPT="%{[31m%} () %r ? [n,y,a,e]:%{[m%}"
-    SPROMPT="%{$fg[red]%}%{$suggest%}(*･υ･%)? < %B%r%b %{$fg[red]%}? [y,n,a,e]:${reset_color} "
-    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-    #    PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+    SPROMPT="%{$fg[red]%}%{$suggest%}(*･･%)? < %B%r%b %{$fg[red]%}? [y,n,a,e]:${reset_color} "
 ;;
 esac
 
