@@ -38,7 +38,6 @@ if $SUDO_USER == ''
   Bundle 'Shougo/neocomplcache'
   Bundle 'h1mesuke/unite-outline'
 endif
-Bundle 'mattn/zencoding-vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 "Bundle 'motemen/git-vim'
