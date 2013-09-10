@@ -254,6 +254,11 @@ alias sx='screen -x'    # screen multiattach
 alias scl='screen -list' # screen list
 alias scr='screen -r'    # screen r
 
+# for tmux
+alias tl='tmux ls'
+alias tn='tmux new-session -s'
+alias ta='tmux a -t'
+
 # for git
 alias gst='git status -sb'
 alias gci='git commit'
