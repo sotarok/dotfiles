@@ -9,7 +9,7 @@
 export LANG=en_US.UTF-8
 
 # パスの設定
-PATH=$HOME/bin:/usr/gnu/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
+PATH=$HOME/bin:/usr/gnu/bin:/usr/local/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
 export ETHNA_HOME=$HOME/working/ethna/work
@@ -36,8 +36,6 @@ then
         PATH=$PATH:$ruby_path
     done
 fi
-
-test -f /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/.bootstrap
 
 
 LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
@@ -70,6 +68,9 @@ export EC2_CERT=$HOME/aws/cert-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
 export EC2_PRIVATE_KEY=$HOME/aws/pk-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
 export EC2_URL=https://ec2.ap-northeast-1.amazonaws.com
 export EC2_REGION=ap-northeast-1
+
+#for aws (crocos)
+test -f /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/crocos
 
 export SCREEN_USING=1
 #export PATH=$GOBIN:$PATH
@@ -169,7 +170,7 @@ if is-at-least 4.3.10; then
 fi
 
 #RPROMPT="%F{5}[%F{2}%~\${vcs_info_msg_0_}%F{5}]%f"
-PROMPT_HEADER="%F{5} %F{2}%~\${vcs_info_msg_0_}%F{5}%f"
+PROMPT_HEADER="%F{5}%F{2}%~\${vcs_info_msg_0_}%F{5}%f"
 
 case ${UID} in
 0)
@@ -186,20 +187,18 @@ case ${UID} in
         PROMPT_COLOR="$[32 + ($PROMPT_COLOR - 31) % 5]"
 
         [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-            PROMPT="%{[37m%}${HOST} "
+            PRE_PROMPT="%{[37m%}${HOST%%.*} "
 
-        PROMPT="${PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
-$ "
+        PROMPT="${PRE_PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
+%% "
     }
 
-    #SPROMPT="%{[31m%} () %r ? [n,y,a,e]:%{[m%}"
-    SPROMPT="%{$fg[red]%}%{$suggest%}(*･υ･%)? < %B%r%b %{$fg[red]%}? [y,n,a,e]:${reset_color} "
-    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-    #    PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+    SPROMPT="%{$fg[red]%}%{$suggest%}(*･･%)? < %B%r%b %{$fg[red]%}? [y,n,a,e]:${reset_color} "
 ;;
 esac
 
 # for typo
+alias ....='cd ../../'
 alias dc='cd'
 alias d='cd'
 alias sl='ls'
@@ -214,6 +213,7 @@ alias amke='make'
 # for shortcut
 alias sudo='sudo -E '
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+alias grep='grep --color'
 alias grepl='grep --line-buffered'
 alias t='tar zxvf'
 alias tj='tar jxvf'
@@ -223,7 +223,6 @@ alias ll='ls -ltr'
 alias la='ls -la'
 alias dh='df -h'
 #alias less='less -R'
-alias grep='grep --color'
 alias vi='vim'
 alias v='vim'
 alias :e='vim'
@@ -257,20 +256,25 @@ alias scl='screen -list' # screen list
 alias scr='screen -r'    # screen r
 
 # for git
-alias gst='git status'
+alias gst='git status -sb'
 alias gci='git commit'
 alias gdi='git diff'
 alias gdir='GIT_PAGER="less -r -I" git diff'
 alias gdc='git diff --cached'
 alias gdw='GIT_PAGER="less -rSX" gdi --word-diff'
 alias gad='git add'
-alias gb='git branch -a'
+alias gb='git branch'
+alias gba='git branch -a'
 alias gbm='git branch --merged'
 alias gg='git graph'
 alias gga='git graph --all'
 alias gco='git checkout'
 alias gm='git merge'
 alias gr='git rebase'
+alias gbc='git name-rev --name-only HEAD > /tmp/git-current-branch-sotarok;screen -X readbuf /tmp/git-current-branch-sotarok;rm /tmp/git-current-branch-sotarok'
+alias gpsom='git push origin master'
+alias gpsod='git push origin develop'
+alias gplrod='git pull --rebase origin develop'
 
 # for sudo
 alias yum='sudo yum'
