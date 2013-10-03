@@ -9,17 +9,15 @@
 export LANG=en_US.UTF-8
 
 # パスの設定
-PATH=$HOME/bin:/usr/gnu/bin:/usr/local/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
+PATH=$HOME/bin:$HOME/local/bin:/usr/gnu/bin:/usr/local/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
 export ETHNA_HOME=$HOME/working/ethna/work
 # php-env
-#PATH=$HOME/.php-build/bin:$HOME/.phpenv/bin:$HOME/.php/bin:$PATH
 test -d $HOME/.phpenv \
     && PATH="$HOME/.phpenv/bin:$PATH" \
     && eval "$(phpenv init -)"
 
-#test -d $HOME/.phpenv && eval $(phpenv init -)
 # pyrus
 #PHP_DIR=$HOME/.php
 #if test -n "$(which php)" -a -d $PHP_DIR
