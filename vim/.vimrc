@@ -276,15 +276,15 @@ hi Search ctermfg=Red
 """""
 
 " 拡張子によってファイル判定
-augroup filetypedetect
-    autocmd BufRead,BufNewFile *.ctp  setfiletype php
-    autocmd BufRead,BufNewFile *.xul  setfiletype xul
-    autocmd BufRead,BufNewFile *.jsm  setfiletype javascript
-    autocmd BufRead,BufNewFile *.go   setfiletype go
-    autocmd BufRead,BufNewFile *.twig setfiletype htmldjango
-    autocmd BufRead,BufNewFile *.scss setfiletype scss
-    autocmd BufRead,BufNewFile *.json setfiletype javascript
-augroup END
+autocmd BufRead,BufNewFile *.ctp  setfiletype php
+autocmd BufRead,BufNewFile *.xul  setfiletype xul
+autocmd BufRead,BufNewFile *.jsm  setfiletype javascript
+autocmd BufRead,BufNewFile *.go   setfiletype go
+autocmd BufRead,BufNewFile *.scss setfiletype scss
+autocmd BufRead,BufNewFile *.json setfiletype javascript
+autocmd BufRead,BufNewFile *.twig setfiletype javascript
+autocmd BufRead,BufNewFile *.twig setfiletype htmldjango
+autocmd BufRead,BufNewFile *.twig if &filetype == 'twig' | set filetype=htmldjango | endif
 
 if has("autocmd")
     autocmd FileType rb :setlocal dictionary+=~/.vim/dict/ruby.dict
@@ -302,13 +302,11 @@ if has("autocmd")
     autocmd FileType javascript setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType html setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType xml setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
-    autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType rst setlocal ts=2 sw=2 sts=2
     autocmd FileType css setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType scss setlocal ts=2 sw=2 sts=2
     autocmd FileType less setlocal ts=2 sw=2 sts=2
     autocmd FileType php setlocal commentstring=\ //\ %s
-
 
     autocmd BufNewFile *.php 0r ~/.vim/skeleton/php.skel
     autocmd BufNewFile *.py 0r ~/.vim/skeleton/python.skel
