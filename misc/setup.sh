@@ -1,5 +1,4 @@
-#!/bin/sh
-
+#!/bin/bash
 
 if test $# != 1
 then
