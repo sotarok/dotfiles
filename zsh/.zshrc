@@ -53,10 +53,11 @@ export NVM_DIR=$HOME/.nvm
 test -f $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
 
 #for Go
-export GOROOT=$HOME/go
-export GOOS=linux
-export GOARCH=$(arch)
-export GOBIN=$HOME/bin
+export GOPATH=$HOME/.go
+#export GOROOT=$HOME/go
+#export GOOS=linux
+#export GOARCH=$(arch)
+#export GOBIN=$HOME/bin
 
 #for aws
 export JAVA_HOME=/usr
@@ -256,7 +257,7 @@ alias scr='screen -r'    # screen r
 # for tmux
 alias tl='tmux ls'
 alias tn='tmux new-session -s'
-alias ta='tmux a -t'
+alias ta='tmux a -d -t'
 
 # for git
 alias gst='git status -sb'
