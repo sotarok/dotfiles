@@ -1,0 +1,9 @@
+deb http://ftp.jp.debian.org/debian/ wheezy main
+deb-src http://ftp.jp.debian.org/debian/ wheezy main
+
+deb http://security.debian.org/ wheezy/updates main
+deb-src http://security.debian.org/ wheezy/updates main
+
+deb http://ftp.jp.debian.org/debian/ wheezy-updates main
+deb-src http://ftp.jp.debian.org/debian/ wheezy-updates main
+
