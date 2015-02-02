@@ -13,3 +13,6 @@ then
         && nvm use $INSTALL_N_VERSION \
         && nvm alias default $INSTALL_N_VERSION
 fi
+
+source $HOME/.nvm/nvm.sh
+curl -L https://www.npmjs.com/install.sh | sh
