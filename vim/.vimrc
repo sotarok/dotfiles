@@ -34,13 +34,13 @@ call vundle#rc()
 "Bundle 'git://git.wincent.com/command-t.git' " non github repos
 Bundle 'tpope/vim-surround'
 if $SUDO_USER == ''
+  Bundle 'Shougo/neomru.vim'
   Bundle 'Shougo/unite.vim'
   Bundle 'Shougo/neocomplcache'
-  Bundle 'h1mesuke/unite-outline'
+  Bundle 'Shougo/unite-outline'
 endif
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
-"Bundle 'motemen/git-vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
@@ -94,10 +94,10 @@ set statusline=%f%=%y%r%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}\ [%{Ge
 
 set wildmode=list:longest
 "set wildmode=list,full
-let g:netrw_liststyle=3
 if v:version >= 703
   set wildignorecase
 endif
+
 
 " {{{ powerline
 "let g:Powerline_mode_n = 'NORMAL'
@@ -188,7 +188,30 @@ inoremap <C-@> <Esc>
 "inoremap <Space>[ <Esc>
 
 " unite
+nnoremap <C-i> :Unite file<Enter>
+let g:unite_enable_start_insert=1
+let g:unite_source_history_yank_enable =1
+let g:unite_source_file_mru_limit = 200
+
+nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
+" ファイル一覧
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" レジスタ一覧
+nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
+" 再帰的
+nnoremap <silent> ,ue :<C-u>Unite buffer file_rec<CR>
+" 最近使用したファイル一
+nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
+" 常用セット
+nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
+" 全部乗せ
+nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+
+" unite-outline
 nnoremap <C-u> :Unite outline<Enter>
+let g:unite_data_directory="~/tmp/vim_unite_outline"
+
 
 autocmd WinEnter * setlocal cursorline
 autocmd WinLeave * setlocal nocursorline
