@@ -15,4 +15,4 @@ then
 fi
 
 source $HOME/.nvm/nvm.sh
-test ! -z "$(which node)" && curl https://npmjs.org/install.sh | sh
+curl -L https://www.npmjs.com/install.sh | sh
