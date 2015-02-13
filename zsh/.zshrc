@@ -2,7 +2,7 @@
 # .zshrc file
 #
 # Maintainer  : Sotaro KARASAWA <sotaro.k@gmail.com>
-# Version     : $Id
+# LICENSE: Public Domain
 ####
 
 #export LANG=ja_JP.UTF-8
@@ -42,7 +42,7 @@ export EC2_PRIVATE_KEY=$HOME/aws/pk-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
 export EC2_URL=https://ec2.ap-northeast-1.amazonaws.com
 export EC2_REGION=ap-northeast-1
 
-#for aws (crocos)
+# for aws (crocos)
 test -f /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/crocos
 
 export SCREEN_USING=1
@@ -56,13 +56,6 @@ test -f /usr/share/source-highlight/src-hilite-lesspipe.sh && export LESSOPEN="|
 
 # プロンプトの設定
 autoload -U colors; colors
-
-#GIT PATH
-GITBIN=$(which git)
-
-test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
-    && rvm default \
-    && PATH="$HOME/.rvm/scripts/rvm/gems/$(rvm current)/bin":$PATH
 
 # 関数
 find-grep () { find . -type f -print | xargs grep -n --binary-files=without-match $@ }
@@ -196,10 +189,6 @@ alias :e='vim'
 alias V='vim -R -'
 alias e='vim'   # :p
 alias pingg='ping www.google.com'
-alias suhr='sudo service httpd restart'
-alias suhs='sudo service httpd start'
-alias suar='sudo service apache2 restart'
-alias suas='sudo service apache2 start'
 
 # for svn
 alias st='svn st | less -FSRX'
@@ -352,10 +341,6 @@ stty stop undef
 # Emasc 風キーバインド
 bindkey -e
 
-# command history search by glob
-#bindkey '^R' history-incremental-pattern-search-backward
-#bindkey '^S' history-incremental-pattern-search-forward
-
 set kanji-code utf-8
 set convert-meta off    #必須
 set meta-flag on        #必須
@@ -363,18 +348,6 @@ set output-meta on      #必須
 set input-meta on
 set enable-keypad on
 
-# screen のステータスバーに現在実行中のコマンドを表示
-# cd をしたときにlsを実行する
-# git の branch を表示する
-# ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
-#if [ "$TERM" = "screen" ]; then
-
-#case "$TERM" in
-#    xterm-color|screen|xterm-256color)
-#        1="$1 " # deprecated.
-#        echo -ne "\ek${${(s: :)1}[0]}\e\\"
-#        ;;
-#esac
 r() {
   local f
   f=(~/.zshrc.d/completion/*(.))
@@ -382,74 +355,28 @@ r() {
   autoload -U $f:t
 }
 
-chpwd () {
-    case "${OSTYPE}" in
-    darwin*) ;;
-    *)
-        echo -n "_`dirs`\\"
-        ls
-        ;;
-    esac
-}
-preexec() {
-# see [zsh-workers:13180]
-# http://www.zsh.org/mla/workers/2000/msg03993.html
-    emulate -L zsh
-        local -a cmd; cmd=(${(z)2})
-        case $cmd[1] in
-        fg)
-        if (( $#cmd == 1 )); then
-            cmd=(builtin jobs -l %+)
-        else
-            cmd=(builtin jobs -l $cmd[2])
-                fi
-                ;;
-    %*)
-        cmd=(builtin jobs -l $cmd[1])
-        ;;
-    cd)
-        if (( $#cmd == 2)); then
-            cmd[1]=$cmd[2]
-                fi
-                ;&
-                *)
-                echo -n "k$cmd[1]:t\\"
-                return
-                ;;
-    esac
-
-        local -A jt; jt=(${(kv)jobtexts})
-
-        if test $SCREEN_USING -eq 1
-        then
-        $cmd >>(read num rest
-                cmd=(${(z)${(e):-\$jt$num}})
-                echo -n "k$cmd[1]:t\\") 2>/dev/null
-        fi
-}
-chpwd
-
-
 ###########################
 #
 # Plugin
 #
 ###########################
 
+#GIT PATH
+GITBIN=$(which git)
+
 # php-env
 test -d $HOME/.phpenv \
     && PATH="$HOME/.phpenv/bin:$PATH" \
     && eval "$(phpenv init -)"
 
-# ruby gems
-GEM_DIR="/var/lib/gems/"
-if test -d "$GEM_DIR"
-then
-    for ruby_path in `find $GEM_DIR -maxdepth 2 -type d -name bin`
-    do
-        PATH=$PATH:$ruby_path
-    done
-fi
+# rvm
+test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
+    && rvm default \
+    && PATH="$HOME/.rvm/scripts/rvm/gems/$(rvm current)/bin":$PATH
+
+# for gcloud
+source $HOME/google-cloud-sdk/path.zsh.inc
+source $HOME/google-cloud-sdk/completion.zsh.inc
 
 # nvm
 export NVM_DIR=$HOME/.nvm
@@ -463,6 +390,63 @@ test -f $HOME/.zshaliases && source $HOME/.zshaliases
 
 # plugin
 #source ~/.zshrc.d/plugin/*
+
+
+###########################
+#
+# Auto ls
+#
+###########################
+
+# screen のステータスバーに現在実行中のコマンドを表示
+# cd をしたときにlsを実行する
+chpwd () {
+    case "${OSTYPE}" in
+        darwin*) ;;
+    *)
+        echo -n "_`dirs`\\"
+        ls
+        ;;
+    esac
+}
+preexec() {
+    # see [zsh-workers:13180]
+    # http://www.zsh.org/mla/workers/2000/msg03993.html
+    emulate -L zsh
+    local -a cmd; cmd=(${(z)2})
+    case $cmd[1] in
+        fg)
+            if (( $#cmd == 1 )); then
+                cmd=(builtin jobs -l %+)
+            else
+                cmd=(builtin jobs -l $cmd[2])
+            fi
+            ;;
+        %*)
+            cmd=(builtin jobs -l $cmd[1])
+            ;;
+        cd)
+            if (( $#cmd == 2)); then
+                cmd[1]=$cmd[2]
+            fi
+            ;&
+        *)
+            echo -n "k$cmd[1]:t\\"
+            return
+            ;;
+
+    esac
+
+    local -A jt; jt=(${(kv)jobtexts})
+
+    if test $SCREEN_USING -eq 1
+    then
+        $cmd >>(read num rest
+        cmd=(${(z)${(e):-\$jt$num}})
+        echo -n "k$cmd[1]:t\\") 2>/dev/null
+    fi
+}
+chpwd
 
 # zaw
 test -f ~/.dotfiles/zsh/zaw/zaw.zsh && source ~/.dotfiles/zsh/zaw/zaw.zsh
