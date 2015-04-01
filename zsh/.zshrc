@@ -101,6 +101,13 @@ export ZLS_COLORS=$LS_COLORS
 # 補完の利用設定
 autoload -Uz compinit; compinit -u
 
+# for zaw-cdr
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 500 # cdrの履歴を保存する個数
+zstyle ':chpwd:*' recent-dirs-default yes
+zstyle ':completion:*' recent-dirs-insert both
+
 # 大文字・小文字を区別しないで補完出来るようにする．大文字を入力した場合は区別
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
@@ -364,6 +371,9 @@ r() {
 #GIT PATH
 GITBIN=$(which git)
 
+# composer
+PATH="$HOME/.composer/vendor/bin:$PATH"
+
 # php-env
 test -d $HOME/.phpenv \
     && PATH="$HOME/.phpenv/bin:$PATH" \
@@ -450,7 +460,7 @@ chpwd
 
 # zaw
 test -f ~/.dotfiles/zsh/zaw/zaw.zsh && source ~/.dotfiles/zsh/zaw/zaw.zsh
-bindkey '^Xd' zaw-cdr
-bindkey '^Xf' zaw-git-files
+bindkey '^@' zaw-cdr
+bindkey '^O' zaw-open-file
+bindkey '^R' zaw-history
 bindkey '^Xg' zaw-git-branches
-bindkey '^X@' zaw-gitdir
