@@ -35,11 +35,7 @@ main() {
 
     run ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     run brew install caskroom/cask/brew-cask
-    run brew install vim
-    run brew install tree
-    run brew install mobile-shell
-    run brew install tmux
-    run brew install the_silver_searcher
+    run brew install vim tree mobile-shell tmux the_silver_searcher gnu-sed
     run brew cask install macdown
 
 }
