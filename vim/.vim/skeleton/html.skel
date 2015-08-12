@@ -4,6 +4,8 @@
 <!-- <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# crocos-hima: http://ogp.me/ns/fb/crocos-hima#"> -->
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="format-detection" content="telephone=on">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
@@ -13,6 +15,7 @@
   <meta name="keywords" content="" />
   <meta name="description" content="" />
   <meta name="author" content="">
+
   <!--
   <link rel="shortcut icon" href="favicon.ico" />
 
@@ -23,7 +26,6 @@
   <meta property="og:description" content="" />
   <meta property="og:image"       content="" />
 
-  <meta name="format-detection" content="telephone=on">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -71,44 +73,56 @@
 </head>
 <body>
 <!--
-<div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : 'YOUR_APP_ID', // App ID
-      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : true  // parse XFBML
+      appId      : 'your-app-id',
+      xfbml      : true,
+      version    : 'v2.4'
     });
-
-    // Additional initialization code here
   };
 
-  // Load the SDK Asynchronously
-  (function(d){
-     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
-     js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     ref.parentNode.insertBefore(js, ref);
-   }(document));
+     js = d.createElement(s); js.id = id;
+     //js.src = "//connect.facebook.net/ja_JP/sdk.js";
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
 </script>
--->
-<div id="container">
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
 
-<div class="header" id="header">
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+-->
+
+<div id="container" class="container">
+
+<header class="header" id="header">
  <h1><a href=""></a></h1>
-</div>
+</header>
 
 <div id="main" class="main">
 
 
 </div>
 
-<div id="footer" class="footer">
- <p>&copy; 2011 sotarok.</p>
-</div>
+<footer id="footer" class="footer">
+ <p>&copy; 2015 sotarok.</p>
+</footer>
 
 </div>
 </body>
