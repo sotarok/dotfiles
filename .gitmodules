@@ -1,6 +1,9 @@
 [submodule "vim/.vim/vundle.git"]
 	path = vim/.vim/vundle.git
-	url = http://github.com/gmarik/vundle.git
+	url = https://github.com/gmarik/Vundle.vim.git
 [submodule "misc/autojump"]
 	path = misc/autojump
 	url = git://github.com/joelthelion/autojump.git
+[submodule "zsh/zaw"]
+	path = zsh/zaw
+	url = git://github.com/zsh-users/zaw.git

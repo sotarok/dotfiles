@@ -2,7 +2,7 @@
 # .zshrc file
 #
 # Maintainer  : Sotaro KARASAWA <sotaro.k@gmail.com>
-# Version     : $Id
+# LICENSE: Public Domain
 ####
 
 #export LANG=ja_JP.UTF-8
@@ -13,29 +13,6 @@ PATH=$HOME/bin:$HOME/local/bin:/usr/gnu/bin:/usr/local/bin:/opt/local/bin:$PATH:
 export MANPATH=/usr/local/man:/usr/share/man
 
 export ETHNA_HOME=$HOME/working/ethna/work
-# php-env
-test -d $HOME/.phpenv \
-    && PATH="$HOME/.phpenv/bin:$PATH" \
-    && eval "$(phpenv init -)"
-
-# pyrus
-#PHP_DIR=$HOME/.php
-#if test -n "$(which php)" -a -d $PHP_DIR
-#then
-#    alias php='php -dinclude_path=.:'$PHP_DIR/php':'$(php -i | grep include_path | cut -d" " -f3 | cut -d':' -f2-)
-#fi
-#test -f $PHP_DIR/pyrus.phar && alias pyrus="php $PHP_DIR/pyrus.phar $PHP_DIR"
-
-GEM_DIR="/var/lib/gems/"
-if test -d "$GEM_DIR"
-then
-    for ruby_path in `find $GEM_DIR -maxdepth 2 -type d -name bin`
-    do
-        PATH=$PATH:$ruby_path
-    done
-fi
-
-
 LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH
 
@@ -48,9 +25,6 @@ export CLICOLOR=1
 export GTEST_COLOR=1
 # export SCREENDIR=$HOME/.screen
 export LSCOLORS=ExFxCxDxBxegedabagacad
-
-export NVM_DIR=$HOME/.nvm
-test -f $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
 
 #for Go
 export GOPATH=$HOME/.go
@@ -68,7 +42,7 @@ export EC2_PRIVATE_KEY=$HOME/aws/pk-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
 export EC2_URL=https://ec2.ap-northeast-1.amazonaws.com
 export EC2_REGION=ap-northeast-1
 
-#for aws (crocos)
+# for aws (crocos)
 test -f /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/crocos
 
 export SCREEN_USING=1
@@ -82,13 +56,6 @@ test -f /usr/share/source-highlight/src-hilite-lesspipe.sh && export LESSOPEN="|
 
 # プロンプトの設定
 autoload -U colors; colors
-
-#GIT PATH
-GITBIN=$(which git)
-
-test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
-    && rvm default \
-    && PATH="$HOME/.rvm/scripts/rvm/gems/$(rvm current)/bin":$PATH
 
 # 関数
 find-grep () { find . -type f -print | xargs grep -n --binary-files=without-match $@ }
@@ -105,9 +72,6 @@ touchtodaytxt () {
 }
 
 fpath=(~/.zshrc.d/completion $fpath)
-set -f ~/.dotfiles/zsh/autojump.zsh && source ~/.dotfiles/zsh/autojump.zsh
-
-# source ~/.zshrc.d/plugin/*
 
 # エイリアスの設定
 # (dircolorの読み込み)
@@ -130,15 +94,19 @@ linux*)
     ;;
 esac
 
-# ファイルがあれば読み込み
-test -f $HOME/.zshaliases && source $HOME/.zshaliases
-
 
 ## 補完候補の色づけ
 export ZLS_COLORS=$LS_COLORS
 
 # 補完の利用設定
 autoload -Uz compinit; compinit -u
+
+# for zaw-cdr
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 500 # cdrの履歴を保存する個数
+zstyle ':chpwd:*' recent-dirs-default yes
+zstyle ':completion:*' recent-dirs-insert both
 
 # 大文字・小文字を区別しないで補完出来るようにする．大文字を入力した場合は区別
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -228,10 +196,6 @@ alias :e='vim'
 alias V='vim -R -'
 alias e='vim'   # :p
 alias pingg='ping www.google.com'
-alias suhr='sudo service httpd restart'
-alias suhs='sudo service httpd start'
-alias suar='sudo service apache2 restart'
-alias suas='sudo service apache2 start'
 
 # for svn
 alias st='svn st | less -FSRX'
@@ -384,10 +348,6 @@ stty stop undef
 # Emasc 風キーバインド
 bindkey -e
 
-# command history search by glob
-#bindkey '^R' history-incremental-pattern-search-backward
-#bindkey '^S' history-incremental-pattern-search-forward
-
 set kanji-code utf-8
 set convert-meta off    #必須
 set meta-flag on        #必須
@@ -395,18 +355,6 @@ set output-meta on      #必須
 set input-meta on
 set enable-keypad on
 
-# screen のステータスバーに現在実行中のコマンドを表示
-# cd をしたときにlsを実行する
-# git の branch を表示する
-# ref. http://nijino.homelinux.net/diary/200206.shtml#200206140
-#if [ "$TERM" = "screen" ]; then
-
-#case "$TERM" in
-#    xterm-color|screen|xterm-256color)
-#        1="$1 " # deprecated.
-#        echo -ne "\ek${${(s: :)1}[0]}\e\\"
-#        ;;
-#esac
 r() {
   local f
   f=(~/.zshrc.d/completion/*(.))
@@ -414,9 +362,57 @@ r() {
   autoload -U $f:t
 }
 
+###########################
+#
+# Plugin
+#
+###########################
+
+#GIT PATH
+GITBIN=$(which git)
+
+# composer
+PATH="$HOME/.composer/vendor/bin:$PATH"
+
+# php-env
+test -d $HOME/.phpenv \
+    && PATH="$HOME/.phpenv/bin:$PATH" \
+    && eval "$(phpenv init -)"
+
+# rvm
+test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
+    && rvm default \
+    && PATH="$HOME/.rvm/scripts/rvm/gems/$(rvm current)/bin":$PATH
+
+# for gcloud
+source $HOME/google-cloud-sdk/path.zsh.inc
+source $HOME/google-cloud-sdk/completion.zsh.inc
+
+# nvm
+export NVM_DIR=$HOME/.nvm
+test -f $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
+
+# autojump
+test -f ~/.dotfiles/zsh/autojump.zsh && source ~/.dotfiles/zsh/autojump.zsh
+
+# ファイルがあれば読み込み
+test -f $HOME/.zshaliases && source $HOME/.zshaliases
+
+# plugin
+#source ~/.zshrc.d/plugin/*
+
+
+###########################
+#
+# Auto ls
+#
+###########################
+
+# screen のステータスバーに現在実行中のコマンドを表示
+# cd をしたときにlsを実行する
 chpwd () {
     case "${OSTYPE}" in
-    darwin*) ;;
+        darwin*) ;;
     *)
         echo -n "_`dirs`\\"
         ls
@@ -424,383 +420,47 @@ chpwd () {
     esac
 }
 preexec() {
-# see [zsh-workers:13180]
-# http://www.zsh.org/mla/workers/2000/msg03993.html
+    # see [zsh-workers:13180]
+    # http://www.zsh.org/mla/workers/2000/msg03993.html
     emulate -L zsh
-        local -a cmd; cmd=(${(z)2})
-        case $cmd[1] in
+    local -a cmd; cmd=(${(z)2})
+    case $cmd[1] in
         fg)
-        if (( $#cmd == 1 )); then
-            cmd=(builtin jobs -l %+)
-        else
-            cmd=(builtin jobs -l $cmd[2])
-                fi
-                ;;
-    %*)
-        cmd=(builtin jobs -l $cmd[1])
-        ;;
-    cd)
-        if (( $#cmd == 2)); then
-            cmd[1]=$cmd[2]
-                fi
-                ;&
-                *)
-                echo -n "k$cmd[1]:t\\"
-                return
-                ;;
+            if (( $#cmd == 1 )); then
+                cmd=(builtin jobs -l %+)
+            else
+                cmd=(builtin jobs -l $cmd[2])
+            fi
+            ;;
+        %*)
+            cmd=(builtin jobs -l $cmd[1])
+            ;;
+        cd)
+            if (( $#cmd == 2)); then
+                cmd[1]=$cmd[2]
+            fi
+            ;&
+        *)
+            echo -n "k$cmd[1]:t\\"
+            return
+            ;;
+
     esac
 
-        local -A jt; jt=(${(kv)jobtexts})
+    local -A jt; jt=(${(kv)jobtexts})
 
-        if test $SCREEN_USING -eq 1
-        then
+    if test $SCREEN_USING -eq 1
+    then
         $cmd >>(read num rest
-                cmd=(${(z)${(e):-\$jt$num}})
-                echo -n "k$cmd[1]:t\\") 2>/dev/null
-        fi
+        cmd=(${(z)${(e):-\$jt$num}})
+        echo -n "k$cmd[1]:t\\") 2>/dev/null
+    fi
 }
 chpwd
-#fi
 
-
-_git-daily ()
-{
-    # TODO
-}
-
-# {{{ git-flow completion
-# git-flow
-
-#
-# Installation
-# ------------
-#
-# To achieve git-flow completion nirvana:
-#
-#  0. Update your zsh's git-completion module to the newest verion.
-#		From here. http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD
-#
-#  1. Install this file. Either:
-#
-#     a. Place it in your .zshrc:
-#
-#     b. Or, copy it somewhere (e.g. ~/.git-flow-completion.zsh) and put the following line in
-#        your .zshrc:
-#
-#            source ~/.git-flow-completion.zsh
-#
-#	  c. Or, use this file as a oh-my-zsh plugin.
-#
-
-_git-flow ()
-{
-	local curcontext="$curcontext" state line
-	typeset -A opt_args
-
-	_arguments -C \
-    	':command:->command' \
-    	'*::options:->options'
-
-	case $state in
-		(command)
-
-			local -a subcommands
-			subcommands=(
-				'init:Initialize a new git repo with support for the branching model.'
-				'feature:Manage your feature branches.'
-				'release:Manage your release branches.'
-				'hotfix:Manage your hotfix branches.'
-				'support:Manage your support branches.'
-				'version:Shows version information.'
-			)
-			_describe -t commands 'git flow' subcommands
-		;;
-
-		(options)
-			case $line[1] in
-
-				(init)
-					_arguments \
-            			-f'[Force setting of gitflow branches, even if already configured]'
-					;;
-
-					(version)
-					;;
-
-					(hotfix)
-						__git-flow-hotfix
-					;;
-
-					(release)
-						__git-flow-release
-					;;
-
-					(feature)
-						__git-flow-feature
-					;;
-      		esac
-      	;;
-  esac
-}
-
-__git-flow-release ()
-{
-	local curcontext="$curcontext" state line
-	typeset -A opt_args
-
-	_arguments -C \
-    	':command:->command' \
-    	'*::options:->options'
-
-	case $state in
-		(command)
-
-			local -a subcommands
-			subcommands=(
-				'start:Start a new release branch'
-				'finish:Finish a release branche.'
-				'list:List all your release branches. (Alias to `git flow release`)'
-			)
-			_describe -t commands 'git flow release' subcommands
-			_arguments \
-    			-v'[Verbose (more) output]'
-		;;
-
-		(options)
-			case $line[1] in
-
-				(start)
-					_arguments \
-            			-F'[Fetch from origin before performing finish]'\
-						':version:__git_flow_version_list'
-					;;
-
-				(finish)
-					_arguments \
-        				-F'[Fetch from origin before performing finish]' \
-    					-s'[Sign the release tag cryptographically]'\
-    					-u'[Use the given GPG-key for the digital signature (implies -s)]'\
-    					-m'[Use the given tag message]'\
-    					-p'[Push to $ORIGIN after performing finish]'\
-						':version:__git_flow_version_list'
-				;;
-
-				*)
-					_arguments \
-            			-v'[Verbose (more) output]'
-					;;
-      		esac
-      ;;
-  esac
-}
-
-__git-flow-hotfix ()
-{
-	local curcontext="$curcontext" state line
-	typeset -A opt_args
-
-	_arguments -C \
-    	':command:->command' \
-    	'*::options:->options'
-
-	case $state in
-		(command)
-
-			local -a subcommands
-			subcommands=(
-				'start:Start a new hotfix branch'
-				'finish:Finish a hotfix branche.'
-				'list:List all your hotfix branches. (Alias to `git flow hotfix`)'
-			)
-			_describe -t commands 'git flow hotfix' subcommands
-			_arguments \
-    			-v'[Verbose (more) output]'
-		;;
-
-		(options)
-			case $line[1] in
-
-				(start)
-					_arguments \
-            			-F'[Fetch from origin before performing finish]'\
-						':hotfix:__git_flow_version_list'\
-						':branch-name:__git_branch_names'
-					;;
-
-				(finish)
-					_arguments \
-        				-F'[Fetch from origin before performing finish]' \
-    					-s'[Sign the release tag cryptographically]'\
-    					-u'[Use the given GPG-key for the digital signature (implies -s)]'\
-    					-m'[Use the given tag message]'\
-    					-p'[Push to $ORIGIN after performing finish]'\
-						':hotfix:__git_flow_hotfix_list'
-				;;
-
-				*)
-					_arguments \
-            			-v'[Verbose (more) output]'
-					;;
-      		esac
-      ;;
-  esac
-}
-
-__git-flow-feature ()
-{
-	local curcontext="$curcontext" state line
-	typeset -A opt_args
-
-	_arguments -C \
-    	':command:->command' \
-    	'*::options:->options'
-
-	case $state in
-		(command)
-
-			local -a subcommands
-			subcommands=(
-				'start:Start a new hotfix branch'
-				'finish:Finish a hotfix branche.'
-				'list:List all your hotfix branches. (Alias to `git flow hotfix`)'
-				'publish: public'
-				'track: track'
-				'diff: diff'
-				'rebase: rebase'
-				'checkout: checkout'
-				'pull: pull'
-			)
-			_describe -t commands 'git flow hotfix' subcommands
-			_arguments \
-    			-v'[Verbose (more) output]'
-		;;
-
-		(options)
-			case $line[1] in
-
-				(start)
-					_arguments \
-            			-F'[Fetch from origin before performing finish]'\
-						':feature:__git_flow_feature_list'\
-						':branch-name:__git_branch_names'
-					;;
-
-				(finish)
-					_arguments \
-        				-F'[Fetch from origin before performing finish]' \
-    					-r'[Rebase instead of merge]'\
-						':feature:__git_flow_feature_list'
-				;;
-
-				(publish)
-					_arguments \
-						':feature:__git_flow_feature_list'\
-					;;
-
-				(track)
-					_arguments \
-						':feature:__git_flow_feature_list'\
-					;;
-
-				(diff)
-					_arguments \
-						':branch:__git_branch_names'\
-					;;
-
-				(rebase)
-					_arguments \
-        				-i'[Do an interactive rebase]' \
-						':branch:__git_branch_names'
-				;;
-
-				(checkout)
-					_arguments \
-						':branch:__git_flow_feature_list'\
-					;;
-
-				(pull)
-					_arguments \
-						':remote:__git_remotes'\
-						':branch:__git_branch_names'
-					;;
-
-				*)
-					_arguments \
-            			-v'[Verbose (more) output]'
-					;;
-      		esac
-      ;;
-  esac
-}
-
-__git_flow_version_list ()
-{
-  local expl
-  declare -a versions
-
-  versions=(${${(f)"$(_call_program versions git flow release list 2> /dev/null | tr -d ' |*')"}})
-  __git_command_successful || return
-
-  _wanted versions expl 'version' compadd $versions
-}
-
-__git_flow_feature_list ()
-{
-  local expl
-  declare -a features
-
-  features=(${${(f)"$(_call_program features git flow feature list 2> /dev/null | tr -d ' |*')"}})
-  __git_command_successful || return
-
-  _wanted features expl 'feature' compadd $features
-}
-
-__git_remotes () {
-  local expl gitdir remotes
-
-  gitdir=$(_call_program gitdir git rev-parse --git-dir 2>/dev/null)
-  __git_command_successful || return
-
-  remotes=(${${(f)"$(_call_program remotes git config --get-regexp '"^remote\..*\.url$"')"}//#(#b)remote.(*).url */$match[1]})
-  __git_command_successful || return
-
-  # TODO: Should combine the two instead of either or.
-  if (( $#remotes > 0 )); then
-    _wanted remotes expl remote compadd $* - $remotes
-  else
-    _wanted remotes expl remote _files $* - -W "($gitdir/remotes)" -g "$gitdir/remotes/*"
-  fi
-}
-
-__git_flow_hotfix_list ()
-{
-  local expl
-  declare -a hotfixes
-
-  hotfixes=(${${(f)"$(_call_program hotfixes git flow hotfix list 2> /dev/null | tr -d ' |*')"}})
-  __git_command_successful || return
-
-  _wanted hotfixes expl 'hotfix' compadd $hotfixes
-}
-
-__git_branch_names () {
-  local expl
-  declare -a branch_names
-
-  branch_names=(${${(f)"$(_call_program branchrefs git for-each-ref --format='"%(refname)"' refs/heads 2>/dev/null)"}#refs/heads/})
-  __git_command_successful || return
-
-  _wanted branch-names expl branch-name compadd $* - $branch_names
-}
-
-__git_command_successful () {
-  if (( ${#pipestatus:#0} > 0 )); then
-    _message 'not a git repository'
-    return 1
-  fi
-  return 0
-}
-
-zstyle ':completion:*:*:git:*' user-commands flow:'description for foo'
-# }}}
-
+# zaw
+test -f ~/.dotfiles/zsh/zaw/zaw.zsh && source ~/.dotfiles/zsh/zaw/zaw.zsh
+bindkey '^@' zaw-cdr
+bindkey '^O' zaw-open-file
+bindkey '^R' zaw-history
+bindkey '^Xg' zaw-git-branches
