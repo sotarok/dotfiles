@@ -1,0 +1,44 @@
+---
+- hosts: all
+  gather_facts: yes
+  vars_files:
+    - vars/all.yml
+
+
+  tasks:
+    - name: Initialize repository
+      sudo: true
+      copy:
+        dest: "{{ item.dest }}"
+        src: "{{ item.src }}"
+      with_items:
+        - { src: "files/etc/apt/sources.list", dest: "/etc/apt/sources.list"}
+        - { src: "files/etc/apt/sources.list.d/dotdeb.list", dest: "/etc/apt/sources.list.d/dotdeb.list"}
+        - { src: "files/etc/apt/sources.list.d/mongodb.list", dest: "/etc/apt/sources.list.d/mongodb.list"}
+        - { src: "files/etc/apt/sources.list.d/treasure-data.list", dest: "/etc/apt/sources.list.d/treasure-data.list"}
+        - { src: "files/etc/apt/sources.list.d/heroku.list", dest: "/etc/apt/sources.list.d/heroku.list"}
+        - { src: "files/etc/apt/sources.list.d/hhvm.list", dest: "/etc/apt/sources.list.d/hhvm.list"}
+
+    - name: Setup apt keys
+      sudo: yes
+      apt_key: url={{ item }} state=present validate_certs=no
+      with_items:
+        - "http://dl.hhvm.com/conf/hhvm.gpg.key"
+        - "https://www.dotdeb.org/dotdeb.gpg"
+        - "https://docs.mongodb.org/10gen-gpg-key.asc"
+        - "https://toolbelt.heroku.com/apt/release.key"
+
+    - name: Setup apt key (only td)
+      sudo: yes
+      shell: "wget -q -O - {{ item }} | apt-key add -"
+      with_items:
+        - "https://packages.treasuredata.com/GPG-KEY-td-agent"
+
+    - name: Upgrade
+      sudo: yes
+      apt: upgrade=dist update_cache=yes
+
+    - name: Install essentials
+      sudo: yes
+      apt: name={{ item }} state=present
+      with_items: essential.packages
