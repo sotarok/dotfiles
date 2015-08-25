@@ -197,6 +197,9 @@ alias V='vim -R -'
 alias e='vim'   # :p
 alias pingg='ping www.google.com'
 
+# vagrant
+alias vs='vagrant ssh'
+
 # for svn
 alias st='svn st | less -FSRX'
 alias stu='svn st -u | less -FSRX'
