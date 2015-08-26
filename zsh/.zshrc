@@ -395,6 +395,11 @@ source $HOME/google-cloud-sdk/completion.zsh.inc
 export NVM_DIR=$HOME/.nvm
 test -f $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
 
+# anyenv
+test -d $HOME/.anyenv \
+    && PATH="$HOME/.anyenv/bin:$PATH" \
+    && eval "$(anyenv init -)"
+
 # autojump
 test -f ~/.dotfiles/zsh/autojump.zsh && source ~/.dotfiles/zsh/autojump.zsh
 
