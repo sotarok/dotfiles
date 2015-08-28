@@ -329,6 +329,7 @@ if has("autocmd")
     autocmd FileType css setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType scss setlocal ts=2 sw=2 sts=2
     autocmd FileType less setlocal ts=2 sw=2 sts=2
+    autocmd FileType go setlocal noexpandtab
     autocmd FileType php setlocal commentstring=\ //\ %s
 
     autocmd BufNewFile *.php 0r ~/.vim/skeleton/php.skel
@@ -341,6 +342,7 @@ if has("autocmd")
     autocmd BufNewFile *.sh 0r ~/.vim/skeleton/shell.skel
     autocmd BufNewFile *.zsh 0r ~/.vim/skeleton/shell.skel
     autocmd BufNewFile *.bash 0r ~/.vim/skeleton/shell.skel
+    autocmd BufNewFile *.go 0r ~/.vim/skeleton/go.skel
 
     " バッファの。。。なんかよくわからんけど追加。あとで。
     autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
