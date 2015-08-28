@@ -46,6 +46,8 @@ main() {
     run test -f ~/bin/peco || (wget -q https://github.com/peco/peco/releases/download/v0.2.3/peco_linux_amd64.tar.gz && tar xzf peco_linux_amd64.tar.gz && cd peco_linux_amd64 && cp peco ~/bin/ && cd .. && rm -r peco*)
     run test -f /usr/bin/ag || sudo rpm -ivh http://swiftsignal.com/packages/centos/6/x86_64/the-silver-searcher-0.13.1-1.el6.x86_64.rpm
     run sudo yum --enablerepo=remi-php56 install -y php-pecl-xdebug
+    run test -f ~/bin/jq || wget -q -O ~/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x ~/bin/jq
+
     run vim +BundleInstall +qall
 
 }
