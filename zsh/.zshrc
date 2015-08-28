@@ -388,8 +388,9 @@ test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
     && PATH="$HOME/.rvm/scripts/rvm/gems/$(rvm current)/bin":$PATH
 
 # for gcloud
-source $HOME/google-cloud-sdk/path.zsh.inc
-source $HOME/google-cloud-sdk/completion.zsh.inc
+test -d "$HOME/google-cloud-sdk" \
+    && source $HOME/google-cloud-sdk/path.zsh.inc \
+    && source $HOME/google-cloud-sdk/completion.zsh.inc
 
 # nvm
 export NVM_DIR=$HOME/.nvm
