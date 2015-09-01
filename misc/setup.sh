@@ -47,6 +47,8 @@ test ! -x $HOME/bin/tig \
     && cd .. \
     && rm -rf __tig
 
+test ! -d $HOME/.anyenv \
+    && git clone https://github.com/riywo/anyenv ~/.anyenv
 
 cd $DOTFILES
 git submodule update --init
