@@ -27,7 +27,7 @@ export GTEST_COLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 #for Go
-export GOPATH=$HOME/.go
+#export GOPATH=$HOME/.go
 #export GOROOT=$HOME/go
 #export GOOS=linux
 #export GOARCH=$(arch)
@@ -269,7 +269,10 @@ setopt list_types
 setopt auto_list
 
 # ヒストリの設定
-HISTFILE=~/.histfile
+
+test -d /vagrant/ \
+    && HISTFILE=/vagrant/.histfile \
+    || HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
