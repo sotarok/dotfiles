@@ -34,9 +34,11 @@ main() {
     fi
 
     run ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    run brew tap homebrew/science
     run brew install caskroom/cask/brew-cask
-    run brew install vim tree mobile-shell tmux the_silver_searcher gnu-sed jq peco
-    run brew cask install macdown
+    run brew install vim tree mobile-shell tmux the_silver_searcher gnu-sed jq peco kubernetes-cli packer
+    run brew install opencv boost boost-python protobuf szip glog gflags hdf5 leveldb snappy lmdb openblas
+    run brew cask install macdown vagrant dockertoolbox terraform
 
 }
 
