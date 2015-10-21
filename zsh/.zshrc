@@ -27,7 +27,7 @@ export GTEST_COLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 #for Go
-export GOPATH=$HOME/.go
+#export GOPATH=$HOME/.go
 #export GOROOT=$HOME/go
 #export GOOS=linux
 #export GOARCH=$(arch)
@@ -197,6 +197,9 @@ alias V='vim -R -'
 alias e='vim'   # :p
 alias pingg='ping www.google.com'
 
+# vagrant
+alias vs='vagrant ssh'
+
 # for svn
 alias st='svn st | less -FSRX'
 alias stu='svn st -u | less -FSRX'
@@ -266,7 +269,10 @@ setopt list_types
 setopt auto_list
 
 # ヒストリの設定
-HISTFILE=~/.histfile
+
+test -d /vagrant/ \
+    && HISTFILE=/vagrant/.histfile \
+    || HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -385,12 +391,18 @@ test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
     && PATH="$HOME/.rvm/scripts/rvm/gems/$(rvm current)/bin":$PATH
 
 # for gcloud
-source $HOME/google-cloud-sdk/path.zsh.inc
-source $HOME/google-cloud-sdk/completion.zsh.inc
+test -d "$HOME/google-cloud-sdk" \
+    && source $HOME/google-cloud-sdk/path.zsh.inc \
+    && source $HOME/google-cloud-sdk/completion.zsh.inc
 
 # nvm
 export NVM_DIR=$HOME/.nvm
 test -f $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
+
+# anyenv
+test -d $HOME/.anyenv \
+    && PATH="$HOME/.anyenv/bin:$PATH" \
+    && eval "$(anyenv init -)"
 
 # autojump
 test -f ~/.dotfiles/zsh/autojump.zsh && source ~/.dotfiles/zsh/autojump.zsh
