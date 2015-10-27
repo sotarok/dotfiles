@@ -39,6 +39,7 @@ main() {
     run brew install vim tree mobile-shell tmux the_silver_searcher gnu-sed jq peco kubernetes-cli packer
     run brew install opencv boost boost-python protobuf szip glog gflags hdf5 leveldb snappy lmdb openblas
     run brew cask install macdown vagrant dockertoolbox terraform
+    run "curl https://sdk.cloud.google.com | bash"
 
 }
 
