@@ -9,7 +9,7 @@
 export LANG=en_US.UTF-8
 
 # パスの設定
-PATH=$HOME/bin:$HOME/local/bin:/usr/gnu/bin:/usr/local/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
+PATH=$HOME/bin:$HOME/local/bin:/usr/gnu/bin:/usr/local/bin:/usr/local/go/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
 export ETHNA_HOME=$HOME/working/ethna/work
@@ -262,7 +262,10 @@ setopt list_types
 setopt auto_list
 
 # ヒストリの設定
-HISTFILE=~/.histfile
+
+test -d /vagrant/ \
+    && HISTFILE=/vagrant/.histfile \
+    || HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 

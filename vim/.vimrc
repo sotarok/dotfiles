@@ -46,6 +46,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'pangloss/vim-javascript'
+Bundle 'chase/vim-ansible-yaml'
 Bundle 'kchmck/vim-coffee-script.git'
 Bundle 'plasticboy/vim-markdown'
 " vim-script Plugins

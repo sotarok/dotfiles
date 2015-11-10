@@ -1,0 +1,22 @@
+---
+- hosts: all
+  vars_files:
+    - vars/main.yml
+  roles:
+    - { role: geerlingguy.ntp, sudo: yes }
+
+  pre_tasks:
+    - name: Add apt keys
+      sudo: yes
+      apt_key: url="{{ item.url }}" state=present
+      with_items:
+        - { url: "https://www.dotdeb.org/dotdeb.gpg" }
+
+    - name: Add apt repositories
+      sudo: yes
+      apt_repository: repo="{{ item.repo }}" state=present update_cache=yes
+      with_items:
+        - { repo: 'deb http://packages.dotdeb.org jessie all' }
+        - { repo: 'deb-src http://packages.dotdeb.org jessie all' }
+
+# vim: ft=ansible
