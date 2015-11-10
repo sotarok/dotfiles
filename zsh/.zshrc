@@ -26,13 +26,6 @@ export GTEST_COLOR=1
 # export SCREENDIR=$HOME/.screen
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-#for Go
-export GOPATH=$HOME/.go
-#export GOROOT=$HOME/go
-#export GOOS=linux
-#export GOARCH=$(arch)
-#export GOBIN=$HOME/bin
-
 #for aws
 export JAVA_HOME=/usr
 export AWS_RDS_HOME=$HOME/aws/RDSCli-1.4.006
@@ -391,6 +384,10 @@ test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
 test -d "$HOME/google-cloud-sdk" \
     && source $HOME/google-cloud-sdk/path.zsh.inc \
     && source $HOME/google-cloud-sdk/completion.zsh.inc
+
+#for Go
+export GOPATH=$HOME/.go
+PATH=$PATH:$GOPATH/bin
 
 # nvm
 export NVM_DIR=$HOME/.nvm
