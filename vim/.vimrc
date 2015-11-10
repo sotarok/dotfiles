@@ -44,6 +44,7 @@ Bundle 'mattn/gist-vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'groenewege/vim-less'
 Bundle 'cakebaker/scss-syntax.vim'
+Bundle 'Blackrush/vim-gocode'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script.git'
 Bundle 'plasticboy/vim-markdown'
@@ -220,6 +221,7 @@ autocmd BufLeave * setlocal nocursorline
 
 " auto remove spaces of the end of line
 autocmd BufWritePre * :%s/\s\+$//ge
+"autocmd BufWritePre *.go Fmt
 
 " when split vertical then Vexplore
 nnoremap <C-w><C-v> :<C-u>Vexplore<Enter>
