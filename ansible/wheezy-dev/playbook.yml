@@ -4,8 +4,14 @@
   vars_files:
     - vars/all.yml
 
+  roles:
+    - sotarok.essentials
 
-  tasks:
+  pre_tasks:
+    - name: Install galaxy
+      local_action: command ansible-galaxy install --ignore-errors -r requirements.txt
+      run_once: true
+
     - name: Initialize repository
       sudo: true
       copy:
@@ -38,7 +44,3 @@
       sudo: yes
       apt: upgrade=dist update_cache=yes
 
-    - name: Install essentials
-      sudo: yes
-      apt: name={{ item }} state=present
-      with_items: essential.packages

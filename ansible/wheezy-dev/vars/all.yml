@@ -1,2 +1,20 @@
-essential:
-  - packages: [zsh, git, curl, build-essential, td-agent, heroku-toolbelt, mongodb-org, openjdk-6-jdk, strace, gdb, valgrind, dh-make, devscripts, bzip2, build-essential, autoconf, libgdb-dev, libssl-dev]
+essentials:
+  - packages:
+    - zsh
+    - git
+    - curl
+    - build-essential
+    - td-agent
+    - heroku-toolbelt
+    - mongodb-org
+    - openjdk-6-jdk
+    - strace
+    - gdb
+    - valgrind
+    - dh-make
+    - devscripts
+    - bzip2
+    - build-essential
+    - autoconf
+    - libgdb-dev
+    - libssl-dev
