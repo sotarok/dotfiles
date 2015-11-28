@@ -383,6 +383,10 @@ test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
     && rvm default \
     && PATH="$HOME/.rvm/scripts/rvm/gems/$(rvm current)/bin":$PATH
 
+# rbenv
+test -z "$(which rbenv | grep 'not found')" \
+    && eval "$(rbenv init -)"
+
 # for gcloud
 test -d "$HOME/google-cloud-sdk" \
     && source $HOME/google-cloud-sdk/path.zsh.inc \
