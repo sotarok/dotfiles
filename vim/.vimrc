@@ -49,6 +49,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'chase/vim-ansible-yaml'
 Bundle 'kchmck/vim-coffee-script.git'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'mxw/vim-jsx'
 " vim-script Plugins
 Bundle 'sudo.vim'
 Bundle 'buftabs'
