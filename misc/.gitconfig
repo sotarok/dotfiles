@@ -60,3 +60,7 @@
 	bull = pull
 [redmine]
 	apiKey = 06853c1c8bf87df64785a8b831837dacc67d79a3
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

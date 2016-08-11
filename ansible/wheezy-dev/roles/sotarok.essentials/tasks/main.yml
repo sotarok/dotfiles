@@ -1,0 +1,7 @@
+- name: Install packages
+  sudo: yes
+  apt:
+    pkg: "{{item}}"
+    update_cache: yes
+  with_items: "{{ essentials.packages }}"
+

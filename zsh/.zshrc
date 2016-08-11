@@ -9,7 +9,7 @@
 export LANG=en_US.UTF-8
 
 # パスの設定
-PATH=$HOME/bin:$HOME/local/bin:/usr/gnu/bin:/usr/local/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
+PATH=$HOME/bin:$HOME/local/bin:/usr/gnu/bin:/usr/local/bin:/usr/local/go/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
 export ETHNA_HOME=$HOME/working/ethna/work
@@ -25,13 +25,6 @@ export CLICOLOR=1
 export GTEST_COLOR=1
 # export SCREENDIR=$HOME/.screen
 export LSCOLORS=ExFxCxDxBxegedabagacad
-
-#for Go
-#export GOPATH=$HOME/.go
-#export GOROOT=$HOME/go
-#export GOOS=linux
-#export GOARCH=$(arch)
-#export GOBIN=$HOME/bin
 
 #for aws
 export JAVA_HOME=/usr
@@ -390,10 +383,18 @@ test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
     && rvm default \
     && PATH="$HOME/.rvm/scripts/rvm/gems/$(rvm current)/bin":$PATH
 
+# rbenv
+test -z "$(which rbenv | grep 'not found')" \
+    && eval "$(rbenv init -)"
+
 # for gcloud
 test -d "$HOME/google-cloud-sdk" \
     && source $HOME/google-cloud-sdk/path.zsh.inc \
     && source $HOME/google-cloud-sdk/completion.zsh.inc
+
+#for Go
+export GOPATH=$HOME/.go
+PATH=$PATH:$GOPATH/bin
 
 # nvm
 export NVM_DIR=$HOME/.nvm

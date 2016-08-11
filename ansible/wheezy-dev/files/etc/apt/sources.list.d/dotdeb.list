@@ -1,0 +1,9 @@
+#deb http://packages.dotdeb.org wheezy all
+#deb-src http://packages.dotdeb.org wheezy all
+#deb http://packages.dotdeb.org wheezy-php56 all
+#deb-src http://packages.dotdeb.org wheezy-php56 all
+
+deb http://mirrors.teraren.com/dotdeb/ wheezy all
+deb-src http://mirrors.teraren.com/dotdeb/ wheezy all
+deb http://mirrors.teraren.com/dotdeb/ wheezy-php56 all
+deb-src http://mirrors.teraren.com/dotdeb/ wheezy-php56 all

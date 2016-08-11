@@ -48,6 +48,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script.git'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'mxw/vim-jsx'
 " vim-script Plugins
 Plugin 'sudo.vim'
 Plugin 'buftabs'
@@ -223,6 +224,7 @@ autocmd BufLeave * setlocal nocursorline
 
 " auto remove spaces of the end of line
 autocmd BufWritePre * :%s/\s\+$//ge
+"autocmd BufWritePre *.go Fmt
 
 " when split vertical then Vexplore
 nnoremap <C-w><C-v> :<C-u>Vexplore<Enter>
