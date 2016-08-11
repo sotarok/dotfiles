@@ -33,7 +33,7 @@ main() {
         info "dry run..."
     fi
 
-    run ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    run test -d /usr/local/Cellar || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     run brew install caskroom/cask/brew-cask
     run brew install vim tree mobile-shell tmux the_silver_searcher gnu-sed jq peco
     run brew cask install macdown
