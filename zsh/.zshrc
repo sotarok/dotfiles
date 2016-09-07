@@ -16,6 +16,7 @@ export ETHNA_HOME=$HOME/working/ethna/work
 LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH
 
+
 REPORTTIME=5
 
 # エディタを vim に設定
@@ -408,8 +409,12 @@ test -d $HOME/.anyenv \
 # autojump
 test -f ~/.dotfiles/zsh/autojump.zsh && source ~/.dotfiles/zsh/autojump.zsh
 
+# docker-machine
+test -x "$(which docker-machine)" && eval $(docker-machine env)
+
 # ファイルがあれば読み込み
 test -f $HOME/.zshaliases && source $HOME/.zshaliases
+
 
 # plugin
 #source ~/.zshrc.d/plugin/*
