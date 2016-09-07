@@ -29,34 +29,33 @@ filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
-"Bundle 'tpope/vim-fugitive'                  " original repos on github
-"Bundle 'rails.vim'                           " vim-scripts repos
-"Bundle 'git://git.wincent.com/command-t.git' " non github repos
-Bundle 'tpope/vim-surround'
+"Plugin 'tpope/vim-fugitive'                  " original repos on github
+"Plugin 'rails.vim'                           " vim-scripts repos
+"Plugin 'git://git.wincent.com/command-t.git' " non github repos
+Plugin 'tpope/vim-surround'
 if $SUDO_USER == ''
-  Bundle 'Shougo/neomru.vim'
-  Bundle 'Shougo/unite.vim'
-  Bundle 'Shougo/neocomplcache'
-  Bundle 'Shougo/unite-outline'
+  Plugin 'Shougo/neomru.vim'
+  Plugin 'Shougo/unite.vim'
+  Plugin 'Shougo/neocomplcache'
+  Plugin 'Shougo/unite-outline'
 endif
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'groenewege/vim-less'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'Blackrush/vim-gocode'
-Bundle 'pangloss/vim-javascript'
-Bundle 'chase/vim-ansible-yaml'
-Bundle 'kchmck/vim-coffee-script.git'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'mxw/vim-jsx'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'groenewege/vim-less'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script.git'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'mxw/vim-jsx'
 " vim-script Plugins
-Bundle 'sudo.vim'
-Bundle 'buftabs'
-Bundle 'Align'
+Plugin 'sudo.vim'
+Plugin 'buftabs'
+Plugin 'Align'
 " colorscheme
-Bundle 'molokai'
-Bundle 'chriskempson/vim-tomorrow-theme'
+Plugin 'molokai'
+Plugin 'chriskempson/vim-tomorrow-theme'
 " trying
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'Lokaltog/vim-powerline'
@@ -198,6 +197,8 @@ let g:unite_source_file_mru_limit = 200
 
 " jsx
 let g:jsx_ext_required = 0
+
+let g:vim_markdown_new_list_item_indent = 4
 
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
 " ファイル一覧
