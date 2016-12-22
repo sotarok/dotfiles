@@ -396,7 +396,10 @@ test -d "$HOME/google-cloud-sdk" \
 #for Go
 export GOROOT=$HOME/go
 export GOPATH=$HOME/.go
-PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+
+# cargo
+PATH="$HOME/.cargo/bin:$PATH"
 
 # nvm
 export NVM_DIR=$HOME/.nvm
