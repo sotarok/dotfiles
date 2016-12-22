@@ -394,8 +394,9 @@ test -d "$HOME/google-cloud-sdk" \
     && source $HOME/google-cloud-sdk/completion.zsh.inc
 
 #for Go
+export GOROOT=$HOME/go
 export GOPATH=$HOME/.go
-PATH=$PATH:$GOPATH/bin
+PATH=$PATH:$GOPATH/bin:$GOROOT/bin
 
 # nvm
 export NVM_DIR=$HOME/.nvm
@@ -408,9 +409,6 @@ test -d $HOME/.anyenv \
 
 # autojump
 test -f ~/.dotfiles/zsh/autojump.zsh && source ~/.dotfiles/zsh/autojump.zsh
-
-# docker-machine
-test -x "$(which docker-machine)" && eval $(docker-machine env)
 
 # ファイルがあれば読み込み
 test -f $HOME/.zshaliases && source $HOME/.zshaliases
