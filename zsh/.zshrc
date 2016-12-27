@@ -21,6 +21,15 @@ if test -d $HOME/.zplug; then
     source $HOME/.zplug/init.zsh
 
     zplug load
+
+    if zplug check b4b4r07/enhancd; then
+        export ENHANCD_DOT_SHOW_FULLPATH=1
+        export ENHANCD_DISABLE_DOT=1
+        export ENHANCD_DISABLE_HOME=1
+        export ENHANCD_HOOK_AFTER_CD=ls
+
+        alias j=cd # fallback
+    fi
 fi
 
 # エディタを vim に設定
@@ -292,7 +301,6 @@ PATH="$HOME/.cargo/bin:$PATH"
 test -d $HOME/.anyenv \
     && PATH="$HOME/.anyenv/bin:$PATH" \
     && eval "$(anyenv init -)"
-
 
 ###########################
 # # Auto ls
