@@ -16,3 +16,4 @@ fi
 
 source $HOME/.nvm/nvm.sh
 curl -L https://www.npmjs.com/install.sh | sh
+npm set progress=false

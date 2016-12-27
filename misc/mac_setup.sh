@@ -36,9 +36,9 @@ main() {
     run test -f /usr/local/bin/brew || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     run brew tap homebrew/science
     run brew install caskroom/cask/brew-cask
-    run brew install vim tree mobile-shell tmux the_silver_searcher gnu-sed jq peco kubernetes-cli packer
-    run brew install opencv boost boost-python protobuf szip glog gflags hdf5 leveldb snappy lmdb openblas
-    run brew cask install macdown vagrant dockertoolbox terraform
+    run brew install vim tree mobile-shell tmux the_silver_searcher gnu-sed
+    #run brew install opencv boost boost-python protobuf szip glog gflags hdf5 leveldb snappy lmdb openblas
+    #run brew cask install macdown vagrant dockertoolbox terraform kubernetes-cli packer
     run "curl https://sdk.cloud.google.com | bash"
 
 }
