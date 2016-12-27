@@ -12,19 +12,21 @@ export LANG=en_US.UTF-8
 PATH=$HOME/bin:$HOME/local/bin:/usr/gnu/bin:/usr/local/bin:/usr/local/go/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
-export ETHNA_HOME=$HOME/working/ethna/work
-LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH
+# Emasc 風キーバインド
+bindkey -e
 
+if test -d $HOME/.zplug; then
+    export ZPLUG_LOADFILE="$HOME/.zsh/zplug.zsh"
 
-REPORTTIME=5
+    source $HOME/.zplug/init.zsh
+
+    zplug load
+fi
 
 # エディタを vim に設定
-export SVN_EDITOR="vim"
 export EDITOR="vim"
 export CLICOLOR=1
 export GTEST_COLOR=1
-# export SCREENDIR=$HOME/.screen
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 #for aws
@@ -36,13 +38,9 @@ export EC2_PRIVATE_KEY=$HOME/aws/pk-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
 export EC2_URL=https://ec2.ap-northeast-1.amazonaws.com
 export EC2_REGION=ap-northeast-1
 
-# for aws (crocos)
-test -f /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/.bootstrap && source /usr/local/var/aws-tools/env/crocos
-
 export SCREEN_USING=1
-#export PATH=$GOBIN:$PATH
 
-export DEBEMAIL="sotarok@crocos.co.jp"
+export DEBEMAIL="sotaro.k@gmail.com"
 export DEBFULLNAME="Sotaro Karasawa"
 
 export LESS=' -R'
@@ -54,7 +52,6 @@ autoload -U colors; colors
 # 関数
 find-grep () { find . -type f -print | xargs grep -n --binary-files=without-match $@ }
 grepv () { grep -irn --binary-files=without-match $@ * | grep -v svn | grep -v .git }
-grep-edit () { vim $(grep $@ | cut -d: -f1  | sort | uniq) }
 touchtodaytxt () {
     TODAY=`date +%Y-%m-%d`
     if [ $1 ]; then
@@ -67,27 +64,28 @@ touchtodaytxt () {
 
 fpath=(~/.zshrc.d/completion $fpath)
 
+# peco
+
 # エイリアスの設定
 # (dircolorの読み込み)
 case "${OSTYPE}" in
-darwin*)
-    alias ls='ls -G'
-    ;;
-solaris*)
-    test -f ~/.dircolors && eval `dircolors -b ~/.dircolors`
-    alias ls='ls --color=auto'
-    ;;
-linux*)
-    test -f ~/.dircolors && eval `dircolors -b ~/.dircolors`
-    test -f ~/.dotfiles/zsh/dircolors-solarized/dircolors.ansi-universal && eval `dircolors -b ~/.dotfiles/zsh/dircolors-solarized/dircolors.ansi-universal`
-    alias ls='ls --color=auto'
+    darwin*)
+        alias ls='ls -G'
+        ;;
+    solaris*)
+        test -f ~/.dircolors && eval `dircolors -b ~/.dircolors`
+        alias ls='ls --color=auto'
+        ;;
+    linux*)
+        test -f ~/.dircolors && eval `dircolors -b ~/.dircolors`
+        test -f ~/.dotfiles/zsh/dircolors-solarized/dircolors.ansi-universal && eval `dircolors -b ~/.dotfiles/zsh/dircolors-solarized/dircolors.ansi-universal`
+        alias ls='ls --color=auto'
 
-    # mac の zsh だと関数が最初にパースれちゃう？
-    # (which git の時点で関数/aliasが適用されてしまうのでlinuxのみ
-    #alias git='git-wrap'
-    ;;
+        # mac の zsh だと関数が最初にパースれちゃう？
+        # (which git の時点で関数/aliasが適用されてしまうのでlinuxのみ
+        #alias git='git-wrap'
+        ;;
 esac
-
 
 ## 補完候補の色づけ
 export ZLS_COLORS=$LS_COLORS
@@ -95,12 +93,12 @@ export ZLS_COLORS=$LS_COLORS
 # 補完の利用設定
 autoload -Uz compinit; compinit -u
 
-# for zaw-cdr
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-add-zsh-hook chpwd chpwd_recent_dirs
-zstyle ':chpwd:*' recent-dirs-max 500 # cdrの履歴を保存する個数
-zstyle ':chpwd:*' recent-dirs-default yes
-zstyle ':completion:*' recent-dirs-insert both
+## for zaw-cdr
+#autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+#add-zsh-hook chpwd chpwd_recent_dirs
+#zstyle ':chpwd:*' recent-dirs-max 500 # cdrの履歴を保存する個数
+#zstyle ':chpwd:*' recent-dirs-default yes
+#zstyle ':completion:*' recent-dirs-insert both
 
 # 大文字・小文字を区別しないで補完出来るようにする．大文字を入力した場合は区別
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -121,41 +119,41 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 
 autoload -Uz is-at-least
 if is-at-least 4.3.10; then
-  autoload -Uz vcs_info
-  zstyle ':vcs_info:*' enable git
-  zstyle ':vcs_info:git:*' check-for-changes true
-  zstyle ':vcs_info:git:*' stagedstr "(+'~') "
-  zstyle ':vcs_info:git:*' unstagedstr "(*'-') "
-  zstyle ':vcs_info:*' actionformats " %F{1}%c%u%f%F{3}@%F{4}%b%F{3} !!%F{1}%a ( > <)%f"
-  zstyle ':vcs_info:*' formats       " %F{1}%c%u%f%F{3}@%F{4}%b%f"
+    autoload -Uz vcs_info
+    zstyle ':vcs_info:*' enable git
+    zstyle ':vcs_info:git:*' check-for-changes true
+    zstyle ':vcs_info:git:*' stagedstr "(+'~') "
+    zstyle ':vcs_info:git:*' unstagedstr "(*'-') "
+    zstyle ':vcs_info:*' actionformats " %F{1}%c%u%f%F{3}@%F{4}%b%F{3} !!%F{1}%a ( > <)%f"
+    zstyle ':vcs_info:*' formats       " %F{1}%c%u%f%F{3}@%F{4}%b%f"
 fi
 
 #RPROMPT="%F{5}[%F{2}%~\${vcs_info_msg_0_}%F{5}]%f"
 PROMPT_HEADER="%F{5}%F{2}%~\${vcs_info_msg_0_}%F{5}%f"
 
 case ${UID} in
-0)
-    PROMPT="%B%{[31m%}%n@%m#%{[m%}%b "
-    PROMPT2="%B%{[31m%}%_#%{[m%}%b "
-    SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%[m%}%b "
-    #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-        #PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-;;
-*)
-    PROMPT_COLOR=32
-    precmd() {
-        vcs_info
-        PROMPT_COLOR="$[32 + ($PROMPT_COLOR - 31) % 5]"
+    0)
+        PROMPT="%B%{[31m%}%n@%m#%{[m%}%b "
+        PROMPT2="%B%{[31m%}%_#%{[m%}%b "
+        SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%[m%}%b "
+        #[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+            #PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
+        ;;
+    *)
+        PROMPT_COLOR=32
+        precmd() {
+            vcs_info
+            PROMPT_COLOR="$[32 + ($PROMPT_COLOR - 31) % 5]"
 
-        [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-            PRE_PROMPT="%{[37m%}${HOST%%.*} "
+            [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+                PRE_PROMPT="%{[37m%}${HOST%%.*} "
 
-        PROMPT="${PRE_PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
+            PROMPT="${PRE_PROMPT}%F{${PROMPT_COLOR}}%n%%%f $PROMPT_HEADER
 %% "
-    }
+        }
 
-    SPROMPT="%{$fg[red]%}%{$suggest%}(*･･%)? < %B%r%b %{$fg[red]%}? [y,n,a,e]:${reset_color} "
-;;
+        SPROMPT="%{$fg[red]%}%{$suggest%}(*･･%)? < %B%r%b %{$fg[red]%}? [y,n,a,e]:${reset_color} "
+        ;;
 esac
 
 setopt prompt_subst
@@ -252,9 +250,6 @@ setopt nocheckjobs
 # Ctrl-s を無効
 stty stop undef
 
-# Emasc 風キーバインド
-bindkey -e
-
 set kanji-code utf-8
 set convert-meta off    #必須
 set meta-flag on        #必須
@@ -263,10 +258,10 @@ set input-meta on
 set enable-keypad on
 
 r() {
-  local f
-  f=(~/.zshrc.d/completion/*(.))
-  unfunction $f:t 2> /dev/null
-  autoload -U $f:t
+    local f
+    f=(~/.zshrc.d/completion/*(.))
+    unfunction $f:t 2> /dev/null
+    autoload -U $f:t
 }
 
 ###########################
@@ -281,24 +276,9 @@ GITBIN=$(which git)
 # composer
 PATH="$HOME/.composer/vendor/bin:$PATH"
 
-# php-env
-test -d $HOME/.phpenv \
-    && PATH="$HOME/.phpenv/bin:$PATH" \
-    && eval "$(phpenv init -)"
-
-# rvm
-test -s "$HOME/.rvm/scripts/rvm" && source "$HOME/.rvm/scripts/rvm" \
-    && rvm default \
-    && PATH="$HOME/.rvm/scripts/rvm/gems/$(rvm current)/bin":$PATH
-
 # rbenv
 test -z "$(which rbenv | grep 'not found')" \
     && eval "$(rbenv init -)"
-
-# for gcloud
-test -d "$HOME/google-cloud-sdk" \
-    && source $HOME/google-cloud-sdk/path.zsh.inc \
-    && source $HOME/google-cloud-sdk/completion.zsh.inc
 
 #for Go
 export GOROOT=$HOME/go
@@ -308,29 +288,14 @@ PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 # cargo
 PATH="$HOME/.cargo/bin:$PATH"
 
-# nvm
-export NVM_DIR=$HOME/.nvm
-test -f $NVM_DIR/nvm.sh && source $NVM_DIR/nvm.sh
-
 # anyenv
 test -d $HOME/.anyenv \
     && PATH="$HOME/.anyenv/bin:$PATH" \
     && eval "$(anyenv init -)"
 
-# autojump
-test -f ~/.dotfiles/zsh/autojump.zsh && source ~/.dotfiles/zsh/autojump.zsh
-
-# ファイルがあれば読み込み
-test -f $HOME/.zshaliases && source $HOME/.zshaliases
-
-
-# plugin
-#source ~/.zshrc.d/plugin/*
-
 
 ###########################
-#
-# Auto ls
+# # Auto ls
 #
 ###########################
 
@@ -338,55 +303,12 @@ test -f $HOME/.zshaliases && source $HOME/.zshaliases
 # cd をしたときにlsを実行する
 chpwd () {
     case "${OSTYPE}" in
-        darwin*) ;;
-    *)
-        echo -n "_`dirs`\\"
-        ls
-        ;;
-    esac
-}
-preexec() {
-    # see [zsh-workers:13180]
-    # http://www.zsh.org/mla/workers/2000/msg03993.html
-    emulate -L zsh
-    local -a cmd; cmd=(${(z)2})
-    case $cmd[1] in
-        fg)
-            if (( $#cmd == 1 )); then
-                cmd=(builtin jobs -l %+)
-            else
-                cmd=(builtin jobs -l $cmd[2])
-            fi
+        darwin*)
+            ls
             ;;
-        %*)
-            cmd=(builtin jobs -l $cmd[1])
-            ;;
-        cd)
-            if (( $#cmd == 2)); then
-                cmd[1]=$cmd[2]
-            fi
-            ;&
         *)
-            echo -n "k$cmd[1]:t\\"
-            return
+            echo -n "_`dirs`\\"
+            ls
             ;;
-
     esac
-
-    local -A jt; jt=(${(kv)jobtexts})
-
-    if test $SCREEN_USING -eq 1
-    then
-        $cmd >>(read num rest
-        cmd=(${(z)${(e):-\$jt$num}})
-        echo -n "k$cmd[1]:t\\") 2>/dev/null
-    fi
 }
-chpwd
-
-# zaw
-test -f ~/.dotfiles/zsh/zaw/zaw.zsh && source ~/.dotfiles/zsh/zaw/zaw.zsh
-bindkey '^@' zaw-cdr
-bindkey '^O' zaw-open-file
-bindkey '^R' zaw-history
-bindkey '^Xg' zaw-git-branches

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 if test $# != 1
 then
@@ -14,9 +14,9 @@ echo $DOTFILES
 ln -snf $DOTFILES/vim/.vim $HOME
 ln -sf $DOTFILES/vim/.vimrc $HOME
 ln -sf $DOTFILES/vim/.gvimrc $HOME
+ln -snf $DOTFILES/zsh $HOME/.zsh
 ln -sf $DOTFILES/zsh/.zshrc $HOME
 ln -sf $DOTFILES/zsh/.dircolors $HOME
-ln -snf $DOTFILES/zsh/.zshrc.d $HOME
 ln -sf $DOTFILES/screen/.screenrc $HOME
 ln -sf $DOTFILES/tmux/.tmux.conf $HOME
 ln -sf $DOTFILES/misc/.my.cnf $HOME
@@ -39,17 +39,23 @@ cp $DOTFILES/ssh/id_rsa.pub $HOME/.ssh/id_rsa.pub && chmod 600 $HOME/.ssh/id_rsa
 
 ln -sf $DOTFILES/bin/* $HOME/bin
 
-test ! -x $HOME/bin/tig \
-    && cd $HOME \
-    && git clone git://github.com/jonas/tig.git ./__tig \
-    && cd __tig \
-    && make install \
-    && cd .. \
-    && rm -rf __tig
-
 test ! -d $HOME/.anyenv \
     && git clone https://github.com/riywo/anyenv ~/.anyenv
 
+## zplug
+if test ! -d $HOME/.zplug ; then
+    curl -sL zplug.sh/installer | zsh
+
+    if -f $HOME/.zsh/zplug.zsh && export ZPLUG_LOADFILE="$HOME/.zsh/zplug.zsh"
+
+    # load zplug
+    source ~/.zplug/init.zsh
+
+    if ! zplug check --verbose; then
+        zplug install
+    fi
+    zplug load --verbose
+fi
+
 cd $DOTFILES
 git submodule update --init
-
