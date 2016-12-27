@@ -1,0 +1,92 @@
+# for typo
+alias ....='cd ../../'
+alias dc='cd'
+alias d='cd'
+alias sl='ls'
+alias ks='ls'
+alias pc='cp'
+alias pera='pear'
+alias snv='svn'
+alias gti='git'
+alias gh='hg'
+alias amke='make'
+
+# for shortcut
+alias sudo='sudo -E '
+alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+alias grep='grep --color'
+alias grepl='grep --line-buffered'
+alias t='tar zxvf'
+alias tj='tar jxvf'
+alias t-='tar xvf -'
+alias b='bzip2 -dc'
+alias ll='ls -ltr'
+alias la='ls -la'
+alias dh='df -h'
+#alias less='less -R'
+alias vi='vim'
+alias v='vim'
+alias :e='vim'
+alias V='vim -R -'
+alias e='vim'   # :p
+alias pingg='ping www.google.com'
+
+# vagrant
+alias vs='vagrant ssh'
+
+# for svn
+alias st='svn st | less -FSRX'
+alias stu='svn st -u | less -FSRX'
+alias sd='svn di | less -FSRX'
+alias sdi='svn diff | colordiff | less -FSRX'
+alias sad='svn add'
+alias sup='svn up'
+alias sci='svn ci'
+alias sl2='svn log --limit 2 --verbose | less'
+alias sl3='svn log --limit 3 --verbose | less'
+alias sl4='svn log --limit 4 --verbose | less'
+alias sl5='svn log --limit 5 --verbose | less'
+alias sl6='svn log --limit 6 --verbose | less'
+
+# for screen
+alias sr='screen -d -R' # screen detach & resume
+alias sR='screen -R' # screen detach & resume
+alias sx='screen -x'    # screen multiattach
+alias scl='screen -list' # screen list
+alias scr='screen -r'    # screen r
+
+# for tmux
+alias tl='tmux ls'
+alias tn='tmux new-session -s'
+alias ta='tmux a -d -t'
+
+# for git
+alias gst='git status -sb'
+alias gci='git commit'
+alias gdi='git diff'
+alias gdir='GIT_PAGER="less -r -I" git diff'
+alias gdc='git diff --cached'
+alias gdw='GIT_PAGER="less -rSX" gdi --word-diff'
+alias gad='git add'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbm='git branch --merged'
+alias gg='git graph'
+alias gga='git graph --all'
+alias gco='git checkout'
+alias gm='git merge'
+alias gr='git rebase'
+alias gf='git fetch -ap'
+alias gbc='git name-rev --name-only HEAD > /tmp/git-current-branch-sotarok;screen -X readbuf /tmp/git-current-branch-sotarok;rm /tmp/git-current-branch-sotarok'
+alias gpsom='git push origin master'
+alias gpsod='git push origin develop'
+alias gplrod='git pull --rebase origin develop'
+
+# for sudo
+alias yum='sudo yum'
+alias aptitude='sudo aptitude'
+alias apt-get='sudo apt-get'
+alias apts='apt-cache search'
+alias apti='apt-get install'
+alias aptu='apt-get update'
+alias aptug='apt-get upgrade'
