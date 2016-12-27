@@ -322,8 +322,6 @@ if has("autocmd")
     autocmd FileType pl :setlocal dictionary+=~/.vim/dict/perl.dict
     autocmd FileType pm :setlocal dictionary+=~/.vim/dict/perl.dict
 
-    autocmd FileType * setlocal dictionary+=~/.vim/dict/facebook_permissions.dict textwidth=0
-
     autocmd FileType c setlocal ts=2 sw=2
     autocmd FileType text setlocal ts=4 sw=4
     autocmd FileType mkd setlocal ts=4 sw=4 sts=4
