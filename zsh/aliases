@@ -2,6 +2,9 @@
 alias ....='cd ../../'
 alias dc='cd'
 alias d='cd'
+alias cdc='cd -c' # enhancd
+alias cdg='cd -g' # enhancd
+alias cdgg='cd -G' # enhancd
 alias sl='ls'
 alias ks='ls'
 alias pc='cp'
@@ -42,11 +45,6 @@ alias sdi='svn diff | colordiff | less -FSRX'
 alias sad='svn add'
 alias sup='svn up'
 alias sci='svn ci'
-alias sl2='svn log --limit 2 --verbose | less'
-alias sl3='svn log --limit 3 --verbose | less'
-alias sl4='svn log --limit 4 --verbose | less'
-alias sl5='svn log --limit 5 --verbose | less'
-alias sl6='svn log --limit 6 --verbose | less'
 
 # for screen
 alias sr='screen -d -R' # screen detach & resume
