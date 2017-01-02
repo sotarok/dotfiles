@@ -55,6 +55,8 @@ export DEBFULLNAME="Sotaro Karasawa"
 export LESS=' -R'
 test -f /usr/share/source-highlight/src-hilite-lesspipe.sh && export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 
+yarn --version >> /dev/null 2>&1 && export PATH="$PATH:`yarn global bin`"
+
 # プロンプトの設定
 autoload -U colors; colors
 
