@@ -46,7 +46,7 @@ test ! -d $HOME/.anyenv \
 if test ! -d $HOME/.zplug ; then
     curl -sL zplug.sh/installer | zsh
 
-    if -f $HOME/.zsh/zplug.zsh && export ZPLUG_LOADFILE="$HOME/.zsh/zplug.zsh"
+    test -f $HOME/.zsh/zplug.zsh && export ZPLUG_LOADFILE="$HOME/.zsh/zplug.zsh"
 
     # load zplug
     source ~/.zplug/init.zsh
