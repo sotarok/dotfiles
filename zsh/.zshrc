@@ -75,8 +75,6 @@ touchtodaytxt () {
 
 fpath=(~/.zshrc.d/completion $fpath)
 
-# peco
-
 # エイリアスの設定
 # (dircolorの読み込み)
 case "${OSTYPE}" in
