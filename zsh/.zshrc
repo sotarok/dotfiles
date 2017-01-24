@@ -290,9 +290,8 @@ test -z "$(which rbenv | grep 'not found')" \
     && eval "$(rbenv init -)"
 
 #for Go
-export GOROOT=$HOME/go
 export GOPATH=$HOME/.go
-PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+PATH="$GOPATH/bin:$PATH"
 
 # cargo
 PATH="$HOME/.cargo/bin:$PATH"
