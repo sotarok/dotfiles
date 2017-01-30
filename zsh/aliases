@@ -88,3 +88,13 @@ alias apts='apt-cache search'
 alias apti='apt-get install'
 alias aptu='apt-get update'
 alias aptug='apt-get upgrade'
+
+phan() {
+    docker run -v $PWD:/mnt/src --rm -u "$(id -u):$(id -g)" cloudflare/phan:latest $@; return $?;
+}
+
+mongoc() {
+    docker run -it --rm --link "$1:mongo" mongo mongo --authenticationDatabase admin $1/$2
+}
+
+
