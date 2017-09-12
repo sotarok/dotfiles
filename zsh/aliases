@@ -97,4 +97,6 @@ mongoc() {
     docker run -it --rm --link "$1:mongo" mongo mongo --authenticationDatabase admin $1/$2
 }
 
-
+hhvm() {
+    docker run --rm -v `pwd`:`pwd` -w `pwd` hhvm/hhvm hhvm
+}
