@@ -98,5 +98,5 @@ mongoc() {
 }
 
 hhvm() {
-    docker run --rm -v `pwd`:`pwd` -w `pwd` hhvm/hhvm hhvm
+    docker run --rm -v `pwd`:`pwd` -w `pwd` hhvm/hhvm hhvm $@
 }
