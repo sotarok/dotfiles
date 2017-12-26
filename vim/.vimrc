@@ -43,6 +43,7 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'groenewege/vim-less'
+Plugin 'digitaltoad/vim-pug'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script.git'
@@ -316,6 +317,7 @@ autocmd BufRead,BufNewFile *.json setfiletype javascript
 autocmd BufRead,BufNewFile *.twig setfiletype javascript
 autocmd BufRead,BufNewFile *.twig setfiletype htmldjango
 autocmd BufRead,BufNewFile *.twig if &filetype == 'twig' | set filetype=htmldjango | endif
+autocmd BufRead,BufNewFile *.pug setfiletype pug
 
 if has("autocmd")
     autocmd FileType rb :setlocal dictionary+=~/.vim/dict/ruby.dict
