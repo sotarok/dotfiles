@@ -296,6 +296,10 @@ PATH="$GOPATH/bin:$PATH"
 # cargo
 PATH="$HOME/.cargo/bin:$PATH"
 
+# google-cloud-sdk
+test -d $HOME/google-cloud-sdk \
+    && source $HOME/google-cloud-sdk/path.zsh.inc
+
 # anyenv
 test -d $HOME/.anyenv \
     && PATH="$HOME/.anyenv/bin:$PATH" \
