@@ -325,3 +325,6 @@ if [ -f '/Users/sotarok/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/so
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/sotarok/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/sotarok/google-cloud-sdk/completion.zsh.inc'; fi
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
