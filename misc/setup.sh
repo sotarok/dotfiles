@@ -44,7 +44,7 @@ test ! -d $HOME/.anyenv \
 
 ## zplug
 if test ! -d $HOME/.zplug ; then
-    curl -sL zplug.sh/installer | zsh
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
     test -f $HOME/.zsh/zplug.zsh && export ZPLUG_LOADFILE="$HOME/.zsh/zplug.zsh"
 
