@@ -22,3 +22,4 @@ zplug "peco/peco", as:command, from:gh-r, frozen:1
 zplug "composer/composer", as:command, from:gh-r, rename-to:composer, use:"*.phar", frozen:1
 
 zplug "jimeh/zsh-peco-history"
+zplug "direnv/direnv", as:command, rename-to:direnv, use:"direnv", hook-build:"make"

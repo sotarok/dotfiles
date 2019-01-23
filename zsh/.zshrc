@@ -39,7 +39,7 @@ export GTEST_COLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 #for aws
-export JAVA_HOME=/usr
+#export JAVA_HOME=/usr
 export AWS_RDS_HOME=$HOME/aws/RDSCli-1.4.006
 export PATH=$AWS_RDS_HOME/bin:$PATH
 export EC2_CERT=$HOME/aws/cert-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
