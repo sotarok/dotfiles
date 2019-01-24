@@ -38,8 +38,11 @@ export CLICOLOR=1
 export GTEST_COLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
+if test -d /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home; then
+    export JAVA_HOME=/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home
+fi
+
 #for aws
-#export JAVA_HOME=/usr
 export AWS_RDS_HOME=$HOME/aws/RDSCli-1.4.006
 export PATH=$AWS_RDS_HOME/bin:$PATH
 export EC2_CERT=$HOME/aws/cert-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
@@ -332,3 +335,7 @@ if [ -f '/Users/sotarok/google-cloud-sdk/completion.zsh.inc' ]; then source '/Us
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+# direnv
+test -z "$(which direnv | grep 'not found')" \
+    && eval "$(direnv hook zsh)"
