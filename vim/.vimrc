@@ -58,6 +58,7 @@ Plugin 'Align'
 " colorscheme
 Plugin 'molokai'
 Plugin 'chriskempson/vim-tomorrow-theme'
+Plugin 'dracula/vim'
 " trying
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'Lokaltog/vim-powerline'
@@ -79,7 +80,8 @@ set encoding=utf-8
 
 set background=dark
 "colorscheme molokai
-colorscheme Tomorrow-Night
+"colorscheme Tomorrow-Night
+color dracula
 
 " Edit .vimrc
 "nnoremap <Space>.  :<C-u>edit $MYVIMRC<Enter>
