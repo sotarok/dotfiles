@@ -334,7 +334,7 @@ if has("autocmd")
     autocmd FileType make setlocal nomodeline noexpandtab
     autocmd FileType yaml setlocal ts=2 sw=2
     autocmd FileType javascript setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
-    autocmd FileType typescript setlocal ts=4 sw=4 sts=4 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
+    autocmd FileType typescript setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType json setlocal ts=2 sw=2 sts=2
     autocmd FileType html setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType xml setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
