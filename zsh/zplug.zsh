@@ -1,4 +1,4 @@
-zplug "b4b4r07/enhancd", at:v2.2.1, use:init.sh
+zplug "b4b4r07/enhancd", at:v2.2.4, use:init.sh
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
 
