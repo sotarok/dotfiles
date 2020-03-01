@@ -47,7 +47,7 @@ Plugin 'digitaltoad/vim-pug'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'kchmck/vim-coffee-script.git'
+"Plugin 'kchmck/vim-coffee-script.git'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'mxw/vim-jsx'
@@ -80,8 +80,8 @@ set encoding=utf-8
 
 set background=dark
 "colorscheme molokai
-"colorscheme Tomorrow-Night
-color dracula
+colorscheme Tomorrow-Night
+"color dracula
 
 " Edit .vimrc
 "nnoremap <Space>.  :<C-u>edit $MYVIMRC<Enter>

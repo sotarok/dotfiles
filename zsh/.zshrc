@@ -26,6 +26,7 @@ if test -d $HOME/.zplug; then
         export ENHANCD_DOT_SHOW_FULLPATH=1
         export ENHANCD_DISABLE_DOT=1
         export ENHANCD_DISABLE_HOME=1
+        #export ENHANCD_HOOK_AFTER_CD=ls
 
         alias j=cd # fallback
     fi
