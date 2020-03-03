@@ -47,6 +47,7 @@ Plugin 'digitaltoad/vim-pug'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/tsuquyomi'
 "Plugin 'kchmck/vim-coffee-script.git'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
@@ -80,8 +81,8 @@ set encoding=utf-8
 
 set background=dark
 "colorscheme molokai
-colorscheme Tomorrow-Night
-"color dracula
+"colorscheme Tomorrow-Night
+color dracula
 
 " Edit .vimrc
 "nnoremap <Space>.  :<C-u>edit $MYVIMRC<Enter>
@@ -321,6 +322,7 @@ autocmd BufRead,BufNewFile *.twig setfiletype javascript
 autocmd BufRead,BufNewFile *.twig setfiletype htmldjango
 autocmd BufRead,BufNewFile *.twig if &filetype == 'twig' | set filetype=htmldjango | endif
 autocmd BufRead,BufNewFile *.pug setfiletype pug
+autocmd BufRead,BufNewFile *.ts setfiletype typescript
 
 if has("autocmd")
     autocmd FileType rb :setlocal dictionary+=~/.vim/dict/ruby.dict
