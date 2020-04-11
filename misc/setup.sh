@@ -46,10 +46,16 @@ test ! -d $HOME/.anyenv \
 if test ! -d $HOME/.zplug ; then
     curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
+    sleep 2
+
     test -f $HOME/.zsh/zplug.zsh && export ZPLUG_LOADFILE="$HOME/.zsh/zplug.zsh"
 
+    sleep 5
+
     # load zplug
-    source ~/.zplug/init.zsh
+    ls "$HOME/.zplug/"
+    ls "$HOME/.zplug/init.zsh"
+    source "$HOME/.zplug/init.zsh"
 
     if ! zplug check --verbose; then
         zplug install

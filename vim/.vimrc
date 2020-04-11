@@ -47,6 +47,8 @@ Plugin 'digitaltoad/vim-pug'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'jparise/vim-graphql'
 Plugin 'Quramy/tsuquyomi'
 "Plugin 'kchmck/vim-coffee-script.git'
 Plugin 'godlygeek/tabular'
@@ -329,7 +331,7 @@ if has("autocmd")
     autocmd FileType pl :setlocal dictionary+=~/.vim/dict/perl.dict
     autocmd FileType pm :setlocal dictionary+=~/.vim/dict/perl.dict
 
-    autocmd FileType c setlocal ts=2 sw=2
+    autocmd FileType c setlocal ts2 sw=2
     autocmd FileType text setlocal ts=4 sw=4
     autocmd FileType mkd setlocal ts=4 sw=4 sts=4
     autocmd FileType smarty setlocal ts=2 sw=2
@@ -337,6 +339,7 @@ if has("autocmd")
     autocmd FileType yaml setlocal ts=2 sw=2
     autocmd FileType javascript setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType typescript setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
+    autocmd FileType typescript.tsx setlocal ts=2 sw=2 sts=2
     autocmd FileType json setlocal ts=2 sw=2 sts=2
     autocmd FileType html setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType xml setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
