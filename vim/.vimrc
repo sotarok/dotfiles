@@ -54,6 +54,7 @@ Plugin 'Quramy/tsuquyomi'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'mxw/vim-jsx'
+Plugin 'kezhenxu94/vim-mysql-plugin'
 " vim-script Plugins
 Plugin 'sudo.vim'
 Plugin 'buftabs'
