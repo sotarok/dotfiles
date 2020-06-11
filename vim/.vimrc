@@ -63,6 +63,7 @@ Plugin 'Align'
 Plugin 'molokai'
 Plugin 'chriskempson/vim-tomorrow-theme'
 Plugin 'dracula/vim'
+Plugin 'styled-components/vim-styled-components'
 " trying
 "Bundle 'kien/ctrlp.vim'
 "Bundle 'Lokaltog/vim-powerline'
