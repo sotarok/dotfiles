@@ -3,7 +3,7 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
 
 zplug "creationix/nvm", use:nvm.sh
-zplug "joelthelion/autojump", as:command, use:bin/autojump
+zplug "wting/autojump", as:command, use:bin/autojump
 
 ## aliases
 zplug "sotarok/dotfiles", use:zsh/aliases
@@ -16,8 +16,8 @@ zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/docker-compose", from:oh-my-zsh
 
 zplug "stedolan/jq", as:command, from:gh-r, frozen:1
-zplug "motemen/ghq", as:command, from:gh-r, rename-to:ghq
-zplug "reorx/httpstat", as:command, use:'httpstat.py', rename-to:'httpstat', if:'(( $+commands[python] ))'
+zplug "x-motemen/ghq", as:command, from:gh-r, rename-to:ghq
+zplug "reorx/httpstat", as:command, use:'httpstat.py', rename-to:'httpstat'
 zplug "peco/peco", as:command, from:gh-r, frozen:1
 zplug "composer/composer", as:command, from:gh-r, rename-to:composer, use:"*.phar", frozen:1
 
