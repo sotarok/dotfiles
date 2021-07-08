@@ -48,8 +48,8 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'peitalin/vim-jsx-typescript'
-Plugin 'jparise/vim-graphql'
 Plugin 'Quramy/tsuquyomi'
+Plugin 'jparise/vim-graphql'
 "Plugin 'kchmck/vim-coffee-script.git'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
@@ -342,6 +342,7 @@ if has("autocmd")
     autocmd FileType javascript setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType typescript setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType typescript.tsx setlocal ts=2 sw=2 sts=2
+    autocmd FileType typescriptreact setlocal ts=2 sw=2 sts=2
     autocmd FileType json setlocal ts=2 sw=2 sts=2
     autocmd FileType html setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType xml setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
@@ -349,6 +350,7 @@ if has("autocmd")
     autocmd FileType css setlocal ts=2 sw=2 sts=2 includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=;/
     autocmd FileType scss setlocal ts=2 sw=2 sts=2
     autocmd FileType less setlocal ts=2 sw=2 sts=2
+    autocmd FileType sql setlocal ts=2 sw=2 sts=2
     autocmd FileType go setlocal noexpandtab
     autocmd FileType php setlocal commentstring=\ //\ %s
 
@@ -363,6 +365,7 @@ if has("autocmd")
     autocmd BufNewFile *.zsh 0r ~/.vim/skeleton/shell.skel
     autocmd BufNewFile *.bash 0r ~/.vim/skeleton/shell.skel
     autocmd BufNewFile *.go 0r ~/.vim/skeleton/go.skel
+    autocmd BufNewFile *.tsx 0r ~/.vim/skeleton/tsx.skel
 
     " バッファの。。。なんかよくわからんけど追加。あとで。
     autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif

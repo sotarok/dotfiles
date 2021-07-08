@@ -12,6 +12,7 @@ export LANG=en_US.UTF-8
 PATH=$HOME/bin:$HOME/local/bin:/usr/gnu/bin:/usr/local/bin:/usr/local/go/bin:/opt/local/bin:$PATH:/sbin:/usr/sbin
 export MANPATH=/usr/local/man:/usr/share/man
 
+
 # Emasc 風キーバインド
 bindkey -e
 
@@ -43,12 +44,12 @@ if test -d /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home; th
 fi
 
 #for aws
-export AWS_RDS_HOME=$HOME/aws/RDSCli-1.4.006
-export PATH=$AWS_RDS_HOME/bin:$PATH
-export EC2_CERT=$HOME/aws/cert-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
-export EC2_PRIVATE_KEY=$HOME/aws/pk-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
-export EC2_URL=https://ec2.ap-northeast-1.amazonaws.com
-export EC2_REGION=ap-northeast-1
+#export AWS_RDS_HOME=$HOME/aws/RDSCli-1.4.006
+#export PATH=$AWS_RDS_HOME/bin:$PATH
+#export EC2_CERT=$HOME/aws/cert-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
+#export EC2_PRIVATE_KEY=$HOME/aws/pk-X2E4GDTRX72W7XJ5AM4JRPOTSIXQYFTY.pem
+#export EC2_URL=https://ec2.ap-northeast-1.amazonaws.com
+export AWS_DEFAULT_REGION=ap-northeast-1
 
 export SCREEN_USING=1
 
@@ -308,6 +309,10 @@ test -d $HOME/.anyenv \
     && PATH="$HOME/.anyenv/bin:$PATH" \
     && eval "$(anyenv init -)"
 
+# python3.8
+test -d /usr/local/opt/python@3.8/bin \
+    && PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
 ###########################
 # # Auto ls
 #
@@ -339,3 +344,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # direnv
 test -z "$(which direnv | grep 'not found')" \
     && eval "$(direnv hook zsh)"
+
+# rust
+test -e "$HOME/.cargo/env" && source "$HOME/.cargo/env"
