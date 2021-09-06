@@ -88,6 +88,9 @@ alias apti='apt-get install'
 alias aptu='apt-get update'
 alias aptug='apt-get upgrade'
 
+# for vscode
+alias vscode="open -a Visual\ Studio\ Code.app"
+
 phan() {
     docker run -v $PWD:/mnt/src --rm -u "$(id -u):$(id -g)" cloudflare/phan:latest $@; return $?;
 }
