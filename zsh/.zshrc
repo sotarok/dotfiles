@@ -347,3 +347,5 @@ test -z "$(which direnv | grep 'not found')" \
 
 # rust
 test -e "$HOME/.cargo/env" && source "$HOME/.cargo/env"
+
+test -e "/opt/homebrew/bin/brew" && eval "$(/opt/homebrew/bin/brew shellenv)"
