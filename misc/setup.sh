@@ -65,3 +65,13 @@ fi
 
 cd $DOTFILES
 git submodule update --init
+
+if [ "$(uname)" == 'Darwin' ]; then
+    run test -f /usr/local/bin/brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    defaults write -g ApplePressAndHoldEnabled -bool false
+    defaults write -g KeyRepeat -int 1
+    defaults write -g InitialKeyRepeat -int 11
+
+    vim +BundleInstall +qall
+fi
