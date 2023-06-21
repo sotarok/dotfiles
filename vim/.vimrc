@@ -196,7 +196,10 @@ noremap - <C-W><
 
 " for IME
 inoremap <C-@> <Esc>
+inoremap <C-[> <Esc>
 "inoremap <Space>[ <Esc>
+
+
 
 " unite
 nnoremap <C-i> :Unite file<Enter>
