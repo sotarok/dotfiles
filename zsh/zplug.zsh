@@ -1,4 +1,4 @@
-zplug "b4b4r07/enhancd", at:v2.2.4, use:init.sh
+zplug "b4b4r07/enhancd", use:init.sh
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
 
@@ -7,7 +7,7 @@ zplug "wting/autojump", as:command, use:bin/autojump
 
 ## aliases
 zplug "sotarok/dotfiles", use:zsh/aliases
-zplug "~/.zshaliases", from:local
+zplug "~/.zsh/aliases", from:local
 
 zplug "plugins/pip", from:oh-my-zsh
 zplug "plugins/composer", from:oh-my-zsh
