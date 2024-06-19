@@ -102,3 +102,7 @@ mongoc() {
 hhvm() {
     docker run --rm -v `pwd`:`pwd` -w `pwd` hhvm/hhvm hhvm $@
 }
+
+psql() {
+    docker run --rm -it --net=host postgres:15 psql
+}
