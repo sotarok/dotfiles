@@ -66,7 +66,7 @@ fi
 cd $DOTFILES
 git submodule update --init
 
-if [ "$(uname)" == 'Darwin' ]; then
+if [ "$(uname)" = 'Darwin' ]; then
     run test -f /usr/local/bin/brew || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     defaults write -g ApplePressAndHoldEnabled -bool false
