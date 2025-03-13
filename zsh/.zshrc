@@ -349,3 +349,8 @@ test -z "$(which direnv | grep 'not found')" \
 test -e "$HOME/.cargo/env" && source "$HOME/.cargo/env"
 
 test -e "/opt/homebrew/bin/brew" && eval "$(/opt/homebrew/bin/brew shellenv)"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/sotarok/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
