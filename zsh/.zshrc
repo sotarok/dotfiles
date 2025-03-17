@@ -348,6 +348,16 @@ test -z "$(which direnv | grep 'not found')" \
 # rust
 test -e "$HOME/.cargo/env" && source "$HOME/.cargo/env"
 
+# nvmo
+autoload -U add-zsh-hook
+load-nvmrc() {
+  if [ -f ".nvmrc" ]; then
+    nvm use
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
 test -e "/opt/homebrew/bin/brew" && eval "$(/opt/homebrew/bin/brew shellenv)"
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/sotarok/.docker/completions $fpath)
