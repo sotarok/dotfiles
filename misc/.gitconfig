@@ -1,6 +1,7 @@
 [user]
 	email = sotaro.k@gmail.com
 	name = Sotaro KARASAWA
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPHDmy2HRwZacfzoHg7jUE3nS1xVRvyBl6hb5adTDoAh
 [core]
 	editor = /usr/bin/vim
 	excludesfile = ~/.gitignore
@@ -69,3 +70,9 @@
 [merge "npm-merge-driver"]
 	name = automatically merge npm lockfiles
 	driver = npx npm-merge-driver merge %A %O %B %P
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
