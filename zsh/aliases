@@ -2,9 +2,9 @@
 alias ....='cd ../../'
 alias dc='cd'
 alias d='cd'
-alias cdc='cd -c' # enhancd
-alias cdg='cd -g' # enhancd
-alias cdgg='cd -G' # enhancd
+alias z='zoxide' # zoxide
+alias zi='zoxide query -i' # zoxide interactive
+alias zq='zoxide query' # zoxide query
 alias sl='ls'
 alias ks='ls'
 alias pc='cp'

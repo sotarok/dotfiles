@@ -16,21 +16,31 @@ export MANPATH=/usr/local/man:/usr/share/man
 # Emasc 風キーバインド
 bindkey -e
 
-if test -d $HOME/.zplug; then
-    export ZPLUG_LOADFILE="$HOME/.zsh/zplug.zsh"
+# Zinit installation
+if [[ ! -d $HOME/.zinit ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
 
-    source $HOME/.zplug/init.zsh
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-    zplug load
+# Load Zinit configuration
+if [[ -f "$HOME/.dotfiles/zsh/zinit.zsh" ]]; then
+    source "$HOME/.dotfiles/zsh/zinit.zsh"
+fi
 
-    if zplug check b4b4r07/enhancd; then
-        export ENHANCD_DOT_SHOW_FULLPATH=1
-        export ENHANCD_DISABLE_DOT=1
-        export ENHANCD_DISABLE_HOME=1
-        #export ENHANCD_HOOK_AFTER_CD=ls
-
-        alias j=cd # fallback
-    fi
+# Zoxide configuration
+if command -v zoxide &> /dev/null; then
+    export _ZO_ECHO=1  # print the matched directory before navigating
+    export _ZO_RESOLVE_SYMLINKS=1  # resolve symlinks before storing paths
+    
+    alias j=z  # use zoxide as j
+    # Keep cd as normal cd command
 fi
 
 # エディタを vim に設定

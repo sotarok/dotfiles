@@ -1,4 +1,4 @@
-zplug "b4b4r07/enhancd", use:init.sh
+zplug "ajeetdsouza/zoxide", as:command, from:gh-r, rename-to:zoxide, hook-load:'eval "$(zoxide init zsh)"'
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
 
