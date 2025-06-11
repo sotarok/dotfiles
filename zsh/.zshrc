@@ -16,20 +16,26 @@ export MANPATH=/usr/local/man:/usr/share/man
 # Emasc 風キーバインド
 bindkey -e
 
-if test -d $HOME/.zplug; then
-    export ZPLUG_LOADFILE="$HOME/.zsh/zplug.zsh"
+# Zinit
+if [[ -d $HOME/.zinit ]]; then
+    source "$HOME/.zinit/bin/zinit.zsh"
+    autoload -Uz _zinit
+    (( ${+_comps} )) && _comps[zinit]=_zinit
 
-    source $HOME/.zplug/init.zsh
+    # Load Zinit configuration
+    if [[ -f "$HOME/.dotfiles/zsh/zinit.zsh" ]]; then
+        source "$HOME/.dotfiles/zsh/zinit.zsh"
+    fi
+fi
 
-    zplug load
+# FZF configuration
+if command -v fzf &> /dev/null; then
+    export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-    if zplug check b4b4r07/enhancd; then
-        export ENHANCD_DOT_SHOW_FULLPATH=1
-        export ENHANCD_DISABLE_DOT=1
-        export ENHANCD_DISABLE_HOME=1
-        #export ENHANCD_HOOK_AFTER_CD=ls
-
-        alias j=cd # fallback
+    # Use fd for better file search if available
+    if command -v fd &> /dev/null; then
+        export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+        export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     fi
 fi
 
@@ -364,3 +370,12 @@ fpath=(/Users/sotarok/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# Zoxide configuration
+if command -v zoxide &> /dev/null; then
+    export _ZO_ECHO=1  # print the matched directory before navigating
+    export _ZO_RESOLVE_SYMLINKS=1  # resolve symlinks before storing paths
+    eval "$(zoxide init zsh)"
+
+    # Keep cd as normal cd command
+fi
