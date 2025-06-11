@@ -16,22 +16,16 @@ export MANPATH=/usr/local/man:/usr/share/man
 # Emasc 風キーバインド
 bindkey -e
 
-# Zinit installation
-if [[ ! -d $HOME/.zinit ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
+# Zinit
+if [[ -d $HOME/.zinit ]]; then
+    source "$HOME/.zinit/bin/zinit.zsh"
+    autoload -Uz _zinit
+    (( ${+_comps} )) && _comps[zinit]=_zinit
 
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load Zinit configuration
-if [[ -f "$HOME/.dotfiles/zsh/zinit.zsh" ]]; then
-    source "$HOME/.dotfiles/zsh/zinit.zsh"
+    # Load Zinit configuration
+    if [[ -f "$HOME/.dotfiles/zsh/zinit.zsh" ]]; then
+        source "$HOME/.dotfiles/zsh/zinit.zsh"
+    fi
 fi
 
 # FZF configuration

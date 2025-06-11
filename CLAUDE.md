@@ -42,7 +42,7 @@ This is a personal dotfiles repository for managing system configurations across
 - **Custom Scripts**: `/bin/` contains utility scripts that get linked to `~/bin`
 
 ### Configuration Management
-- Uses `zplug` for Zsh plugin management
+- Uses `zinit` for Zsh plugin management
 - Uses `anyenv` as a unified version manager for multiple languages
 - Git submodules for external dependencies (e.g., autojump)
 - Ansible playbooks in `/ansible/` for infrastructure automation
