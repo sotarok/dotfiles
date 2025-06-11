@@ -38,9 +38,20 @@ fi
 if command -v zoxide &> /dev/null; then
     export _ZO_ECHO=1  # print the matched directory before navigating
     export _ZO_RESOLVE_SYMLINKS=1  # resolve symlinks before storing paths
+    eval "$(zoxide init zsh)"
     
-    alias j=z  # use zoxide as j
     # Keep cd as normal cd command
+fi
+
+# FZF configuration
+if command -v fzf &> /dev/null; then
+    export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
+    # Use fd for better file search if available
+    if command -v fd &> /dev/null; then
+        export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+        export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    fi
 fi
 
 # エディタを vim に設定

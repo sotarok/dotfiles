@@ -1,8 +1,7 @@
 # Zinit configuration
 
 # Zoxide - modern cd replacement
-zinit ice as"command" from"gh-r" mv"zoxide -> zoxide" \
-    atclone"./zoxide init zsh > init.zsh" atpull"%atclone" src"init.zsh"
+zinit ice as"command" from"gh-r" mv"zoxide -> zoxide"
 zinit light ajeetdsouza/zoxide
 
 # Zsh enhancements
@@ -46,6 +45,18 @@ zinit light composer/composer
 
 # Peco history search
 zinit light jimeh/zsh-peco-history
+
+# FZF - fuzzy finder with installation script
+zinit ice from"gh-r" as"program" pick"$ZPFX/bin/fzf" \
+    atclone"./install --bin" atpull"%atclone"
+zinit light junegunn/fzf
+
+# FZF shell integration
+zinit ice wait lucid
+zinit snippet "https://github.com/junegunn/fzf/raw/master/shell/completion.zsh"
+
+zinit ice wait lucid
+zinit snippet "https://github.com/junegunn/fzf/raw/master/shell/key-bindings.zsh"
 
 # Load completions
 autoload -Uz compinit && compinit

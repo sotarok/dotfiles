@@ -2,7 +2,7 @@
 alias ....='cd ../../'
 alias dc='cd'
 alias d='cd'
-alias z='zoxide' # zoxide
+#alias z='zoxide' # zoxide
 alias zi='zoxide query -i' # zoxide interactive
 alias zq='zoxide query' # zoxide query
 alias sl='ls'
