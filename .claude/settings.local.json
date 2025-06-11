@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(ls:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(zoxide init:*)",
+      "Bash(git add:*)"
     ]
   },
   "enableAllProjectMcpServers": false
