@@ -34,15 +34,6 @@ if [[ -f "$HOME/.dotfiles/zsh/zinit.zsh" ]]; then
     source "$HOME/.dotfiles/zsh/zinit.zsh"
 fi
 
-# Zoxide configuration
-if command -v zoxide &> /dev/null; then
-    export _ZO_ECHO=1  # print the matched directory before navigating
-    export _ZO_RESOLVE_SYMLINKS=1  # resolve symlinks before storing paths
-    eval "$(zoxide init zsh)"
-    
-    # Keep cd as normal cd command
-fi
-
 # FZF configuration
 if command -v fzf &> /dev/null; then
     export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
@@ -385,3 +376,12 @@ fpath=(/Users/sotarok/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# Zoxide configuration
+if command -v zoxide &> /dev/null; then
+    export _ZO_ECHO=1  # print the matched directory before navigating
+    export _ZO_RESOLVE_SYMLINKS=1  # resolve symlinks before storing paths
+    eval "$(zoxide init zsh)"
+
+    # Keep cd as normal cd command
+fi
