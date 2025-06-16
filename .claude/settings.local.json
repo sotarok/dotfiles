@@ -5,7 +5,9 @@
       "Bash(find:*)",
       "Bash(grep:*)",
       "Bash(zoxide init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(setopt)"
     ]
   },
   "enableAllProjectMcpServers": false
