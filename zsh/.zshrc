@@ -18,7 +18,15 @@ bindkey -e
 
 # Zinit
 if [[ -d $HOME/.zinit ]]; then
+    # Temporarily disable globsubst to avoid "bad pattern" errors in zinit
+    local _saved_globsubst=
+    [[ -o globsubst ]] && _saved_globsubst=1
+    setopt noglobsubst
+    
     source "$HOME/.zinit/bin/zinit.zsh"
+    
+    # Restore globsubst if it was previously set
+    [[ -n $_saved_globsubst ]] && setopt globsubst
     autoload -Uz _zinit
     (( ${+_comps} )) && _comps[zinit]=_zinit
 
