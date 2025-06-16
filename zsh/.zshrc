@@ -267,7 +267,7 @@ unsetopt hup
 setopt nocheckjobs
 
 # Ctrl-s を無効
-stty stop undef
+[[ -t 0 ]] && stty stop undef
 
 set kanji-code utf-8
 set convert-meta off    #必須
@@ -358,6 +358,11 @@ test -e "$HOME/.cargo/env" && source "$HOME/.cargo/env"
 autoload -U add-zsh-hook
 load-nvmrc() {
   if [ -f ".nvmrc" ]; then
+    # If nvm is not loaded yet, load it synchronously
+    if ! command -v nvm &> /dev/null; then
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    fi
     nvm use
   fi
 }
