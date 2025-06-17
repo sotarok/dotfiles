@@ -7,7 +7,9 @@
       "Bash(zoxide init:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(setopt)"
+      "Bash(setopt)",
+      "Bash(declare:*)",
+      "Bash(git push:*)"
     ]
   },
   "enableAllProjectMcpServers": false
