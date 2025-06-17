@@ -16,9 +16,20 @@ export MANPATH=/usr/local/man:/usr/share/man
 # Emasc 風キーバインド
 bindkey -e
 
+# NVM directory
+export NVM_DIR="$HOME/.nvm"
+
 # Zinit
 if [[ -d $HOME/.zinit ]]; then
+    # Temporarily disable globsubst to avoid "bad pattern" errors in zinit
+    local _saved_globsubst=
+    [[ -o globsubst ]] && _saved_globsubst=1
+    setopt noglobsubst
+    
     source "$HOME/.zinit/bin/zinit.zsh"
+    
+    # Restore globsubst if it was previously set
+    [[ -n $_saved_globsubst ]] && setopt globsubst
     autoload -Uz _zinit
     (( ${+_comps} )) && _comps[zinit]=_zinit
 
@@ -267,7 +278,7 @@ unsetopt hup
 setopt nocheckjobs
 
 # Ctrl-s を無効
-stty stop undef
+[[ -t 0 ]] && stty stop undef
 
 set kanji-code utf-8
 set convert-meta off    #必須
@@ -358,6 +369,11 @@ test -e "$HOME/.cargo/env" && source "$HOME/.cargo/env"
 autoload -U add-zsh-hook
 load-nvmrc() {
   if [ -f ".nvmrc" ]; then
+    # If nvm is not loaded yet, load it synchronously
+    if ! command -v nvm &> /dev/null; then
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    fi
     nvm use
   fi
 }
