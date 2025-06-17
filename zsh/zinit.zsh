@@ -9,7 +9,6 @@ zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-completions
 
 # NVM - Node Version Manager
-zinit ice wait lucid
 zinit snippet https://github.com/creationix/nvm/blob/master/nvm.sh
 
 # Autojump

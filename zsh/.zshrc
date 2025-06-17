@@ -16,6 +16,9 @@ export MANPATH=/usr/local/man:/usr/share/man
 # Emasc 風キーバインド
 bindkey -e
 
+# NVM directory
+export NVM_DIR="$HOME/.nvm"
+
 # Zinit
 if [[ -d $HOME/.zinit ]]; then
     # Temporarily disable globsubst to avoid "bad pattern" errors in zinit
