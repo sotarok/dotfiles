@@ -11,9 +11,6 @@ zinit light zsh-users/zsh-completions
 # NVM - Node Version Manager
 zinit snippet https://github.com/creationix/nvm/blob/master/nvm.sh
 
-# Autojump
-zinit ice as"command" pick"bin/autojump"
-zinit light wting/autojump
 
 # Local aliases
 zinit snippet ~/.dotfiles/zsh/aliases
