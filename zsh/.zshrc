@@ -25,9 +25,9 @@ if [[ -d $HOME/.zinit ]]; then
     local _saved_globsubst=
     [[ -o globsubst ]] && _saved_globsubst=1
     setopt noglobsubst
-    
+
     source "$HOME/.zinit/bin/zinit.zsh"
-    
+
     # Restore globsubst if it was previously set
     [[ -n $_saved_globsubst ]] && setopt globsubst
     autoload -Uz _zinit
@@ -395,3 +395,10 @@ if command -v zoxide &> /dev/null; then
 
     # Keep cd as normal cd command
 fi
+
+
+# gw shell integration
+eval "$(gw shell-integration --show-script --shell=zsh)"
+
+# Created by `pipx` on 2025-12-17 15:44:45
+export PATH="$PATH:$HOME/.local/bin"
